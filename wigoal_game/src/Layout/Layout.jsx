@@ -7,28 +7,78 @@ import {
     UserOutlined,
     VideoCameraOutlined,
 } from '@ant-design/icons';
-import { Layout, Menu, Button, theme } from 'antd';
+import { Layout, Space, Menu, Button, theme, Drawer  } from 'antd';
+
+import Logo from "./components/Logo/logo";
+import Search from "./components/Search/Search";
+
+import "./Layout.less";
+import SearchContainer from "./components/Search/Search";
+
 const { Header, Sider, Content } = Layout;
 
+
+
 const LayoutContainer = () => {
-    const [collapsed, setCollapsed] = useState(false);
     const {
-        token: { colorBgContainer },
+        token: {
+            // colorBgContainer
+        },
     } = theme.useToken();
 
+    const [collapsed, setCollapsed] = useState(true);
+
+    const [open, setOpen] = useState(false);
+
+    const showDrawer = () => {
+        setOpen(true);
+    };
+
+    const onClose = () => {
+        setOpen(false);
+    };
+
     return (
-        <Layout>
-            <Header>
-                <Button
-                    type="text"
-                    icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-                    onClick={() => setCollapsed(!collapsed)}
-                    style={{color: "white"}}
-                />
+        <Layout className="container">
+            <Header className="container_header">
+                <Space style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    paddingLeft: '8px',
+                    alignItems: 'center',
+                    height: 'inherit'
+                }}>
+                    <Button
+                        className="container_button"
+                        type="text"
+                        icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                        onClick={() => setCollapsed(!collapsed)}
+                    />
+                    <div className="container_logo">
+                        <Logo collapsed={collapsed}></Logo>
+                        <div className="logoText">
+                            WigoalGame
+                        </div>
+                    </div>
+                </Space>
+                <Space>
+                    <Search></Search>
+                </Space>
+                <Space>
+                    <Button type="primary" onClick={showDrawer}>
+                        Open
+                    </Button>
+                </Space>
             </Header>
             <Layout>
-                <Sider trigger={null} collapsible collapsed={collapsed}>
-                    <div className="demo-logo-vertical" />
+                <Sider
+                    width={200}
+                    collapsedWidth={60}
+                    trigger={null}
+                    collapsible
+                    collapsed={collapsed}
+                    breakpoint="md"
+                >
                     <Menu
                         theme="dark"
                         mode="inline"
@@ -56,6 +106,11 @@ const LayoutContainer = () => {
                     Content
                 </Content>
             </Layout>
+            <Drawer title="Basic Drawer" placement="right" onClose={onClose} open={open}>
+                <p>Some contents...</p>
+                <p>Some contents...</p>
+                <p>Some contents...</p>
+            </Drawer>
         </Layout>
     );
 };
