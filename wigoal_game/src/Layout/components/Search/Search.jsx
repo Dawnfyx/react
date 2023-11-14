@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {useNavigate} from 'react-router-dom';
 import { Input, Space } from 'antd';
 
 const { Search } = Input;
@@ -6,8 +7,11 @@ const { Search } = Input;
 const SearchContainer = (props) => {
     const { collapsed } = props;
 
-    const onSearch = () => {
+    const navigate = useNavigate();
 
+    const onSearch = (value, _e, info) => {
+        console.log(info?.source, value);
+        navigate('details')
     }
 
     return(
