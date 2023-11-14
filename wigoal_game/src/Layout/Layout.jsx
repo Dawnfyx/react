@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {Link, useNavigate, Outlet} from 'react-router-dom';
 
 import {
     MenuFoldOutlined,
@@ -7,16 +8,14 @@ import {
     UserOutlined,
     VideoCameraOutlined,
 } from '@ant-design/icons';
-import { Layout, Space, Menu, Button, theme, Drawer  } from 'antd';
+import {Layout, Space, Menu, Button, theme, Drawer, Avatar} from 'antd';
+import "./Layout.less";
 
 import Logo from "./components/Logo/logo";
 import Search from "./components/Search/Search";
 
-import "./Layout.less";
-import SearchContainer from "./components/Search/Search";
 
 const { Header, Sider, Content } = Layout;
-
 
 
 const LayoutContainer = () => {
@@ -38,6 +37,8 @@ const LayoutContainer = () => {
         setOpen(false);
     };
 
+    const navigate = useNavigate();
+
     return (
         <Layout className="container">
             <Header className="container_header">
@@ -55,10 +56,12 @@ const LayoutContainer = () => {
                         onClick={() => setCollapsed(!collapsed)}
                     />
                     <div className="container_logo">
-                        <Logo collapsed={collapsed}></Logo>
-                        <div className="logoText">
-                            WigoalGame
-                        </div>
+                        <Link to=''>
+                            <Logo collapsed={collapsed}></Logo>
+                            <div className="logoText">
+                                WigoalGame
+                            </div>
+                        </Link>
                     </div>
                 </Space>
                 <Space>
@@ -88,22 +91,25 @@ const LayoutContainer = () => {
                                 key: '1',
                                 icon: <UserOutlined />,
                                 label: 'nav 1',
+                                onClick: () => navigate(''),
                             },
                             {
                                 key: '2',
                                 icon: <VideoCameraOutlined />,
                                 label: 'nav 2',
+                                onClick: () => navigate('/category'),
                             },
                             {
                                 key: '3',
                                 icon: <UploadOutlined />,
                                 label: 'nav 3',
+                                onClick: () => navigate('/category'),
                             },
                         ]}
                     />
                 </Sider>
-                <Content>
-                    Content
+                <Content style={{ padding: 16}}>
+                    <Outlet></Outlet>
                 </Content>
             </Layout>
             <Drawer title="Basic Drawer" placement="right" onClose={onClose} open={open}>

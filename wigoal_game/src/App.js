@@ -15,6 +15,13 @@ function App() {
               components: {
                   Layout: {
                       bodyBg: '#0C0D14', //test
+                  },
+                  Card: {
+                      colorBgContainer: '#1d1e25',
+                      colorBorderSecondary: '#1f2030',
+                      colorText: '#373952',
+                      colorTextHeading: '#373952',
+                      colorTextDescription: '#373952',
                   }
               }
           }}

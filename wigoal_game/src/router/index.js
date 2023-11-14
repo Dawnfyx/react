@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Routes, Route} from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
 import asyncComponent from '../utils/asyncComponent';
 
 import Layout from "../Layout/Layout";
@@ -14,11 +14,14 @@ export default class RouteConfig extends Component{
         return(
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/search" element={<Search />} />
-                    <Route path="/details" element={<Details />} />
-                    <Route path="/category" element={<Category />} />
-                    <Route path="/layout" element={<Layout />} />
+                    <Route path="/" element={<Layout />} >
+                        <Route path="" element={<Home />} />
+                        <Route path="home" element={<Home />} />
+                        <Route path="search" element={<Search />} />
+                        <Route path="details" element={<Details />} />
+                        <Route path="category" element={<Category />} />
+                        <Route path="*" element={<Navigate to="home" />} ></Route>
+                    </Route>
                 </Routes>
             </BrowserRouter>
         )
