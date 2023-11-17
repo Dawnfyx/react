@@ -39,38 +39,59 @@ const LayoutContainer = () => {
 
     const refMenu = useRef();
 
+    const isMobileOrTablet = () =>{
+        // 获取 User-Agent 字符串
+        const userAgent = window.navigator.userAgent;
+
+        // 获取屏幕宽度
+        const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+        // 判断是否是手机
+        const isMobile = /Mobile/i.test(userAgent) && screenWidth < 768;
+
+        return isMobile;
+    }
+
+    // useEffect(() =>{
+    //     isMobileOrTablet();
+    // }, [])
+
     return (
         <Layout className="container">
-            <Header className="container_header">
-                <Space style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    height: 'inherit'
-                }}>
-                    <Button
-                        className="container_button"
-                        type="text"
-                        icon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
-                        onClick={() => setCollapsed(!collapsed)}
-                    />
-                    <LogoContainer collapsed={collapsed}></LogoContainer>
-                </Space>
-                <Space>
-                    <SearchContainer></SearchContainer>
-                </Space>
-                <Space>
-                    <Button type="link" icon={<HeartOutlined/>} onClick={showDrawer}>My&nbsp;game</Button>
-                    <Button type="primary" shape="round" onClick={showDrawer}>
-                        Log&nbsp;in
-                    </Button>
-                    <Button shape="circle" icon={<UserOutlined/>} onClick={showDrawer}
-                            style={{
-                                backgroundColor: 'transparent'
-                            }}
-                    />
-                </Space>
-            </Header>
+            {
+                isMobileOrTablet()
+                    ? ''
+                    : <Header className="container_header">
+                        <Space style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            height: 'inherit'
+                        }}>
+                            <Button
+                                className="container_button"
+                                type="text"
+                                icon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
+                                onClick={() => setCollapsed(!collapsed)}
+                            />
+                            <LogoContainer collapsed={collapsed}></LogoContainer>
+                        </Space>
+                        <Space>
+                            <SearchContainer></SearchContainer>
+                        </Space>
+                        <Space>
+                            <Button type="link" icon={<HeartOutlined/>} onClick={showDrawer}>My&nbsp;game</Button>
+                            <Button type="primary" shape="round" onClick={showDrawer}>
+                                Log&nbsp;in
+                            </Button>
+                            <Button shape="circle" icon={<UserOutlined/>} onClick={showDrawer}
+                                    style={{
+                                        backgroundColor: 'transparent'
+                                    }}
+                            />
+                        </Space>
+                    </Header>
+            }
             <Layout>
                 <SiderContainer collapsed={collapsed} ref={refMenu}></SiderContainer>
                 <Content style={{padding: 16}}>

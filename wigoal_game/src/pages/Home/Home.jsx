@@ -27,7 +27,7 @@ const HomeContainer = () => {
             <Row gutter={[16, 24]}>
                 {
                     temp.map((item, key) => (
-                        <Col span={3} key={key}>
+                        <Col key={key} xs={12} sm={8} md={6} lg={4}>
                             <Card loading={loading}>
                                 <Link to='/details'>
                                     <Meta

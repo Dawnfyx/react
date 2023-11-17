@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import RouteConfig from "./router";
 
 import { ConfigProvider} from "antd";
 
 import './App.css';
 
+import {MobileOrTabletLog} from "./utils/mixin";
+
 function App() {
+
+    useEffect(() =>{
+        MobileOrTabletLog();
+    }, [])
+
   return (
       <ConfigProvider
           theme={{

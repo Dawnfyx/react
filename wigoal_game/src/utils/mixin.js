@@ -25,3 +25,61 @@ export const padStr = (value, position, padstr, inputElement) => {
   return value;
 }
 
+export const browserVersion = () => {
+    const userAgent = navigator.userAgent;
+    let version = "";
+    let browserType = "";
+
+    if (/rv:([\d.]+)/.test(userAgent)) {
+        version = userAgent.match(/rv:([\d.]+)/)[1];
+        browserType = 'rv';
+    } else if (/MSIE ([\d.]+)/.test(userAgent)) {
+        version = userAgent.match(/MSIE ([\d.]+)/)[1];
+        browserType = 'MSIE';
+    } else if (/Edg\/([\d.]+)/.test(userAgent)) {
+        version = userAgent.match(/Edg\/([\d.]+)/)[1];
+        browserType = 'Microsoft Edge';
+    } else if (/Edge\/([\d.]+)/.test(userAgent)) {
+        version = userAgent.match(/Edge\/([\d.]+)/)[1];
+        browserType = 'Microsoft Edge';
+    } else if (/Chrome\/([\d.]+)/.test(userAgent)) {
+        version = userAgent.match(/Chrome\/([\d.]+)/)[1];
+        browserType = 'Chrome';
+    } else if (/Firefox\/([\d.]+)/.test(userAgent)) {
+        version = userAgent.match(/Firefox\/([\d.]+)/)[1];
+        browserType = 'Firefox';
+    } else if (/Safari\/([\d.]+)/.test(userAgent)) {
+        version = userAgent.match(/Safari\/([\d.]+)/)[1];
+        browserType = 'Safari';
+    } else {
+        version = "Unknown";
+    }
+    let temp = {}
+    temp.version = version;
+    temp.browserType = browserType;
+    return temp;
+}
+
+export const MobileOrTabletLog = () => {
+
+    // 获取 User-Agent 字符串
+    const userAgent = window.navigator.userAgent;
+
+    // 获取屏幕宽度
+    const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+    // 判断是否是手机
+    const isMobile = /Mobile/i.test(userAgent) && screenWidth < 768;
+
+    // 判断是否是平板电脑
+    const isTablet = /Tablet/i.test(userAgent) && (screenWidth >= 768 && screenWidth < 1024);
+
+    if (isMobile) {
+        console.log("您正在使用手机访问");
+    } else if (isTablet) {
+        console.log("您正在使用平板电脑访问");
+    } else {
+        console.log("您正在使用桌面电脑访问");
+        console.log('浏览器本版：' , browserVersion().browserType, browserVersion().version);
+    }
+}
