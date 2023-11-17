@@ -1,0 +1,39 @@
+.search_box{
+    border-radius: 30px;
+    fill: #AAADBE;
+    position: relative;
+    //padding-top: 8px;
+    background-color: #373952;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 1px;
+    height: 40px;
+    width: 600px;
+
+    input{
+        border-color: transparent;
+        background-color: transparent;
+        height: 40px;
+    }
+    .ant-input:hover,
+    .ant-input:focus{
+        border-color: transparent;
+    }
+
+    button{
+        background-color: transparent;
+        height: 40px;
+    }
+    .ant-input-group-addon{
+        & > .ant-btn{
+            border-start-start-radius: 40px !important;
+            border-start-end-radius: 40px !important;
+            border-end-end-radius: 40px !important;
+            border-end-start-radius: 40px !important;
+        }
+        & > .ant-btn:hover,
+        & > .ant-btn:focus{
+            background-color: #ffffff14;
+        }
+    }
+}

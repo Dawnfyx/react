@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import RouteConfig from "./router";
 
 import { ConfigProvider} from "antd";
@@ -9,20 +10,39 @@ function App() {
       <ConfigProvider
           theme={{
               token: {
-                  colorPrimary: '#A48EFF',
-                  colorText: '#ffffff',
+                  colorPrimary: '#8668FF',
+                  colorPrimaryHover: '#A48EFF',
+                  colorText: '#FFFFFF',
+                  colorTextPlaceholder: '#AAADBE',
+                  colorLink: '#FFFFFF',
+                  // colorBgContainer: 'red',
+                  // colorBgLayout: 'red',
               },
               components: {
                   Layout: {
                       bodyBg: '#0C0D14', //test
+                      headerBg: '#212233',
+                      siderBg: '#0C0D14',
                   },
                   Card: {
-                      colorBgContainer: '#1d1e25',
-                      colorBorderSecondary: '#1f2030',
+                      colorBgContainer: '#1D1E25',
+                      colorBorderSecondary: '#1F2030',
                       colorText: '#373952',
                       colorTextHeading: '#373952',
                       colorTextDescription: '#373952',
-                  }
+                  },
+                  Menu: {
+                      // popupBg: '#000000',
+                      darkDangerItemActiveBg: '#000000',
+                      activeBarWidth: 6,
+                      itemBg: '#0C0D14',
+                  },
+                  // Input: {
+                  //     activeBg: '373952',
+                  //     activeBorderColor: '373952',
+                  //     hoverBg: '373952',
+                  //     hoverBorderColor: '373952',
+                  // },
               }
           }}
       >

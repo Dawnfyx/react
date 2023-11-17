@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import {Link, useNavigate, Outlet} from 'react-router-dom';
+import React, {useState, useEffect, useRef} from 'react';
+import {Outlet} from 'react-router-dom';
 
 import {
+    HeartOutlined,
     MenuFoldOutlined,
     MenuUnfoldOutlined,
     UploadOutlined,
@@ -11,21 +12,20 @@ import {
 import {Layout, Space, Menu, Button, theme, Drawer, Avatar} from 'antd';
 import "./Layout.less";
 
-import Logo from "./components/Logo/logo";
-import Search from "./components/Search/Search";
+import LogoContainer from "./components/Logo/logo";
+import SearchContainer from "./components/Search/Search";
+import SiderContainer from "./components/Sider/Sider";
 
-
-const { Header, Sider, Content } = Layout;
-
+const {Header, Content} = Layout;
 
 const LayoutContainer = () => {
-    const {
-        token: {
-            // colorBgContainer
-        },
-    } = theme.useToken();
+    // const {
+    //     token: {
+    //         colorBgContainer
+    //     },
+    // } = theme.useToken();
 
-    const [collapsed, setCollapsed] = useState(true);
+    const [collapsed, setCollapsed] = useState(false);
 
     const [open, setOpen] = useState(false);
 
@@ -37,7 +37,7 @@ const LayoutContainer = () => {
         setOpen(false);
     };
 
-    const navigate = useNavigate();
+    const refMenu = useRef();
 
     return (
         <Layout className="container">
@@ -45,70 +45,35 @@ const LayoutContainer = () => {
                 <Space style={{
                     display: 'flex',
                     flexDirection: 'row',
-                    paddingLeft: '8px',
                     alignItems: 'center',
                     height: 'inherit'
                 }}>
                     <Button
                         className="container_button"
                         type="text"
-                        icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                        icon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
                         onClick={() => setCollapsed(!collapsed)}
                     />
-                    <div className="container_logo">
-                        <Link to=''>
-                            <Logo collapsed={collapsed}></Logo>
-                            <div className="logoText">
-                                WigoalGame
-                            </div>
-                        </Link>
-                    </div>
+                    <LogoContainer collapsed={collapsed}></LogoContainer>
                 </Space>
                 <Space>
-                    <Search></Search>
+                    <SearchContainer></SearchContainer>
                 </Space>
                 <Space>
-                    <Button type="primary" onClick={showDrawer}>
-                        Open
+                    <Button type="link" icon={<HeartOutlined/>} onClick={showDrawer}>My&nbsp;game</Button>
+                    <Button type="primary" shape="round" onClick={showDrawer}>
+                        Log&nbsp;in
                     </Button>
+                    <Button shape="circle" icon={<UserOutlined/>} onClick={showDrawer}
+                            style={{
+                                backgroundColor: 'transparent'
+                            }}
+                    />
                 </Space>
             </Header>
             <Layout>
-                <Sider
-                    width={200}
-                    collapsedWidth={60}
-                    trigger={null}
-                    collapsible
-                    collapsed={collapsed}
-                    breakpoint="md"
-                >
-                    <Menu
-                        theme="dark"
-                        mode="inline"
-                        defaultSelectedKeys={['1']}
-                        items={[
-                            {
-                                key: '1',
-                                icon: <UserOutlined />,
-                                label: 'nav 1',
-                                onClick: () => navigate(''),
-                            },
-                            {
-                                key: '2',
-                                icon: <VideoCameraOutlined />,
-                                label: 'nav 2',
-                                onClick: () => navigate('/category'),
-                            },
-                            {
-                                key: '3',
-                                icon: <UploadOutlined />,
-                                label: 'nav 3',
-                                onClick: () => navigate('/category'),
-                            },
-                        ]}
-                    />
-                </Sider>
-                <Content style={{ padding: 16}}>
+                <SiderContainer collapsed={collapsed} ref={refMenu}></SiderContainer>
+                <Content style={{padding: 16}}>
                     <Outlet></Outlet>
                 </Content>
             </Layout>

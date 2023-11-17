@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import { Input, Space } from 'antd';
+import "./Search.less"
 
 const { Search } = Input;
 
@@ -15,9 +16,10 @@ const SearchContainer = (props) => {
     }
 
     return(
-        <Space>
-            <Search placeholder="input search text" onSearch={onSearch} enterButton />
-        </Space>
+        <div className="search_box">
+            <Search placeholder="Search" onSearch={onSearch} enterButton
+            />
+        </div>
     )
 };
 
