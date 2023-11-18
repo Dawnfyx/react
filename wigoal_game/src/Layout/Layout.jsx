@@ -5,6 +5,7 @@ import {
     HeartOutlined,
     MenuFoldOutlined,
     MenuUnfoldOutlined,
+    MenuOutlined,
     UploadOutlined,
     UserOutlined,
     VideoCameraOutlined,
@@ -16,6 +17,7 @@ import LogoContainer from "./components/Logo/logo";
 import SearchContainer from "./components/Search/Search";
 import SearchMobileContainer from "./components/Search/SearchMobile";
 import SiderContainer from "./components/Sider/Sider";
+import SiderMobileContainer from "./components/Sider/SiderMobile";
 
 const {Header, Content} = Layout;
 
@@ -60,6 +62,7 @@ const LayoutContainer = () => {
             setCollapsed(true);
         } else {
             setMobileFlag(false);
+            setCollapsed(false);
         }
     }, [])
 
@@ -76,7 +79,7 @@ const LayoutContainer = () => {
                             <Button
                                 className="container_button"
                                 type="text"
-                                icon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
+                                icon={<MenuOutlined />}
                                 onClick={() => setCollapsed(!collapsed)}
                             />
                             <LogoContainer collapsed={collapsed}></LogoContainer>
@@ -124,7 +127,11 @@ const LayoutContainer = () => {
                     </Header>
             }
             <Layout>
-                <SiderContainer collapsed={collapsed} ref={refMenu}></SiderContainer>
+                {
+                    mobileFlag
+                        ? <SiderMobileContainer collapsed={collapsed}></SiderMobileContainer>
+                        : <SiderContainer collapsed={collapsed} ref={refMenu}></SiderContainer>
+                }
                 <Content style={{padding: 16}}>
                     <Outlet></Outlet>
                 </Content>
