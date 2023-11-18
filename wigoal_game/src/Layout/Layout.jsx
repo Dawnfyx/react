@@ -14,6 +14,7 @@ import "./Layout.less";
 
 import LogoContainer from "./components/Logo/logo";
 import SearchContainer from "./components/Search/Search";
+import SearchMobileContainer from "./components/Search/SearchMobile";
 import SiderContainer from "./components/Sider/Sider";
 
 const {Header, Content} = Layout;
@@ -26,6 +27,7 @@ const LayoutContainer = () => {
     // } = theme.useToken();
 
     const [collapsed, setCollapsed] = useState(false);
+    const [mobileFlag, setMobileFlag] = useState(false);
 
     const [open, setOpen] = useState(false);
 
@@ -52,15 +54,44 @@ const LayoutContainer = () => {
         return isMobile;
     }
 
-    // useEffect(() =>{
-    //     isMobileOrTablet();
-    // }, [])
+    useEffect(() =>{
+        if(isMobileOrTablet()){
+            setMobileFlag(true);
+            setCollapsed(true);
+        } else {
+            setMobileFlag(false);
+        }
+    }, [])
 
     return (
-        <Layout className="container">
+        <Layout className={mobileFlag ? 'container mobile': 'container'}>
             {
-                isMobileOrTablet()
-                    ? ''
+                mobileFlag
+                    ? <Header className="container_header">
+                        <Space style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center'
+                        }}>
+                            <Button
+                                className="container_button"
+                                type="text"
+                                icon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
+                                onClick={() => setCollapsed(!collapsed)}
+                            />
+                            <LogoContainer collapsed={collapsed}></LogoContainer>
+
+                            <Button type="primary" shape="round" onClick={showDrawer}>
+                                Log&nbsp;in
+                            </Button>
+                            <Button shape="circle" icon={<UserOutlined/>} onClick={showDrawer}
+                                    style={{
+                                        backgroundColor: 'transparent'
+                                    }}
+                            />
+                        </Space>
+                        <SearchMobileContainer></SearchMobileContainer>
+                    </Header>
                     : <Header className="container_header">
                         <Space style={{
                             display: 'flex',
