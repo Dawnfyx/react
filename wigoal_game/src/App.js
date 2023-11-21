@@ -39,10 +39,12 @@ function App() {
                       colorTextDescription: '#373952',
                   },
                   Menu: {
-                      // popupBg: '#000000',
-                      darkDangerItemActiveBg: '#000000',
+                      darkItemBg: '#0C0D14',
+                      darkItemHoverBg: '#0C0D14',
+                      darkItemSelectedBg: '#0C0D14',
+                      darkItemSelectedColor: '#8668FF',
                       activeBarWidth: 6,
-                      itemBg: '#0C0D14',
+                      activeBarBorderWidth: 6,
                   },
                   // Input: {
                   //     activeBg: '373952',

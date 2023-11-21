@@ -17,7 +17,7 @@ const SearchMobileContainer = (props) => {
 
     const onSearch = (value, _e, info) => {
         console.log(info?.source, value);
-        navigate('details')
+        navigate('/page/details')
     }
 
     return (

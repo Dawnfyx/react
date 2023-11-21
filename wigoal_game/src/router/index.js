@@ -17,9 +17,9 @@ export default class RouteConfig extends Component{
                     <Route path="/" element={<Layout />} >
                         <Route path="" element={<Home />} />
                         <Route path="home" element={<Home />} />
-                        <Route path="search" element={<Search />} />
-                        <Route path="details" element={<Details />} />
-                        <Route path="category" element={<Category />} />
+                        <Route path="/page/search" element={<Search />} />
+                        <Route path="/page/details" element={<Details />} />
+                        <Route path="/page/category" element={<Category />} />
                         <Route path="*" element={<Navigate to="home" />} ></Route>
                     </Route>
                 </Routes>
