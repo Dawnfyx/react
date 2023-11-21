@@ -28,7 +28,7 @@ const SearchMobileContainer = (props) => {
                        borderColor: '#28293D',
                        borderRadius: '120px',
                        overflow: 'hidden',
-                       verticalAlign: 'center',
+                       verticalAlign: 'initial',
                    }}
             />
         </div>

@@ -2,18 +2,18 @@ import React, {useState, useEffect, forwardRef} from 'react';
 import {useNavigate} from "react-router-dom";
 
 import {
+    CloseOutlined, MenuOutlined,
     UploadOutlined,
     UserOutlined,
-    VideoCameraOutlined
+    VideoCameraOutlined,
 } from "@ant-design/icons";
-import {Layout, Menu} from "antd";
+import {Button, Layout, Menu} from "antd";
 
 const { Sider } = Layout;
 
 const SiderMobileContainer = (props) => {
 
-    const {collapsed} = props;
-
+    const {collapsed, setCollapsed} = props;
 
     const navigate = useNavigate();
 
@@ -27,6 +27,13 @@ const SiderMobileContainer = (props) => {
             collapsedWidth={60}
             collapsed={false}
         >
+            <Button
+                className="header_mobile_menu_btn"
+                type="text"
+                size="large"
+                icon={<CloseOutlined style={{fontSize: '24px'}} />}
+                onClick={() => setCollapsed(!collapsed)}
+            />
             <Menu
                 theme="dark"
                 mode="inline"

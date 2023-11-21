@@ -18,6 +18,7 @@ import SearchContainer from "./components/Search/Search";
 import SearchMobileContainer from "./components/Search/SearchMobile";
 import SiderContainer from "./components/Sider/Sider";
 import SiderMobileContainer from "./components/Sider/SiderMobile";
+import TabBarContainer from "./components/TabBar/TabBar";
 
 const {Header, Content} = Layout;
 
@@ -70,31 +71,7 @@ const LayoutContainer = () => {
         <Layout className={mobileFlag ? 'container mobile': 'container'}>
             {
                 mobileFlag
-                    ? <Header className="container_header">
-                        <Space style={{
-                            display: 'flex',
-                            flexDirection: 'row',
-                            alignItems: 'center'
-                        }}>
-                            <Button
-                                className="container_button"
-                                type="text"
-                                icon={<MenuOutlined />}
-                                onClick={() => setCollapsed(!collapsed)}
-                            />
-                            <LogoContainer collapsed={collapsed}></LogoContainer>
-
-                            <Button type="primary" shape="round" onClick={showDrawer}>
-                                Log&nbsp;in
-                            </Button>
-                            <Button shape="circle" icon={<UserOutlined/>} onClick={showDrawer}
-                                    style={{
-                                        backgroundColor: 'transparent'
-                                    }}
-                            />
-                        </Space>
-                        <SearchMobileContainer></SearchMobileContainer>
-                    </Header>
+                    ? <SiderMobileContainer collapsed={collapsed} setCollapsed={setCollapsed}></SiderMobileContainer>
                     : <Header className="container_header">
                         <Space style={{
                             display: 'flex',
@@ -129,12 +106,44 @@ const LayoutContainer = () => {
             <Layout>
                 {
                     mobileFlag
-                        ? <SiderMobileContainer collapsed={collapsed}></SiderMobileContainer>
+                        ? <Header className="container_header">
+                            <Space style={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                alignItems: 'center'
+                            }}>
+                                <Button
+                                    className="container_button"
+                                    type="text"
+                                    icon={<MenuOutlined />}
+                                    onClick={() => setCollapsed(!collapsed)}
+                                    style={{
+                                        zIndex: collapsed? '1': '-1'
+                                    }}
+                                />
+                                <LogoContainer collapsed={collapsed}></LogoContainer>
+
+                                <Button type="primary" shape="round" onClick={showDrawer}>
+                                    Log&nbsp;in
+                                </Button>
+                                <Button shape="circle" icon={<UserOutlined/>} onClick={showDrawer}
+                                    style={{
+                                        backgroundColor:'transparent',
+                                    }}
+                                />
+                            </Space>
+                            <SearchMobileContainer ></SearchMobileContainer>
+                        </Header>
                         : <SiderContainer collapsed={collapsed} ref={refMenu}></SiderContainer>
                 }
                 <Content style={{padding: 16}}>
                     <Outlet></Outlet>
                 </Content>
+                {
+                    mobileFlag
+                        ? <TabBarContainer></TabBarContainer>
+                        : ''
+                }
             </Layout>
             <Drawer title="Basic Drawer" placement="right" onClose={onClose} open={open}>
                 <p>Some contents...</p>
