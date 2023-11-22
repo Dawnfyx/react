@@ -1,25 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
-import {
-    EditOutlined,
-    EllipsisOutlined,
-    SettingOutlined
-} from '@ant-design/icons';
-import { Avatar, Card, Skeleton, Switch, Col, Row } from 'antd';
+import { Col, Row } from 'antd';
 
 import { getHomedata } from '../../api';
 
-const { Meta} = Card;
+import GameCarousel from "../../Layout/components/Content/GameCarousel/GameCarousel";
+import GameThumbBox from "../../Layout/components/Content/GameThumbBox/GameThumbBox";
+
+import './Home.less'
 
 const HomeContainer = () => {
     const [loading, setLoading] = useState(true);
-    const [temp, setTemp] = useState(['', '','', '','', '','', '','', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']);
+    const [gamespopu, setGamespopu] = useState([])
+    const [gameshot, setGameshot] = useState([])
+    const [gameslist, setGameslist] = useState([])
+    const [gamescate, setGamescate] = useState([])
+
+    const homePageData = () => {
+        getHomedata().then(res => {
+            setGamespopu(res.data.populargames);
+            setGameshot(res.data.hotgames);
+            setGameslist(res.data.newgames);
+            setGamescate(res.data.category);
+        })
+    }
 
     useEffect(() => {
-        getHomedata().then(res => {
-            debugger
-        })
+        homePageData();
         setTimeout(()=>{
             setLoading(!loading);
         }, 2000)
@@ -27,24 +34,35 @@ const HomeContainer = () => {
     }, []);
 
     return(
-        <div>
-            <Row gutter={[16, 24]}>
-                {
-                    temp.map((item, key) => (
-                        <Col key={key} xs={12} sm={8} md={6} lg={4}>
-                            <Card loading={loading}>
-                                <Link to='/details'>
-                                    <Meta
-                                        avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />}
-                                        title="Card title"
-                                        description="This is the description"
-                                    />
-                                </Link>
-                            </Card>
-                        </Col>
-                    ))
-                }
-            </Row>
+        <div className="home_page">
+            {/*<Row gutter={[8, 12]}>*/}
+            {/*    {*/}
+            {/*        gamespopu.map((item, key) => (*/}
+            {/*            <Col key={key} xs={12} sm={8} md={6} lg={4}>*/}
+            {/*                <GameThumbBox loading={loading} item={item}></GameThumbBox>*/}
+            {/*            </Col>*/}
+            {/*        ))*/}
+            {/*    }*/}
+            {/*</Row>*/}
+
+            <GameCarousel viewData={gamespopu}></GameCarousel>
+
+            <div className="title_container">
+                <h2 className="carousel_title">
+                    <span>HotGames Originals</span>
+                </h2>
+                <a className="carousel_title_link" href="">View more</a>
+            </div>
+            <GameCarousel viewData={gameshot}></GameCarousel>
+
+            <div className="title_container">
+                <h2 className="carousel_title">
+                    <span>NewGames Originals</span>
+                </h2>
+                <a className="carousel_title_link" href="">View more</a>
+            </div>
+            <GameCarousel viewData={gameslist}></GameCarousel>
+
         </div>
     )
 };

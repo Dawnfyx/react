@@ -2,6 +2,7 @@
   "name": "wigoal_game",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://test.ads-goal.com",
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
     "@babel/core": "^7.16.0",
@@ -22,7 +23,7 @@
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
     "css-loader": "^6.5.1",
     "css-minimizer-webpack-plugin": "^3.2.0",
-    "dotenv": "^10.0.0",
+    "dotenv": "^16.3.1",
     "dotenv-expand": "^5.1.0",
     "eslint": "^8.53.0",
     "eslint-config-react-app": "^7.0.1",
@@ -55,6 +56,7 @@
     "semver": "^7.3.5",
     "source-map-loader": "^3.0.0",
     "style-loader": "^3.3.1",
+    "swiper": "^11.0.4",
     "tailwindcss": "^3.0.2",
     "terser-webpack-plugin": "^5.2.5",
     "web-vitals": "^2.1.4",
@@ -65,6 +67,9 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
+    "start:dev": "dotenv -e .env.dev node scripts/start.js",
+    "start:pro": "dotenv -e .env.pro node scripts/start.js",
+    "start:https": "dotenv -e .env.https node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },

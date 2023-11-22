@@ -136,7 +136,7 @@ const LayoutContainer = () => {
                         </Header>
                         : <SiderContainer collapsed={collapsed} ref={refMenu}></SiderContainer>
                 }
-                <Content className="container_content" style={{padding: 16}}>
+                <Content className="container_content" style={{padding: 10}}>
                     <Outlet></Outlet>
                 </Content>
                 {
