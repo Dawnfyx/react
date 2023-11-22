@@ -68,7 +68,7 @@ const LayoutContainer = () => {
     }, [])
 
     return (
-        <Layout className={mobileFlag ? 'container mobile': 'container'}>
+        <Layout className={mobileFlag ? 'container mobile': 'container computer'}>
             {
                 mobileFlag
                     ? <SiderMobileContainer collapsed={collapsed} setCollapsed={setCollapsed}></SiderMobileContainer>
@@ -136,7 +136,7 @@ const LayoutContainer = () => {
                         </Header>
                         : <SiderContainer collapsed={collapsed} ref={refMenu}></SiderContainer>
                 }
-                <Content style={{padding: 16}}>
+                <Content className="container_content" style={{padding: 16}}>
                     <Outlet></Outlet>
                 </Content>
                 {

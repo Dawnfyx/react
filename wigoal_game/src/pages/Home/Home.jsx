@@ -8,6 +8,8 @@ import {
 } from '@ant-design/icons';
 import { Avatar, Card, Skeleton, Switch, Col, Row } from 'antd';
 
+import { getHomedata } from '../../api';
+
 const { Meta} = Card;
 
 const HomeContainer = () => {
@@ -15,7 +17,9 @@ const HomeContainer = () => {
     const [temp, setTemp] = useState(['', '','', '','', '','', '','', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']);
 
     useEffect(() => {
-
+        getHomedata().then(res => {
+            debugger
+        })
         setTimeout(()=>{
             setLoading(!loading);
         }, 2000)
