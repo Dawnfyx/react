@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -37,15 +38,15 @@ const GameCarousel = (props) => {
                         spaceBetween: 10,
                     },
                     576: {
-                        slidesPerView: 3,
+                        slidesPerView: 4,
                         spaceBetween: 10,
                     },
                     768: {
-                        slidesPerView: 5,
+                        slidesPerView: 6,
                         spaceBetween: 10,
                     },
                     1024: {
-                        slidesPerView: 7,
+                        slidesPerView: 8,
                         spaceBetween: 10,
                     }
                 }}
@@ -55,7 +56,9 @@ const GameCarousel = (props) => {
                 {
                     viewData.map((item, key) => (
                         <SwiperSlide key={key}>
-                            <img src={'http://test.ads-goal.com' + item.icon} />
+                            <Link className="swiper-slide-link" to={"/page/details?gid=" + item.gid}>
+                                <img width="100%" height="100%" src={'http://test.ads-goal.com' + item.icon} />
+                            </Link>
                         </SwiperSlide>
                     ))
                 }

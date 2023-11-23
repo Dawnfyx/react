@@ -7,6 +7,7 @@ const {Meta} = Card;
 
 const GameThumbBox = (props) => {
     const {loading, item} = props;
+    debugger
     return (
             <Link to={"/page/details?gid=" + item.gid}>
                 {/*<Card*/}

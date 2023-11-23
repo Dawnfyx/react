@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 
 import {
+    HomeOutlined,
     UploadOutlined,
     UserOutlined,
     VideoCameraOutlined
@@ -13,6 +14,8 @@ const { Search } = Input;
 const MenuContainer = (props) => {
     const { collapsed, setCollapsed } = props;
 
+    const [menuItems, setMenuItems] = useState([])
+
     const navigate = useNavigate();
 
     const handleNavigate = (url) => {
@@ -20,31 +23,37 @@ const MenuContainer = (props) => {
         navigate(url.key)
     }
 
+    // const Menuicon = [<UserOutlined/>, <VideoCameraOutlined/>, <UploadOutlined/>, <VideoCameraOutlined/>, <UploadOutlined/>]
+
+    const SiderPageData = () => {
+        let temp = [{
+            key: "",
+            icon: <HomeOutlined/>,
+            label: "Home",
+            onClick: handleNavigate,
+        }];
+        JSON.parse(window.localStorage.getItem('category')).map((item, index) => {
+            temp.push({
+                key: "/page/category?type=" + item.type,
+                icon: <UserOutlined/>,
+                label: item.name,
+                onClick: handleNavigate,
+            })
+        });
+
+        setMenuItems(temp);
+    }
+
+    useEffect(() => {
+        SiderPageData();
+    }, []);
+
     return(
         <Menu
             theme="dark"
             mode="inline"
-            defaultSelectedKeys={['1']}
-            items={[
-                {
-                    key: '',
-                    icon: <UserOutlined/>,
-                    label: 'nav 1',
-                    onClick: handleNavigate,
-                },
-                {
-                    key: '/page/details?gid=1',
-                    icon: <VideoCameraOutlined/>,
-                    label: 'nav 2',
-                    onClick: handleNavigate,
-                },
-                {
-                    key: '/page/category?type=2',
-                    icon: <UploadOutlined/>,
-                    label: 'nav 3',
-                    onClick: handleNavigate,
-                },
-            ]}
+            defaultSelectedKeys={['']}
+            items={menuItems}
         />
     )
 };

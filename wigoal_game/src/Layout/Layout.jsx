@@ -134,7 +134,7 @@ const LayoutContainer = () => {
                             </Space>
                             <SearchMobileContainer ></SearchMobileContainer>
                         </Header>
-                        : <SiderContainer collapsed={collapsed} ref={refMenu}></SiderContainer>
+                        : <SiderContainer collapsed={collapsed} setCollapsed={setCollapsed} ref={refMenu}></SiderContainer>
                 }
                 <Content className="container_content" style={{padding: 10}}>
                     <Outlet></Outlet>

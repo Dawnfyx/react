@@ -8,11 +8,13 @@ import {
 } from "@ant-design/icons";
 import {Layout, Menu} from "antd";
 
+import MenuContainer from "./Menu";
+
 const { Sider } = Layout;
 
 const SiderContainer = (props, ref) => {
 
-    const {collapsed} = props;
+    const {collapsed, setCollapsed} = props;
 
     const [collapsedFlag, setCollapsedFlag] = useState(true);
 
@@ -52,31 +54,7 @@ const SiderContainer = (props, ref) => {
             collapsedWidth={60}
             collapsed={collapsedFlag}
         >
-            <Menu
-                theme="dark"
-                mode="inline"
-                defaultSelectedKeys={['1']}
-                items={[
-                    {
-                        key: '1',
-                        icon: <UserOutlined/>,
-                        label: 'nav 1',
-                        onClick: () => navigate(''),
-                    },
-                    {
-                        key: '2',
-                        icon: <VideoCameraOutlined/>,
-                        label: 'nav 2',
-                        onClick: () => navigate('/category'),
-                    },
-                    {
-                        key: '3',
-                        icon: <UploadOutlined/>,
-                        label: 'nav 3',
-                        onClick: () => navigate('/category'),
-                    },
-                ]}
-            />
+            <MenuContainer collapsed={collapsed} setCollapsed={setCollapsed}></MenuContainer>
         </Sider>
     )
 }

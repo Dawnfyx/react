@@ -9,7 +9,7 @@ import GameThumbBox from "../../Layout/components/Content/GameThumbBox/GameThumb
 
 import './Home.less'
 
-const HomeContainer = () => {
+const HomeContainer = (props) => {
     const [loading, setLoading] = useState(true);
     const [gamespopu, setGamespopu] = useState([])
     const [gameshot, setGameshot] = useState([])
@@ -22,15 +22,13 @@ const HomeContainer = () => {
             setGameshot(res.data.hotgames);
             setGameslist(res.data.newgames);
             setGamescate(res.data.category);
+            window.localStorage.setItem("category", JSON.stringify(res.data.category))
+            setLoading(!loading);
         })
     }
 
     useEffect(() => {
         homePageData();
-        setTimeout(()=>{
-            setLoading(!loading);
-        }, 2000)
-
     }, []);
 
     return(
@@ -45,23 +43,39 @@ const HomeContainer = () => {
             {/*    }*/}
             {/*</Row>*/}
 
-            <GameCarousel viewData={gamespopu}></GameCarousel>
+            <GameCarousel viewData={gamespopu}
+                  style={{
+                      minHeight: '110px'
+                  }}
+            ></GameCarousel>
 
-            <div className="title_container">
-                <h2 className="carousel_title">
-                    <span>HotGames Originals</span>
-                </h2>
-                <a className="carousel_title_link" href="">View more</a>
+            <div className="Game_container_item"
+                 style={{
+                     minHeight: '110px'
+                 }}
+            >
+                <div className="title_container">
+                    <h2 className="carousel_title">
+                        <span>HotGames</span>
+                    </h2>
+                    <a className="carousel_title_link" href="">View more</a>
+                </div>
+                <GameCarousel viewData={gameshot}></GameCarousel>
             </div>
-            <GameCarousel viewData={gameshot}></GameCarousel>
 
-            <div className="title_container">
-                <h2 className="carousel_title">
-                    <span>NewGames Originals</span>
-                </h2>
-                <a className="carousel_title_link" href="">View more</a>
+            <div className="Game_container_item"
+                 style={{
+                     minHeight: '110px'
+                 }}
+            >
+                <div className="title_container">
+                    <h2 className="carousel_title">
+                        <span>NewGames</span>
+                    </h2>
+                    <a className="carousel_title_link" href="">View more</a>
+                </div>
+                <GameCarousel viewData={gameslist}></GameCarousel>
             </div>
-            <GameCarousel viewData={gameslist}></GameCarousel>
 
         </div>
     )
