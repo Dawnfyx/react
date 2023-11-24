@@ -12,7 +12,7 @@ const SearchContainer = (props) => {
 
     const onSearch = (value, _e, info) => {
         console.log(info?.source, value);
-        navigate('/page/details')
+        navigate('/page/search')
     }
 
     return(

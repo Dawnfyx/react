@@ -11,55 +11,47 @@ const CategoryContainer = (props) => {
     // const {} = props;
 
     const [pageData, setPageData] = useState([])
-    const [sss, setSss] = useState([])
 
     const { search } = useLocation()
 
-    const categoryPageData = () => {
-        getCatedata(search).then(res => {
+    let cataname = search.slice(6)
+
+    const categoryPageData = (data) => {
+        getCatedata(data).then(res => {
             setPageData(res.data.list)
-            setSss(res.data.list)
         })
     }
 
+    //todo
+    // 需要做个判断 同的category 需要重新加载
+
     useEffect(() => {
-        categoryPageData();
-    }, []);
+        categoryPageData(search);
+    }, [search]);
 
     return(
-        <div>
+        <div className="category_page">
             <div>
                 <div className="MuiBox-root">
-                    <div className="css-1lav3oo">
-                        <a href="https://www.crazygames.com/c/driving">Driving</a>
-                    </div>
-                    <h1>Car Games</h1>
+                    <h1>{cataname} Games</h1>
                     <div>
                         <div className="css-3r4t8s">
                             <p>Race cars at top speed around city streets, do stunts, or just
                             drive! Browse the complete collection of free car games and see where you’ll be driving
                             next. You can find the best and newest car games by using the filters.</p>
                         </div>
-                        <div className="css-13bjm5z">Show More</div>
                     </div>
                 </div>
             </div>
-            <div>
+            <Row gutter={[10, 15]}>
                 {
-                    pageData.map(item => {
-                        <GameThumbBox item={item}></GameThumbBox>
-                    })
+                    pageData.map((item, index) => (
+                        <Col key={index} xs={12} sm={8} md={6} lg={4} xl={3} xxl={3}>
+                            <GameThumbBox link={"/page/details?gid=" + item.gid} url={item.icon} name={item.name}></GameThumbBox>
+                        </Col>
+                    ))
                 }
-                {/*<Row gutter={[10, 15]}>*/}
-                {/*    {*/}
-                {/*        pageData.map(item => {*/}
-                {/*            <Col xs={12} sm={8} md={6} lg={4}>*/}
-                {/*                <GameThumbBox item={item}></GameThumbBox>*/}
-                {/*            </Col>*/}
-                {/*        })*/}
-                {/*    }*/}
-                {/*</Row>*/}
-            </div>
+            </Row>
         </div>
     )
 };
