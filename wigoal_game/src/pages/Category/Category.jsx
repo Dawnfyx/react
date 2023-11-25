@@ -22,9 +22,6 @@ const Category = (props) => {
         })
     }
 
-    //todo
-    // 需要做个判断 同的category 需要重新加载
-
     useEffect(() => {
         categoryPageData(search);
     }, [search]);
@@ -47,7 +44,7 @@ const Category = (props) => {
                 {
                     pageData.map((item, index) => (
                         <Col key={index} xs={12} sm={8} md={6} lg={4} xl={3} xxl={3}>
-                            <GameThumbBox link={"/page/details?gid=" + item.gid} url={item.icon} name={item.name}></GameThumbBox>
+                            <GameThumbBox link={"/page/details?gid=" + item.gid} url={'http://test.ads-goal.com' + item.icon} name={item.name}></GameThumbBox>
                         </Col>
                     ))
                 }

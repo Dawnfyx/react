@@ -28,7 +28,7 @@ const GameThumbBox = (props) => {
             <Image
                 className="game_thumb_box_img"
                 preview={false}
-                src={'http://test.ads-goal.com' + url}
+                src={url}
                 placeholder={
                     <Image
                         preview={false}
