@@ -83,3 +83,8 @@ export const MobileOrTabletLog = () => {
         console.log('浏览器本版：' , browserVersion().browserType, browserVersion().version);
     }
 }
+
+export const starsScore = (rate) => {
+    let num = Math.floor(rate)
+    return "★★★★★".slice(0,(num/2))
+}

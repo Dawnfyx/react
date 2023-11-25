@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 
-import { Col, Row } from 'antd';
+import {Col, Row} from 'antd';
 
-import { getHomedata } from '../../api';
+import {getHomedata} from '../../api';
 
 import GameCarousel from "../../Layout/components/Content/GameCarousel/GameCarousel";
 import GameThumbBox from "../../Layout/components/Content/GameThumbBox/GameThumbBox";
 
 import './Home.less'
 
-const HomeContainer = (props) => {
+const Home = (props) => {
     const [loading, setLoading] = useState(true);
     const [gamespopu, setGamespopu] = useState([])
     const [gameshot, setGameshot] = useState([])
@@ -31,7 +31,7 @@ const HomeContainer = (props) => {
         homePageData();
     }, []);
 
-    return(
+    return (
         <div className="home_page">
             {/*<Row gutter={[8, 12]}>*/}
             {/*    {*/}
@@ -44,9 +44,9 @@ const HomeContainer = (props) => {
             {/*</Row>*/}
 
             <GameCarousel viewData={gamespopu}
-                  style={{
-                      minHeight: '110px'
-                  }}
+                          style={{
+                              minHeight: '110px'
+                          }}
             ></GameCarousel>
 
             <div className="Game_container_item"
@@ -81,4 +81,4 @@ const HomeContainer = (props) => {
     )
 };
 
-export default HomeContainer;
+export default Home;
