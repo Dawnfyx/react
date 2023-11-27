@@ -9,7 +9,7 @@ import GameThumbBox from "../../Layout/components/Content/GameThumbBox/GameThumb
 
 import './Home.less'
 
-const Home = (props) => {
+const HomePage = (props) => {
     const [loading, setLoading] = useState(true);
     const [gamespopu, setGamespopu] = useState([])
     const [gameshot, setGameshot] = useState([])
@@ -81,4 +81,4 @@ const Home = (props) => {
     )
 };
 
-export default Home;
+export default HomePage;

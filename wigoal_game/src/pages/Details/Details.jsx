@@ -7,8 +7,12 @@ import {
     HeartOutlined,
     ExclamationCircleOutlined,
     ShareAltOutlined,
+    TwitterOutlined,
+    YoutubeOutlined,
+    FacebookOutlined,
+    LinkedinOutlined,
 } from '@ant-design/icons';
-import {Row, Col, Image, Button} from "antd";
+import {Row, Col, Image, Button, Space, Tag} from "antd";
 
 import {getDetailsdata} from "../../api";
 
@@ -18,7 +22,7 @@ import './Details.less';
 
 import {starsScore} from "../../utils/mixin";
 
-const Details = () => {
+const DetailsPage = () => {
 
     const [pageData, setPageData] = useState({})
     const [previewData, setPreviewData] = useState([])
@@ -69,44 +73,179 @@ const Details = () => {
                         <Button type="link" icon={<LikeOutlined />} >45K</Button>
                         <Button type="link" icon={<DislikeOutlined />} >14K</Button>
                         <Button type="link" icon={<HeartOutlined />} ></Button>
-                        <hr className="vertical_line"></hr>
+                        <hr className="vertical_line" />
                         <Button type="link" icon={<ExclamationCircleOutlined />} ></Button>
-                        <hr className="vertical_line"></hr>
+                        <hr className="vertical_line" />
                         <Button type="link" icon={<ShareAltOutlined />} ></Button>
-
                     </div>
                     <div className="info_box_material">
                         <div className="material_item">
-                            <div></div>
-                            <div>
-                                <div></div>
-                                <div></div>
+                            <div className="item_left">Rating</div>
+                            <div className="item_right">
+                                <div>8.2</div>
+                                <div>(83,297votes)</div>
                             </div>
                         </div>
-
-                        <div className="css-12hp3i5">
-                            <div className="css-n8optg">Rating<!-- -->:</div>
-                            <div className="css-16rvtsf">
-                                <div style="font-weight:900">8.2</div>
-                                <div style="font-weight:400;font-size:12px;margin-left:4px">(<!-- -->83,297
-                                    votes<!-- -->)
+                        <div className="material_item">
+                            <div className="item_left">Developer</div>
+                            <div className="item_right">
+                                <div><span className="item_focus">Obumo Games</span></div>
+                            </div>
+                        </div>
+                        <div className="material_item">
+                            <div className="item_left">Released</div>
+                            <div className="item_right">
+                                <div>October 2021</div>
+                            </div>
+                        </div>
+                        <div className="material_item">
+                            <div className="item_left">Last Updated</div>
+                            <div className="item_right">
+                                <div>November 2023</div>
+                            </div>
+                        </div>
+                        <div className="material_item">
+                            <div className="item_left">Technology</div>
+                            <div className="item_right">
+                                <div>HTML5 (Unity WebGL)</div>
+                            </div>
+                        </div>
+                        <div className="material_item">
+                            <div className="item_left">Platform</div>
+                            <div className="item_right">
+                                <div>Browser (desktop, mobile, tablet)</div>
+                            </div>
+                        </div>
+                        <div className="material_item">
+                            <div className="item_left">Classification</div>
+                            <div className="item_right">
+                                <div className="breadcrump_box">
+                                    <div className="breadcrump_separator">
+                                        <a href="">Games</a>
+                                        <div className="breadcrumpSeparator">»</div>
+                                    </div>
+                                    <div className="breadcrump_separator">
+                                        <a href="">Sports</a>
+                                        <div className="breadcrumpSeparator">»</div>
+                                    </div>
+                                    <div className="breadcrump_separator">
+                                        <a href="">Golf</a>
+                                        <div className="breadcrumpSeparator">»</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="info_box_introduce">
-
-                    </div>
-                    <div className="info_box_controls">
-
+                    <hr className="horizontal_line" />
+                    <div className="info_box_description">
+                        <div className="description_item">
+                            <p>
+                                Mini Golf Club is a realistic 3D mini golf simulator with fun gameplay and hundreds of challenging levels.
+                            </p>
+                            <p>
+                                Mini Golf Club is a realistic 3D mini golf simulator with fun gameplay and hundreds of challenging levels.
+                            </p>
+                        </div>
+                        <div className="description_item">
+                            <h3>Unique Gamemodes</h3>
+                            <ul>
+                                <li>
+                                    Tournament: Play a large collection of pre-made and user-made courses with 9 holes each. The fewer strikes you have at the end of the course the better.
+                                </li>
+                                <li>
+                                    Practice: Practice each level individually to improve your shooting and aiming skills. Completing the levels are easy but mastering them takes time.
+                                </li>
+                                <li>
+                                    Versus: Play turn-based matches for up to 4 players locally on the same device. Challenge your friends and family.
+                                </li>
+                                <li>
+                                    Splitscreen: Play on the same device with up to 4 players by dividing the available screen space.
+                                </li>
+                                <li>
+                                    Online multiplayer: Play against your friends in real-time globally.
+                                </li>
+                            </ul>
+                        </div>
+                        <div className="description_item">
+                            <h3>Growing collection of courses</h3>
+                            <ul>
+                                <li>
+                                    The game features hundreds interactive holes with dynamic parts and moving obstacles.
+                                </li>
+                                <li>
+                                    Levels contain a huge variety of ramps, turns, tunnels, slopes, jumps, sand traps, special boosters and portals.
+                                </li>
+                                <li>
+                                    Boosters like wind zones or jump areas physically accurately interact with your ball.
+                                </li>
+                            </ul>
+                        </div>
+                        <div className="description_item">
+                            <h3>Features</h3>
+                            <ul>
+                                <li>
+                                    Mini Golf Club has high replayability thanks to the advanced physics engine.
+                                </li>
+                                <li>
+                                    You can play the same level multiple times and you get a different gameplay experience each time.
+                                </li>
+                                <li>
+                                    The game supports touch, keyboard, mouse and controller inputs.
+                                </li>
+                            </ul>
+                        </div>
+                        <div className="description_item">
+                            <h3>Release Date</h3>
+                            <p>October 2021</p>
+                        </div>
+                        <div className="description_item">
+                            <h3>Developer</h3>
+                            <p>Mini Golf Club is developed by Obumo Games.</p>
+                        </div>
+                        <div className="description_item">
+                            <h3>Platform</h3>
+                            <ul>
+                                <li>
+                                    Web browser (desktop and mobile)
+                                </li>
+                                <li>Windows (<a target="_blank" rel="nofollow" href="">link</a>)</li>
+                            </ul>
+                        </div>
+                        <div className="description_item">
+                            <h3>Last Updated</h3>
+                            <p>Nov 20, 2023</p>
+                        </div>
+                        <div className="description_item">
+                            <h3>Controls</h3>
+                            <ul>
+                                <li>Drag the left mouse button = shoot ball</li>
+                                <li>C = camera mode</li>
+                                <li>Arrow keys / Mouse = look around</li>
+                                <li>Page up / mouse wheel up = zoom in</li>
+                                <li>Page down / mouse wheel down = zoom out</li>
+                            </ul>
+                        </div>
                     </div>
                     <div className="info_box_tags">
-
+                        <Space size={[0, 8]} wrap>
+                            <Tag icon={<TwitterOutlined />} color="#55acee">
+                                Twitter
+                            </Tag>
+                            <Tag icon={<YoutubeOutlined />} color="#cd201f">
+                                Youtube
+                            </Tag>
+                            <Tag icon={<FacebookOutlined />} color="#3b5999">
+                                Facebook
+                            </Tag>
+                            <Tag icon={<LinkedinOutlined />} color="#55acee">
+                                LinkedIn
+                            </Tag>
+                        </Space>
                     </div>
                 </div>
             </div>
             <div className="game_info_recommend">
-                <Row gutter={[10, 15]}>
+                <Row gutter={[10, 10]}>
                     {
                         recommendData.map((item, index) => (
                             <Col key={index} xs={12} sm={8} md={6} lg={4} xl={3} xxl={2}>
@@ -166,4 +305,4 @@ const Details = () => {
     )
 };
 
-export default Details;
+export default DetailsPage;

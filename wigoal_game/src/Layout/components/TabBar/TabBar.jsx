@@ -19,7 +19,7 @@ const TabBarContainer = (props) => {
                             <HomeOutlined style={{fontSize: '24px'}}></HomeOutlined>
                         </div>
                     </div>
-                    <div className="container_tab_bar_item-title">消息</div>
+                    <div className="container_tab_bar_item-title">Home</div>
                 </div>
                 <div className="container_tab_bar_item">
                     <div className="adm-badge-wrapper">
@@ -27,7 +27,7 @@ const TabBarContainer = (props) => {
                             <HeartOutlined style={{fontSize: '24px'}}></HeartOutlined>
                         </div>
                     </div>
-                    <div className="container_tab_bar_item-title">消息</div>
+                    <div className="container_tab_bar_item-title">My&nbsp;game</div>
                 </div>
             </div>
         </div>

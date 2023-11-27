@@ -1,27 +1,34 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useLocation, useNavigate, useParams} from 'react-router-dom';
 
-import {Row, Col} from "antd";
+import {Row, Col, Input} from "antd";
 
 import {getSearchdata} from "../../api";
 
-import SearchContainer from "../../Layout/components/Search/Search";
-
 import './Search.less'
 
-import {starsScore} from "../../utils/mixin";
+const {Search} = Input;
+
 import GameThumbBox from "../../Layout/components/Content/GameThumbBox/GameThumbBox";
 
-const Search = () => {
+const SearchPage = () => {
     const [pageData, setPageData] = useState([]);
     const [resultData, setResultData] = useState([]);
     const {search} = useLocation();
+
+    const searchRef = useRef();
+
+    const navigate = useNavigate();
 
     const searchPageData = (data) => {
         getSearchdata(data).then(res => {
             setPageData(res.data.recommend);
             setResultData(res.data.result);
         })
+    }
+
+    const onSearch = (value, _e, info) => {
+        navigate('/page/search' + '?words=' +  value)
     }
 
     useEffect(() => {
@@ -37,7 +44,20 @@ const Search = () => {
                 </div>
             </div>
 
-            <SearchContainer></SearchContainer>
+            <Search
+                className="page_search"
+                placeholder="Search"
+                ref={searchRef}
+                size="large"
+                onSearch={onSearch}
+                // style={{
+                //     padding: '12px 14px',
+                //     border: '2px solid transparent',
+                //     backgroundColor: '#e5e6ee',
+                //     color: '#878a9e',
+                //     borderRadius: '8px',
+                // }}
+            />
 
             <div className="page_body">
                 <div className="page_item">
@@ -68,4 +88,4 @@ const Search = () => {
     )
 };
 
-export default Search;
+export default SearchPage;

@@ -6,9 +6,7 @@ import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
     MenuOutlined,
-    UploadOutlined,
     UserOutlined,
-    VideoCameraOutlined,
 } from '@ant-design/icons';
 import {Layout, Space, Menu, Button, theme, Drawer, Avatar} from 'antd';
 import "./Layout.less";

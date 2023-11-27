@@ -7,7 +7,7 @@ import {getCatedata} from "../../api";
 
 import GameThumbBox from "../../Layout/components/Content/GameThumbBox/GameThumbBox";
 
-const Category = (props) => {
+const CategoryPage = (props) => {
     // const {} = props;
 
     const [pageData, setPageData] = useState([])
@@ -53,4 +53,4 @@ const Category = (props) => {
     )
 };
 
-export default Category;
+export default CategoryPage;
