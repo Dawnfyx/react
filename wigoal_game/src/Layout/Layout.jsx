@@ -17,6 +17,7 @@ import SearchMobileContainer from "./components/Search/SearchMobile";
 import SiderContainer from "./components/Sider/Sider";
 import SiderMobileContainer from "./components/Sider/SiderMobile";
 import TabBarContainer from "./components/TabBar/TabBar";
+import DrawerContainer from "./components/Drawer/Drawer";
 
 const {Header, Content} = Layout;
 
@@ -29,10 +30,13 @@ const LayoutContainer = () => {
 
     const [collapsed, setCollapsed] = useState(false);
     const [mobileFlag, setMobileFlag] = useState(false);
+    const [tabsActive, setTabsActive] = useState('1');
 
     const [open, setOpen] = useState(false);
 
-    const showDrawer = () => {
+    const showDrawer = (value, e) => {
+        console.log(value, e)
+        setTabsActive(value);
         setOpen(true);
     };
 
@@ -89,11 +93,11 @@ const LayoutContainer = () => {
                             <SearchContainer></SearchContainer>
                         </Space>
                         <Space>
-                            <Button type="link" icon={<HeartOutlined/>} onClick={showDrawer}>My&nbsp;game</Button>
-                            <Button type="primary" shape="round" onClick={showDrawer}>
+                            <Button type="link" icon={<HeartOutlined/>} onClick={showDrawer.bind(this, "3")}>My&nbsp;game</Button>
+                            <Button type="primary" shape="round" onClick={showDrawer.bind(this, "1")}>
                                 Log&nbsp;in
                             </Button>
-                            <Button shape="circle" icon={<UserOutlined/>} onClick={showDrawer}
+                            <Button shape="circle" icon={<UserOutlined/>} onClick={showDrawer.bind(this, "2")}
                                     style={{
                                         backgroundColor: 'transparent'
                                     }}
@@ -121,10 +125,10 @@ const LayoutContainer = () => {
                                 />
                                 <LogoContainer collapsed={collapsed}></LogoContainer>
 
-                                <Button type="primary" shape="round" onClick={showDrawer}>
+                                <Button type="primary" shape="round" onClick={showDrawer.bind(this, "1")}>
                                     Log&nbsp;in
                                 </Button>
-                                <Button shape="circle" icon={<UserOutlined/>} onClick={showDrawer}
+                                <Button shape="circle" icon={<UserOutlined/>} onClick={showDrawer.bind(this, "2")}
                                     style={{
                                         backgroundColor:'transparent',
                                     }}
@@ -143,11 +147,7 @@ const LayoutContainer = () => {
                         : ''
                 }
             </Layout>
-            <Drawer title="Basic Drawer" placement="right" onClose={onClose} open={open}>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-            </Drawer>
+            <DrawerContainer openSwitch={open} onClose={onClose} tabsActive={tabsActive} setTabsActive={setTabsActive}></DrawerContainer>
         </Layout>
     );
 };

@@ -130,7 +130,6 @@ const DetailsPage = () => {
                                     </div>
                                     <div className="breadcrump_separator">
                                         <a href="">Golf</a>
-                                        <div className="breadcrumpSeparator">»</div>
                                     </div>
                                 </div>
                             </div>
