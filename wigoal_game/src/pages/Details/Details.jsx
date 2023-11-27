@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 
-import { Row, Col, Image} from "antd";
+import {
+    LikeOutlined,
+    DislikeOutlined,
+    HeartOutlined,
+    ExclamationCircleOutlined,
+    ShareAltOutlined,
+} from '@ant-design/icons';
+import {Row, Col, Image, Button} from "antd";
 
 import {getDetailsdata} from "../../api";
 
@@ -54,17 +61,69 @@ const Details = () => {
                 </div>
             </div>
             <div className="game_info_container">
-                <div className="game_info_item">
+                <div className="game_info_box">
+                    <div className="info_box_title">
+                        <h1>Mini Golf Club</h1>
+                    </div>
+                    <div className="info_box_operate">
+                        <Button type="link" icon={<LikeOutlined />} >45K</Button>
+                        <Button type="link" icon={<DislikeOutlined />} >14K</Button>
+                        <Button type="link" icon={<HeartOutlined />} ></Button>
+                        <hr className="vertical_line"></hr>
+                        <Button type="link" icon={<ExclamationCircleOutlined />} ></Button>
+                        <hr className="vertical_line"></hr>
+                        <Button type="link" icon={<ShareAltOutlined />} ></Button>
 
-                </div>
-                <div className="game_info_item">
+                    </div>
+                    <div className="info_box_material">
+                        <div className="material_item">
+                            <div></div>
+                            <div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
 
+                        <div className="css-12hp3i5">
+                            <div className="css-n8optg">Rating<!-- -->:</div>
+                            <div className="css-16rvtsf">
+                                <div style="font-weight:900">8.2</div>
+                                <div style="font-weight:400;font-size:12px;margin-left:4px">(<!-- -->83,297
+                                    votes<!-- -->)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="info_box_introduce">
+
+                    </div>
+                    <div className="info_box_controls">
+
+                    </div>
+                    <div className="info_box_tags">
+
+                    </div>
                 </div>
+            </div>
+            <div className="game_info_recommend">
+                <Row gutter={[10, 15]}>
+                    {
+                        recommendData.map((item, index) => (
+                            <Col key={index} xs={12} sm={8} md={6} lg={4} xl={3} xxl={2}>
+                                <GameThumbBox
+                                    key={item.gid}
+                                    link={"/page/details?gid=" + item.icon}
+                                    url={"http://test.ads-goal.com" + item.icon}
+                                    name={item.name}
+                                ></GameThumbBox>
+                            </Col>
+                        ))
+                    }
+                </Row>
             </div>
 
 
-
-            {/*<div className="game_info_preview">*/}
+            {/*<div className="game_info_recommend_preview">*/}
             {/*    <div className='img_view'>*/}
             {/*        {*/}
             {/*            previewData.map((item, index) => (*/}
@@ -86,20 +145,7 @@ const Details = () => {
             {/*    </div>*/}
             {/*</div>*/}
 
-            {/*<Row gutter={[10, 15]}>*/}
-            {/*    {*/}
-            {/*        recommendData.map((item, index) => (*/}
-            {/*            <Col key={index} xs={12} sm={8} md={6} lg={4} xl={3} xxl={2}>*/}
-            {/*                <GameThumbBox*/}
-            {/*                    key={item.gid}*/}
-            {/*                    link={"/page/details?gid=" + item.icon}*/}
-            {/*                    url={"http://test.ads-goal.com" + item.icon}*/}
-            {/*                    name={item.name}*/}
-            {/*                ></GameThumbBox>*/}
-            {/*            </Col>*/}
-            {/*        ))*/}
-            {/*    }*/}
-            {/*</Row>*/}
+
 
             {/*{*/}
             {/*    recommendData.map(item => (*/}
