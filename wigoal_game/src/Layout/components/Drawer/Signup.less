@@ -1,0 +1,62 @@
+.signup_page {
+
+  .page_item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-left: 28px;
+
+    .item_language {
+      .ant-select-selector{
+        background-color: transparent;
+        border: 2px solid #28293D;
+      }
+      .ant-select-arrow{
+        color: #28293D;
+      }
+      .ant-select-open{
+        .ant-select-arrow{
+          color: #A48EFF;
+        }
+      }
+    }
+
+    .item_about {
+      margin-top: 4px;
+      margin-bottom: 4px;
+      display: flex;
+      flex-wrap: wrap;
+      width: 260px;
+
+      a {
+        color: #878A9E;
+        width: 130px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+        .link_text {
+          color: #878A9E;
+          text-decoration: none;
+          cursor: pointer;
+          margin-bottom: 2px;
+          margin-top: 2px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+      .preferences-link {
+        color: rgb(135, 138, 158);
+        text-decoration: none;
+        cursor: pointer;
+        margin-bottom: 2px;
+        margin-top: 2px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}

@@ -7,7 +7,7 @@ const TitleContainer = (props) => {
             <h2 className="carouselTitle">
                 <span>CrazyGames Originals</span>
             </h2>
-            <a className="carouselTitleLink" href="https://www.crazygames.com/originals">View more</a>
+            <a className="carouselTitleLink" href="https://www.wigoalgames.com/originals">View more</a>
         </div>
     )
 };
