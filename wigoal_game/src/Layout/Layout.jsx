@@ -9,6 +9,7 @@ import {
     UserOutlined,
 } from '@ant-design/icons';
 import {Layout, Space, Menu, Button, theme, Drawer, Avatar} from 'antd';
+
 import "./Layout.less";
 
 import LogoContainer from "./components/Logo/logo";
@@ -18,6 +19,7 @@ import SiderContainer from "./components/Sider/Sider";
 import SiderMobileContainer from "./components/Sider/SiderMobile";
 import TabBarContainer from "./components/TabBar/TabBar";
 import DrawerContainer from "./components/Drawer/Drawer";
+import DramerMyGameContainer from "./components/Drawer/DramerMyGame";
 
 const {Header, Content} = Layout;
 
@@ -33,6 +35,7 @@ const LayoutContainer = () => {
     const [tabsActive, setTabsActive] = useState('1');
 
     const [open, setOpen] = useState(false);
+    const [openMyGame, setOpenMyGame] = useState(false);
 
     const showDrawer = (value, e) => {
         console.log(value, e)
@@ -40,8 +43,15 @@ const LayoutContainer = () => {
         setOpen(true);
     };
 
+    const showDrawerMyGame = () => {
+        setOpenMyGame(true);
+    };
+
     const onClose = () => {
         setOpen(false);
+    };
+    const onCloseMyGame = () => {
+        setOpenMyGame(false);
     };
 
     const refMenu = useRef();
@@ -143,11 +153,12 @@ const LayoutContainer = () => {
                 </Content>
                 {
                     mobileFlag
-                        ? <TabBarContainer></TabBarContainer>
+                        ? <TabBarContainer showDrawerMyGame={showDrawerMyGame}></TabBarContainer>
                         : ''
                 }
             </Layout>
             <DrawerContainer openSwitch={open} onClose={onClose} tabsActive={tabsActive} setTabsActive={setTabsActive}></DrawerContainer>
+            <DramerMyGameContainer openSwitch={openMyGame} onClose={onCloseMyGame}></DramerMyGameContainer>
         </Layout>
     );
 };

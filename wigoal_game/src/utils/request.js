@@ -1,6 +1,11 @@
 import axios from "axios";
 // import store from "@/store";
-import { Modal } from "antd";
+
+import {
+  LoadingOutlined,
+} from '@ant-design/icons';
+import { Spin, Modal } from "antd";
+
 // import { getToken } from "@/utils/auth";
 // import { logout } from "@/store/actions";
 
