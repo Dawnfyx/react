@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router'
 
-import {Col, Row} from "antd";
+import {Col, Row, Spin} from "antd";
 
 import {getCatedata} from "../../api";
 
@@ -9,7 +9,7 @@ import GameThumbBox from "../../Layout/components/Content/GameThumbBox/GameThumb
 
 const CategoryPage = (props) => {
     // const {} = props;
-
+    const [spinning, setSpinning] = useState(true);
     const [pageData, setPageData] = useState([])
 
     const { search } = useLocation()
@@ -18,7 +18,8 @@ const CategoryPage = (props) => {
 
     const categoryPageData = (data) => {
         getCatedata(data).then(res => {
-            setPageData(res.data.list)
+            setPageData(res.data.list);
+            setSpinning(false);
         })
     }
 
@@ -28,6 +29,7 @@ const CategoryPage = (props) => {
 
     return(
         <div className="category_page">
+            <Spin spinning={spinning} fullscreen />
             <div>
                 <div className="MuiBox-root">
                     <h1>{cataname} Games</h1>

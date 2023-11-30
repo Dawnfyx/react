@@ -122,7 +122,9 @@ const LayoutContainer = () => {
                             <Space style={{
                                 display: 'flex',
                                 flexDirection: 'row',
-                                alignItems: 'center'
+                                alignItems: 'center',
+                                justifyContent: 'space-between',
+                                width: '100%',
                             }}>
                                 <Button
                                     className="container_button"
@@ -139,9 +141,9 @@ const LayoutContainer = () => {
                                     Log&nbsp;in
                                 </Button>
                                 <Button shape="circle" icon={<UserOutlined/>} onClick={showDrawer.bind(this, "2")}
-                                    style={{
-                                        backgroundColor:'transparent',
-                                    }}
+                                        style={{
+                                            backgroundColor:'transparent',
+                                        }}
                                 />
                             </Space>
                             <SearchMobileContainer ></SearchMobileContainer>

@@ -12,7 +12,7 @@ import {
     FacebookOutlined,
     LinkedinOutlined,
 } from '@ant-design/icons';
-import {Row, Col, Image, Button, Space, Tag} from "antd";
+import {Row, Col, Image, Button, Space, Tag, Spin} from "antd";
 
 import {getDetailsdata} from "../../api";
 
@@ -23,7 +23,7 @@ import './Details.less';
 import {starsScore} from "../../utils/mixin";
 
 const DetailsPage = () => {
-
+    const [spinning, setSpinning] = useState(true);
     const [pageData, setPageData] = useState({})
     const [previewData, setPreviewData] = useState([])
     const [recommendData, setRecommendData] = useState([])
@@ -34,6 +34,7 @@ const DetailsPage = () => {
             setPageData(res.data);
             setPreviewData(res.data.preview);
             setRecommendData(res.data.recommend);
+            setSpinning(false);
         })
     }
 
@@ -43,6 +44,7 @@ const DetailsPage = () => {
 
     return(
         <div className="details_page">
+            <Spin spinning={spinning} fullscreen />
 
             <div className='game_container'>
                 {/* img_icon */}

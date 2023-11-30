@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-import {Col, Row} from 'antd';
+import {Col, Row, Spin} from 'antd';
 
 import {getHomedata} from '../../api';
 
@@ -9,7 +9,11 @@ import GameThumbBox from "../../Layout/components/Content/GameThumbBox/GameThumb
 
 import './Home.less'
 
+// import {useDispatch, useSelector} from "react-redux";
+// import {decrement, increment} from "../../store/features/counterSlice";
+
 const HomePage = (props) => {
+    const [spinning, setSpinning] = useState(true);
     const [loading, setLoading] = useState(true);
     const [gamespopu, setGamespopu] = useState([])
     const [gameshot, setGameshot] = useState([])
@@ -23,9 +27,14 @@ const HomePage = (props) => {
             setGameslist(res.data.newgames);
             setGamescate(res.data.category);
             window.localStorage.setItem("category", JSON.stringify(res.data.category))
+            setSpinning(false);
             setLoading(!loading);
         })
     }
+
+
+    // const dispatch = useDispatch();
+    // const countval = useSelector((state) => state.counter.value);
 
     useEffect(() => {
         homePageData();
@@ -33,15 +42,23 @@ const HomePage = (props) => {
 
     return (
         <div className="home_page">
-            {/*<Row gutter={[8, 12]}>*/}
-            {/*    {*/}
-            {/*        gamespopu.map((item, key) => (*/}
-            {/*            <Col key={key} xs={12} sm={8} md={6} lg={4}>*/}
-            {/*                <GameThumbBox loading={loading} item={item}></GameThumbBox>*/}
-            {/*            </Col>*/}
-            {/*        ))*/}
-            {/*    }*/}
-            {/*</Row>*/}
+            <Spin spinning={spinning} fullscreen />
+            {/*<div>*/}
+            {/*    <button*/}
+            {/*        aria-label="Increment value"*/}
+            {/*        onClick={() => dispatch(increment())}*/}
+            {/*    >*/}
+            {/*        Increment*/}
+            {/*    </button>*/}
+            {/*    {countval}*/}
+            {/*    <button*/}
+            {/*        aria-label="Decrement value"*/}
+            {/*        onClick={() => dispatch(decrement())}*/}
+            {/*    >*/}
+            {/*        Decrement*/}
+            {/*    </button>*/}
+            {/*</div>*/}
+
 
             <GameCarousel viewData={gamespopu}
                           style={{

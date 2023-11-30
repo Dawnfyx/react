@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useLocation, useNavigate, useParams} from 'react-router-dom';
 
-import {Row, Col, Input} from "antd";
+import {Row, Col, Input, Spin} from "antd";
 
 import {getSearchdata} from "../../api";
 
@@ -12,6 +12,7 @@ const {Search} = Input;
 import GameThumbBox from "../../Layout/components/Content/GameThumbBox/GameThumbBox";
 
 const SearchPage = () => {
+    const [spinning, setSpinning] = useState(true);
     const [pageData, setPageData] = useState([]);
     const [resultData, setResultData] = useState([]);
     const {search} = useLocation();
@@ -24,6 +25,7 @@ const SearchPage = () => {
         getSearchdata(data).then(res => {
             setPageData(res.data.recommend);
             setResultData(res.data.result);
+            setSpinning(false);
         })
     }
 
@@ -37,6 +39,8 @@ const SearchPage = () => {
 
     return (
         <div className="search_page">
+            <Spin spinning={spinning} fullscreen />
+
             <div className="page_title">
                 <div className="title_container"><h1>Search</h1></div>
                 <div className="body_container">Use the box below to search through thousands of
