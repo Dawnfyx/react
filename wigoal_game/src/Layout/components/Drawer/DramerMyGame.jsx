@@ -1,11 +1,19 @@
 import React, {useState, useRef} from 'react';
 
 import {Button, Drawer, Tabs} from "antd";
-import './Drawer.less'
+
+import './Drawer.less';
 
 const DrawerContainer = (props) => {
 
     const {openSwitch, onClose, tabsActive, setTabsActive} = props;
+
+    const onChange = (key) => {
+        console.log(key);
+    };
+
+    const onTabClick = (key) => {
+    };
 
     return (
         <Drawer
@@ -16,7 +24,29 @@ const DrawerContainer = (props) => {
             onClose={onClose}
             open={openSwitch}
         >
-            i am Dramer My Game page
+            <Tabs
+                defaultActiveKey={['1']}
+                activeKey={tabsActive}
+                items={[
+                    {
+                        key: '1',
+                        label: 'Tab 1',
+                        children: <div>ssss</div>
+                    },
+                    {
+                        key: '2',
+                        label: 'Tab 2',
+                        children: <div>ddddd</div>
+                    },
+                    {
+                        key: '3',
+                        label: 'Tab 3',
+                        children: <div>fffffff</div>
+                    },
+                ]}
+                onTabClick={onTabClick}
+                onChange={onChange}
+            />
         </Drawer>
     )
 }

@@ -11,6 +11,8 @@ import {
     YoutubeOutlined,
     FacebookOutlined,
     LinkedinOutlined,
+    PlayCircleOutlined,
+    CloudUploadOutlined,
 } from '@ant-design/icons';
 import {Row, Col, Image, Button, Space, Tag, Spin} from "antd";
 
@@ -46,26 +48,42 @@ const DetailsPage = () => {
         <div className="details_page">
             <Spin spinning={spinning} fullscreen />
 
-            <div className='game_container'>
-                {/* img_icon */}
-                <img src={'http://test.ads-goal.com' + pageData.icon} alt="" className='game_icon' />
+            {/*<div className='game_container'>*/}
+            {/*    /!* img_icon *!/*/}
+            {/*    <img src={'http://test.ads-goal.com' + pageData.icon} alt="" className='game_icon' />*/}
 
-                {/* download data */}
-                <div className='load_de'>
-                    {/*<p className='score_start'>{starsScore(data.score)} {data.score}</p>*/}
-                    <span className='gametype'>HotGame</span>
-                    <p className='load_count'>
-                        {/*<span>{getNum(data.count)}</span> player*/}
-                    </p>
+            {/*    /!* download data *!/ */}
+            {/*    <div className='load_de'>*/}
+            {/*        /!*<p className='score_start'>{starsScore(data.score)} {data.score}</p>*!/*/}
+            {/*        <span className='gametype'>HotGame</span>*/}
+            {/*        <p className='load_count'>*/}
+            {/*            /!*<span>{getNum(data.count)}</span> player*!/*/}
+            {/*        </p>*/}
+            {/*    </div>*/}
+
+            {/*    /!* gamebtn *!/*/}
+            {/*    <div className='btn-box'>*/}
+            {/*        /!*<a href={data.link} className='dis_a'>*!/*/}
+            {/*        <button className='de-btn'>PLAY</button>*/}
+            {/*        /!*</a>*!/*/}
+            {/*    </div>*/}
+            {/*</div>*/}
+
+            <div className="game_container">
+                <div className="game_container_title">
+                    <h1>{pageData.name}</h1>
                 </div>
-
-                {/* gamebtn */}
-                <div className='btn-box'>
-                    {/*<a href={data.link} className='dis_a'>*/}
-                    <button className='de-btn'>PLAY</button>
-                    {/*</a>*/}
+                <div className="game_container_play">
+                    <Button icon={<PlayCircleOutlined />} >&nbsp; &nbsp;PLAY now&nbsp; &nbsp;</Button>
+                </div>
+                <div className="game_container_bg_mask"></div>
+                <img src={'http://test.ads-goal.com' + pageData.icon} className='game_container_bg' alt=""/>
+                <div className="game_container_menu">
+                    <CloudUploadOutlined /> &nbsp;&nbsp;&nbsp;
+                    <div>Don&apos;t lose your progress! <span className="btn">Login now</span></div>
                 </div>
             </div>
+
             <div className="game_info_container">
                 <div className="game_info_box">
                     <div className="info_box_title">
