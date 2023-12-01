@@ -148,17 +148,15 @@ const LayoutContainer = () => {
                                     display: 'flex',
                                     alignItems: 'center',
                                 }}>
-                                    &nbsp;
                                     <Button type="primary" shape="round" onClick={showDrawer.bind(this, "1")}>
                                         Log&nbsp;in
                                     </Button>
-                                    &nbsp;
                                     <Button shape="circle" icon={<UserOutlined/>} onClick={showDrawer.bind(this, "2")}
                                             style={{
                                                 backgroundColor:'transparent',
+                                                margin: '0 10px',
                                             }}
                                     />
-                                    &nbsp;
                                 </div>
                             </Space>
                             <SearchMobileContainer ></SearchMobileContainer>
