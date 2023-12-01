@@ -264,7 +264,9 @@ const DetailsPage = () => {
                 </div>
             </div>
             <div className="game_info_recommend">
-                <Row gutter={[10, 10]}>
+                <Row gutter={[10, 10]} style={{
+                    justifyContent: 'center',
+                }}>
                     {
                         recommendData.map((item, index) => (
                             <Col key={index} xs={12} sm={8} md={6} lg={4} xl={3} xxl={2}>
