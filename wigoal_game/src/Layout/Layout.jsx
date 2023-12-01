@@ -126,25 +126,40 @@ const LayoutContainer = () => {
                                 justifyContent: 'space-between',
                                 width: '100%',
                             }}>
-                                <Button
-                                    className="container_button"
-                                    type="text"
-                                    icon={<MenuOutlined />}
-                                    onClick={() => setCollapsed(!collapsed)}
-                                    style={{
-                                        zIndex: collapsed? '1': '-1'
-                                    }}
-                                />
-                                <LogoContainer collapsed={collapsed}></LogoContainer>
-
-                                <Button type="primary" shape="round" onClick={showDrawer.bind(this, "1")}>
-                                    Log&nbsp;in
-                                </Button>
-                                <Button shape="circle" icon={<UserOutlined/>} onClick={showDrawer.bind(this, "2")}
+                                <div style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                }}>
+                                    &nbsp;
+                                    <Button
+                                        className="container_button"
+                                        type="text"
+                                        icon={<MenuOutlined />}
+                                        onClick={() => setCollapsed(!collapsed)}
                                         style={{
-                                            backgroundColor:'transparent',
+                                            zIndex: collapsed? '1': '-1'
                                         }}
-                                />
+                                    />
+                                    &nbsp;
+                                    <LogoContainer collapsed={collapsed} isMobile={mobileFlag}></LogoContainer>
+                                    &nbsp;
+                                </div>
+                                <div style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                }}>
+                                    &nbsp;
+                                    <Button type="primary" shape="round" onClick={showDrawer.bind(this, "1")}>
+                                        Log&nbsp;in
+                                    </Button>
+                                    &nbsp;
+                                    <Button shape="circle" icon={<UserOutlined/>} onClick={showDrawer.bind(this, "2")}
+                                            style={{
+                                                backgroundColor:'transparent',
+                                            }}
+                                    />
+                                    &nbsp;
+                                </div>
                             </Space>
                             <SearchMobileContainer ></SearchMobileContainer>
                         </Header>
