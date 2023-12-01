@@ -19,7 +19,7 @@ import SiderContainer from "./components/Sider/Sider";
 import SiderMobileContainer from "./components/Sider/SiderMobile";
 import TabBarContainer from "./components/TabBar/TabBar";
 import DrawerContainer from "./components/Drawer/Drawer";
-import DramerMyGameContainer from "./components/Drawer/DramerMyGame";
+import DramerMyGameContainer from "./components/Drawer/DrawerMyGame";
 
 const {Header, Content} = Layout;
 
