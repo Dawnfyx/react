@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 // import {Provider} from "react-redux";
+
 // import store from "./store"
 import RouteConfig from "./router";
 
@@ -47,6 +48,8 @@ function App() {
                         darkItemSelectedColor: '#8668FF',
                         activeBarWidth: 6,
                         activeBarBorderWidth: 6,
+                        collapsedIconSize: 20,
+                        iconSize: 20,
                     },
                     // Input: {
                     //     activeBg: '373952',

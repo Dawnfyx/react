@@ -75,7 +75,7 @@ const HomePage = (props) => {
                     <h2 className="carousel_title">
                         <span>HotGames</span>
                     </h2>
-                    <a className="carousel_title_link" href="">View more</a>
+                    {/*<a className="carousel_title_link" href="">View more</a>*/}
                 </div>
                 <GameCarousel viewData={gameshot}></GameCarousel>
             </div>
@@ -89,7 +89,7 @@ const HomePage = (props) => {
                     <h2 className="carousel_title">
                         <span>NewGames</span>
                     </h2>
-                    <a className="carousel_title_link" href="">View more</a>
+                    {/*<a className="carousel_title_link" href="">View more</a>*/}
                 </div>
                 <GameCarousel viewData={gameslist}></GameCarousel>
             </div>

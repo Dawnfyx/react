@@ -48,20 +48,20 @@ const SearchPage = () => {
                 </div>
             </div>
 
-            <Search
-                className="page_search"
-                placeholder="Search"
-                ref={searchRef}
-                size="large"
-                onSearch={onSearch}
-                // style={{
-                //     padding: '12px 14px',
-                //     border: '2px solid transparent',
-                //     backgroundColor: '#e5e6ee',
-                //     color: '#878a9e',
-                //     borderRadius: '8px',
-                // }}
-            />
+            {/*<Search*/}
+            {/*    className="page_search"*/}
+            {/*    placeholder="Search"*/}
+            {/*    ref={searchRef}*/}
+            {/*    size="large"*/}
+            {/*    onSearch={onSearch}*/}
+            {/*    // style={{*/}
+            {/*    //     padding: '12px 14px',*/}
+            {/*    //     border: '2px solid transparent',*/}
+            {/*    //     backgroundColor: '#e5e6ee',*/}
+            {/*    //     color: '#878a9e',*/}
+            {/*    //     borderRadius: '8px',*/}
+            {/*    // }}*/}
+            {/*/>*/}
 
             <div className="page_body">
                 <div className="page_item">

@@ -97,6 +97,7 @@ const DrawerContainer = (props) => {
             title="My games"
             placement="right"
             size={'large'}
+            zIndex='99'
             onClose={onClose}
             open={openSwitch}
         >

@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {Outlet} from 'react-router-dom';
+import StoreContext from "../store/StoreContext"
 
 import {
     HeartOutlined,
@@ -29,7 +30,11 @@ const LayoutContainer = () => {
     //         colorBgContainer
     //     },
     // } = theme.useToken();
-
+    const [storeData, setStoreData] = useState({
+        items: [],
+        totalAmount: 0,
+        totalPrice: 0
+    });
     const [collapsed, setCollapsed] = useState(false);
     const [mobileFlag, setMobileFlag] = useState(false);
     const [tabsActive, setTabsActive] = useState('1');
@@ -80,101 +85,103 @@ const LayoutContainer = () => {
     }, [])
 
     return (
-        <Layout className={mobileFlag ? 'container mobile': 'container computer'}>
-            {
-                mobileFlag
-                    ? <SiderMobileContainer collapsed={collapsed} setCollapsed={setCollapsed}></SiderMobileContainer>
-                    : <Header className="container_header">
-                        <Space style={{
-                            display: 'flex',
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            height: 'inherit'
-                        }}>
-                            <Button
-                                className="container_button"
-                                type="text"
-                                icon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
-                                onClick={() => setCollapsed(!collapsed)}
-                            />
-                            <LogoContainer collapsed={collapsed}></LogoContainer>
-                        </Space>
-                        <Space>
-                            <SearchContainer></SearchContainer>
-                        </Space>
-                        <Space>
-                            <Button type="link" icon={<HeartOutlined/>} onClick={showDrawer.bind(this, "3")}>My&nbsp;game</Button>
-                            <Button type="primary" shape="round" onClick={showDrawer.bind(this, "1")}>
-                                Log&nbsp;in
-                            </Button>
-                            <Button shape="circle" icon={<UserOutlined/>} onClick={showDrawer.bind(this, "2")}
-                                    style={{
-                                        backgroundColor: 'transparent'
-                                    }}
-                            />
-                        </Space>
-                    </Header>
-            }
-            <Layout>
+        <StoreContext.Provider value={{...storeData}}>
+            <Layout className={mobileFlag ? 'container mobile': 'container computer'}>
                 {
                     mobileFlag
-                        ? <Header className="container_header">
+                        ? <SiderMobileContainer collapsed={collapsed} setCollapsed={setCollapsed}></SiderMobileContainer>
+                        : <Header className="container_header">
                             <Space style={{
                                 display: 'flex',
                                 flexDirection: 'row',
                                 alignItems: 'center',
-                                justifyContent: 'space-between',
-                                width: '100%',
+                                height: 'inherit'
                             }}>
-                                <div style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                }}>
-                                    &nbsp;
-                                    <Button
-                                        className="container_button"
-                                        type="text"
-                                        icon={<MenuOutlined />}
-                                        onClick={() => setCollapsed(!collapsed)}
+                                <Button
+                                    className="container_button"
+                                    type="text"
+                                    icon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
+                                    onClick={() => setCollapsed(!collapsed)}
+                                />
+                                <LogoContainer collapsed={collapsed}></LogoContainer>
+                            </Space>
+                            <Space>
+                                <SearchContainer></SearchContainer>
+                            </Space>
+                            <Space>
+                                <Button type="link" icon={<HeartOutlined/>} onClick={showDrawer.bind(this, "3")}>My&nbsp;game</Button>
+                                <Button type="primary" shape="round" onClick={showDrawer.bind(this, "1")}>
+                                    Log&nbsp;in
+                                </Button>
+                                <Button shape="circle" icon={<UserOutlined/>} onClick={showDrawer.bind(this, "2")}
                                         style={{
-                                            zIndex: collapsed? '1': '-1'
+                                            backgroundColor: 'transparent'
                                         }}
-                                    />
-                                    &nbsp;
-                                    <LogoContainer collapsed={collapsed} isMobile={mobileFlag}></LogoContainer>
-                                    &nbsp;
-                                </div>
-                                <div style={{
+                                />
+                            </Space>
+                        </Header>
+                }
+                <Layout>
+                    {
+                        mobileFlag
+                            ? <Header className="container_header">
+                                <Space style={{
                                     display: 'flex',
+                                    flexDirection: 'row',
                                     alignItems: 'center',
+                                    justifyContent: 'space-between',
+                                    width: '100%',
                                 }}>
-                                    <Button type="primary" shape="round" onClick={showDrawer.bind(this, "1")}>
-                                        Log&nbsp;in
-                                    </Button>
-                                    <Button shape="circle" icon={<UserOutlined/>} onClick={showDrawer.bind(this, "2")}
+                                    <div style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                    }}>
+                                        &nbsp;
+                                        <Button
+                                            className="container_button"
+                                            type="text"
+                                            icon={<MenuOutlined />}
+                                            onClick={() => setCollapsed(!collapsed)}
+                                            style={{
+                                                zIndex: collapsed? '1': '-1'
+                                            }}
+                                        />
+                                        &nbsp;
+                                        <LogoContainer collapsed={collapsed} isMobile={mobileFlag}></LogoContainer>
+                                        &nbsp;
+                                    </div>
+                                    <div style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                    }}>
+                                        <Button type="primary" shape="round" onClick={showDrawer.bind(this, "1")}>
+                                            Log&nbsp;in
+                                        </Button>
+                                        <Button shape="circle" icon={<UserOutlined/>} onClick={showDrawer.bind(this, "2")}
                                             style={{
                                                 backgroundColor:'transparent',
                                                 margin: '0 10px',
                                             }}
-                                    />
-                                </div>
-                            </Space>
-                            <SearchMobileContainer ></SearchMobileContainer>
-                        </Header>
-                        : <SiderContainer collapsed={collapsed} setCollapsed={setCollapsed} ref={refMenu}></SiderContainer>
-                }
-                <Content className="container_content" style={{padding: 10}}>
-                    <Outlet></Outlet>
-                </Content>
-                {
-                    mobileFlag
-                        ? <TabBarContainer showDrawerMyGame={showDrawerMyGame}></TabBarContainer>
-                        : ''
-                }
+                                        />
+                                    </div>
+                                </Space>
+                                <SearchMobileContainer ></SearchMobileContainer>
+                            </Header>
+                            : <SiderContainer collapsed={collapsed} setCollapsed={setCollapsed} ref={refMenu}></SiderContainer>
+                    }
+                    <Content className="container_content" style={{padding: 10}}>
+                        <Outlet></Outlet>
+                    </Content>
+                    {
+                        mobileFlag
+                            ? <TabBarContainer showDrawerMyGame={showDrawerMyGame}></TabBarContainer>
+                            : ''
+                    }
+                </Layout>
+                <DrawerContainer openSwitch={open} onClose={onClose} tabsActive={tabsActive} setTabsActive={setTabsActive} ></DrawerContainer>
+                <DramerMyGameContainer openSwitch={openMyGame} onClose={onCloseMyGame} ></DramerMyGameContainer>
             </Layout>
-            <DrawerContainer openSwitch={open} onClose={onClose} tabsActive={tabsActive} setTabsActive={setTabsActive}></DrawerContainer>
-            <DramerMyGameContainer openSwitch={openMyGame} onClose={onCloseMyGame}></DramerMyGameContainer>
-        </Layout>
+        </StoreContext.Provider>
     );
 };
 

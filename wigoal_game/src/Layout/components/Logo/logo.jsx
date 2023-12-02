@@ -11,20 +11,23 @@ const LogoContainer = (props) => {
                     <img src={logo} alt="logo" className="logo-img" width="50" height="50" />
                     {/*{!collapsed ? <h2 className="logo-text">Wigoal Game</h2> : null}*/}
                 </div>
-                {
-                    isMobile
-                        ? <div className="logo-text">
-                            <span>
-                                Wigoal
-                            </span>
-                            <span>
-                                game
-                            </span>
-                        </div>
-                        : <div className="logo-text">
-                            Wigoal&nbsp;game
-                        </div>
-                }
+                <div className="logo-text">
+                    H5&nbsp;Games
+                </div>
+                {/*{*/}
+                {/*    isMobile*/}
+                {/*        ? <div className="logo-text">*/}
+                {/*            <span>*/}
+                {/*                Wigoal*/}
+                {/*            </span>*/}
+                {/*            <span>*/}
+                {/*                game*/}
+                {/*            </span>*/}
+                {/*        </div>*/}
+                {/*        : <div className="logo-text">*/}
+                {/*            Wigoal&nbsp;game*/}
+                {/*        </div>*/}
+                {/*}*/}
             </Link>
         </div>
     )

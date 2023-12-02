@@ -18,7 +18,6 @@ const SiderMobileContainer = (props) => {
 
     const {collapsed, setCollapsed} = props;
 
-
     return (
         <Sider
             className={collapsed ? "container_sider left-visibility" : "container_sider"}

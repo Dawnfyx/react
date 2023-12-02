@@ -17,39 +17,39 @@ const SignupPage = () => {
             </div>
             <hr className="horizontal_line" style={{ margin: '0 auto',}} />
             <div className="page_item">
-                <div className="item_language">
-                    <Select
-                        defaultValue="lucy"
-                        size="large"
-                        onChange={handleChange}
-                        options={[
-                            {
-                                value: 'Italian',
-                                label: 'Italian',
-                            },
-                            {
-                                value: 'Chinese',
-                                label: 'Chinese',
-                            },
-                            {
-                                value: 'Japanese',
-                                label: 'Japanese',
-                            },
-                            {
-                                value: 'German',
-                                label: 'German',
-                            },
-                            {
-                                value: 'English',
-                                label: 'English',
-                                disabled: true,
-                            },
-                        ]}
-                        style={{
-                            width: 120,
-                        }}
-                    />
-                </div>
+                {/*<div className="item_language">*/}
+                {/*    <Select*/}
+                {/*        defaultValue="lucy"*/}
+                {/*        size="large"*/}
+                {/*        onChange={handleChange}*/}
+                {/*        options={[*/}
+                {/*            {*/}
+                {/*                value: 'Italian',*/}
+                {/*                label: 'Italian',*/}
+                {/*            },*/}
+                {/*            {*/}
+                {/*                value: 'Chinese',*/}
+                {/*                label: 'Chinese',*/}
+                {/*            },*/}
+                {/*            {*/}
+                {/*                value: 'Japanese',*/}
+                {/*                label: 'Japanese',*/}
+                {/*            },*/}
+                {/*            {*/}
+                {/*                value: 'German',*/}
+                {/*                label: 'German',*/}
+                {/*            },*/}
+                {/*            {*/}
+                {/*                value: 'English',*/}
+                {/*                label: 'English',*/}
+                {/*                disabled: true,*/}
+                {/*            },*/}
+                {/*        ]}*/}
+                {/*        style={{*/}
+                {/*            width: 120,*/}
+                {/*        }}*/}
+                {/*    />*/}
+                {/*</div>*/}
 
                 <div className="item_about">
                     <a target="_blank" rel="noopener noreferrer" href="https://about.crazygames.com">

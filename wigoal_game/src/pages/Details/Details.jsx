@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router';
+
+import StoreContext from "../../store/StoreContext";
 
 import {
     LikeOutlined,
@@ -30,6 +32,8 @@ const DetailsPage = () => {
     const [previewData, setPreviewData] = useState([])
     const [recommendData, setRecommendData] = useState([])
     const { search } = useLocation()
+
+    const ctx = useContext(StoreContext);
 
     const detailsPageData = (data) => {
         getDetailsdata(data).then(res => {

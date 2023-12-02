@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router'
 import {Col, Row, Spin} from "antd";
 
 import {getCatedata} from "../../api";
+import {utilsTitleCase} from "../../utils/mixin";
 
 import GameThumbBox from "../../Layout/components/Content/GameThumbBox/GameThumbBox";
 
@@ -32,7 +33,7 @@ const CategoryPage = (props) => {
             <Spin spinning={spinning} fullscreen />
             <div>
                 <div className="MuiBox-root">
-                    <h1>{cataname} Games</h1>
+                    <h1>{utilsTitleCase(cataname)} Games</h1>
                     <div>
                         <div className="css-3r4t8s">
                             <p>Race cars at top speed around city streets, do stunts, or just

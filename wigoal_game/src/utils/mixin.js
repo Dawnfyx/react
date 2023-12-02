@@ -88,3 +88,9 @@ export const starsScore = (rate) => {
     let num = Math.floor(rate)
     return "★★★★★".slice(0,(num/2))
 }
+
+export const utilsTitleCase = (title) => {
+    title = title.toLowerCase();
+    let nStr = ''+ title[0].toUpperCase()
+    return nStr + title.substr(1)
+}
