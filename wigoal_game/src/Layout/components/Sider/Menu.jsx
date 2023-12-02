@@ -5,7 +5,12 @@ import {
     HomeOutlined,
     UploadOutlined,
     UserOutlined,
-    VideoCameraOutlined
+    VideoCameraOutlined,
+    TrophyOutlined,
+    ThunderboltOutlined,
+    InstagramOutlined,
+    SketchOutlined,
+    BlockOutlined,
 } from "@ant-design/icons";
 import {Input, Menu, Space} from 'antd';
 
@@ -23,9 +28,22 @@ const MenuContainer = (props) => {
         navigate(url.key)
     }
 
-    // const Menuicon = [<UserOutlined/>, <VideoCameraOutlined/>, <UploadOutlined/>, <VideoCameraOutlined/>, <UploadOutlined/>]
-
+    // const iconMap = (index) => {
+    //     let Menuicon = [<UserOutlined key='UserOutlined'/>, <VideoCameraOutlined/>, <UploadOutlined/>, <VideoCameraOutlined/>, <UploadOutlined/>];
+    //     return (
+    //         Menuicon[index]
+    //     )
+    // }
     const SiderPageData = () => {
+        let Menuicon = [
+            <BlockOutlined  key='BlockOutlined'/>,
+            <UserOutlined key='UserOutlined' />,
+            <VideoCameraOutlined key='VideoCameraOutlined' />,
+            <SketchOutlined  key='SketchOutlined'/>,
+            <InstagramOutlined  key='InstagramOutlined'/>,
+            <UploadOutlined  key='UploadOutlined'/>,
+            <TrophyOutlined  key='TrophyOutlined'/>,
+            <ThunderboltOutlined  key='ThunderboltOutlined'/>];
         let temp = [{
             key: "",
             icon: <HomeOutlined/>,
@@ -35,7 +53,7 @@ const MenuContainer = (props) => {
         JSON.parse(window.localStorage.getItem('category')).map((item, index) => {
             temp.push({
                 key: "/page/category?type=" + item.type,
-                icon: <UserOutlined/>,
+                icon: Menuicon[index],
                 label: item.name,
                 onClick: handleNavigate,
             })
