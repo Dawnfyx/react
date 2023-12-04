@@ -35,7 +35,7 @@ const SiderMobileContainer = (props) => {
                 icon={<CloseOutlined style={{fontSize: '24px'}} />}
                 onClick={() => setCollapsed(!collapsed)}
             />
-            <MenuContainer collapsed={collapsed} setCollapsed={setCollapsed}></MenuContainer>
+            <MenuContainer collapsed={collapsed} setCollapsed={setCollapsed} collapsedFlag={false}></MenuContainer>
         </Sider>
     )
 }

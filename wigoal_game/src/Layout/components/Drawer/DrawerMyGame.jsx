@@ -29,8 +29,8 @@ const DrawerContainer = (props) => {
                               fill="url(#paint0_linear_1861_3922)"></path>
                         <defs>
                             <linearGradient id="paint0_linear_1861_3922" x1="60.0001" y1="15" x2="60.0001" y2="105" gradientUnits="userSpaceOnUse">
-                                <stop stop-color="#B634C1"></stop>
-                                <stop offset="1" stop-color="#FF8BA7"></stop>
+                                <stop stopColor="#B634C1"></stop>
+                                <stop offset="1" stopColor="#FF8BA7"></stop>
                             </linearGradient>
                         </defs>
                     </svg>
@@ -74,8 +74,8 @@ const DrawerContainer = (props) => {
                         <defs>
                             <linearGradient id="paint0_linear_1861_3955" x1="60.5" y1="10" x2="60.5" y2="110"
                                             gradientUnits="userSpaceOnUse">
-                                <stop stop-color="#AA3FFF"></stop>
-                                <stop offset="1" stop-color="#7ED1FF"></stop>
+                                <stop stopColor="#AA3FFF"></stop>
+                                <stop offset="1" stopColor="#7ED1FF"></stop>
                             </linearGradient>
                         </defs>
                     </svg>

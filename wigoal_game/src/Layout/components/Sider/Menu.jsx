@@ -22,7 +22,7 @@ import "./Menu.less"
 const { Search } = Input;
 
 const MenuContainer = (props) => {
-    const { collapsed, setCollapsed } = props;
+    const { collapsed, setCollapsed, collapsedFlag} = props;
 
     const [menuItems, setMenuItems] = useState([])
 
@@ -88,7 +88,11 @@ const MenuContainer = (props) => {
                 defaultSelectedKeys={['']}
                 items={menuItems}
             />
-            <AboutContainer></AboutContainer>
+            {
+                collapsedFlag
+                    ? ''
+                    : <AboutContainer></AboutContainer>
+            }
         </div>
     )
 };

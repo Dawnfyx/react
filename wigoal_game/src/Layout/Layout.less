@@ -20,6 +20,11 @@
         -ms-flex-align: center;
         align-items: center;
         padding: 0 8px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 99;
+        width: 100%;
 
         .container_button {
             width: 48px;
@@ -90,6 +95,9 @@
 }
 
 .mobile{
+    .ant-layout{
+        padding-top: 94px;
+    }
     .header_mobile_menu_btn{
         margin-top: 0.5rem;
         margin-left: 1rem;
@@ -192,6 +200,12 @@
 }
 
 .computer{
+    .ant-layout{
+        padding-top: 64px;
+    }
+    //aside{
+    //    transition: none;
+    //}
     .left-visibility + .container_content{
         margin-left: 0px;
     }

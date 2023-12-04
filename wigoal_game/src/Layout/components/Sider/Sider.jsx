@@ -54,7 +54,7 @@ const SiderContainer = (props, ref) => {
             collapsedWidth={60}
             collapsed={collapsedFlag}
         >
-            <MenuContainer collapsed={collapsed} setCollapsed={setCollapsed}></MenuContainer>
+            <MenuContainer collapsed={collapsed} setCollapsed={setCollapsed} collapsedFlag={collapsedFlag}></MenuContainer>
         </Sider>
     )
 }

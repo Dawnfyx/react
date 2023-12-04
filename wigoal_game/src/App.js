@@ -51,6 +51,12 @@ function App() {
                         collapsedIconSize: 20,
                         iconSize: 20,
                     },
+                    Modal: {
+                        contentBg: '#212233',
+                    },
+                    Message: {
+                        contentBg: '#212233',
+                    },
                     // Input: {
                     //     activeBg: '373952',
                     //     activeBorderColor: '373952',
