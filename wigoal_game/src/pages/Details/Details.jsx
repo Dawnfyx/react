@@ -43,6 +43,27 @@ const DetailsPage = () => {
             setSpinning(false);
         })
     }
+    const handleLike = (event, type, gid) => {
+        debugger
+    }
+
+    const handleCollect = (event, gid) => {
+        // let title = 'sss'
+        // let url = 'sss'
+        // if (window.sidebar && window.sidebar.addPanel) { // Mozilla Firefox
+        //     window.sidebar.addPanel(title, url, "");
+        // } else if (window.external && ('AddFavorite' in window.external)) { // Internet Explorer
+        //     window.external.AddFavorite(url, title);
+        // } else if (window.opera && window.print) { // Opera
+        //     var elem = document.createElement('a');
+        //     elem.setAttribute('href', url);
+        //     elem.setAttribute('title', title);
+        //     elem.setAttribute('rel', 'sidebar');
+        //     elem.click();
+        // } else { // Other browsers
+        //     alert("请按 Ctrl+D 加入收藏夹");
+        // }
+    }
 
     useEffect(() => {
         detailsPageData(search)
@@ -94,11 +115,11 @@ const DetailsPage = () => {
                         <h1>Mini Golf Club</h1>
                     </div>
                     <div className="info_box_operate">
-                        <Button type="link" icon={<LikeOutlined />} >45K</Button>
-                        <Button type="link" icon={<DislikeOutlined />} >14K</Button>
-                        <Button type="link" icon={<HeartOutlined />} ></Button>
-                        <hr className="vertical_line" />
-                        <Button type="link" icon={<ExclamationCircleOutlined />} ></Button>
+                        <Button type="link" icon={<LikeOutlined />} onClick={(e)=>handleLike(e, 'like', pageData.icon.split('/')[2])}>45K</Button>
+                        <Button type="link" icon={<DislikeOutlined />} onClick={(e)=>handleLike(e, 'like', pageData.icon.split('/')[2])}>14K</Button>
+                        <Button type="link" icon={<HeartOutlined />} onClick={(e)=>handleCollect(e, pageData.icon.split('/')[2])}></Button>
+                        {/*<hr className="vertical_line" />*/}
+                        {/*<Button type="link" icon={<ExclamationCircleOutlined />} ></Button>*/}
                         <hr className="vertical_line" />
                         <Button type="link" icon={<ShareAltOutlined />} ></Button>
                     </div>
@@ -161,62 +182,56 @@ const DetailsPage = () => {
                     </div>
                     <hr className="horizontal_line" />
                     <div className="info_box_description">
-                        <div className="description_item">
-                            <p>
-                                Mini Golf Club is a realistic 3D mini golf simulator with fun gameplay and hundreds of challenging levels.
-                            </p>
-                            <p>
-                                Mini Golf Club is a realistic 3D mini golf simulator with fun gameplay and hundreds of challenging levels.
-                            </p>
-                        </div>
-                        <div className="description_item">
-                            <h3>Unique Gamemodes</h3>
-                            <ul>
-                                <li>
-                                    Tournament: Play a large collection of pre-made and user-made courses with 9 holes each. The fewer strikes you have at the end of the course the better.
-                                </li>
-                                <li>
-                                    Practice: Practice each level individually to improve your shooting and aiming skills. Completing the levels are easy but mastering them takes time.
-                                </li>
-                                <li>
-                                    Versus: Play turn-based matches for up to 4 players locally on the same device. Challenge your friends and family.
-                                </li>
-                                <li>
-                                    Splitscreen: Play on the same device with up to 4 players by dividing the available screen space.
-                                </li>
-                                <li>
-                                    Online multiplayer: Play against your friends in real-time globally.
-                                </li>
-                            </ul>
-                        </div>
-                        <div className="description_item">
-                            <h3>Growing collection of courses</h3>
-                            <ul>
-                                <li>
-                                    The game features hundreds interactive holes with dynamic parts and moving obstacles.
-                                </li>
-                                <li>
-                                    Levels contain a huge variety of ramps, turns, tunnels, slopes, jumps, sand traps, special boosters and portals.
-                                </li>
-                                <li>
-                                    Boosters like wind zones or jump areas physically accurately interact with your ball.
-                                </li>
-                            </ul>
-                        </div>
-                        <div className="description_item">
-                            <h3>Features</h3>
-                            <ul>
-                                <li>
-                                    Mini Golf Club has high replayability thanks to the advanced physics engine.
-                                </li>
-                                <li>
-                                    You can play the same level multiple times and you get a different gameplay experience each time.
-                                </li>
-                                <li>
-                                    The game supports touch, keyboard, mouse and controller inputs.
-                                </li>
-                            </ul>
-                        </div>
+
+                        {/*<div className="description_item">*/}
+                        {/*    <h3>Unique Gamemodes</h3>*/}
+                        {/*    <ul>*/}
+                        {/*        <li>*/}
+                        {/*            Tournament: Play a large collection of pre-made and user-made courses with 9 holes each. The fewer strikes you have at the end of the course the better.*/}
+                        {/*        </li>*/}
+                        {/*        <li>*/}
+                        {/*            Practice: Practice each level individually to improve your shooting and aiming skills. Completing the levels are easy but mastering them takes time.*/}
+                        {/*        </li>*/}
+                        {/*        <li>*/}
+                        {/*            Versus: Play turn-based matches for up to 4 players locally on the same device. Challenge your friends and family.*/}
+                        {/*        </li>*/}
+                        {/*        <li>*/}
+                        {/*            Splitscreen: Play on the same device with up to 4 players by dividing the available screen space.*/}
+                        {/*        </li>*/}
+                        {/*        <li>*/}
+                        {/*            Online multiplayer: Play against your friends in real-time globally.*/}
+                        {/*        </li>*/}
+                        {/*    </ul>*/}
+                        {/*</div>*/}
+                        {/*<div className="description_item">*/}
+                        {/*    <h3>Growing collection of courses</h3>*/}
+                        {/*    <ul>*/}
+                        {/*        <li>*/}
+                        {/*            The game features hundreds interactive holes with dynamic parts and moving obstacles.*/}
+                        {/*        </li>*/}
+                        {/*        <li>*/}
+                        {/*            Levels contain a huge variety of ramps, turns, tunnels, slopes, jumps, sand traps, special boosters and portals.*/}
+                        {/*        </li>*/}
+                        {/*        <li>*/}
+                        {/*            Boosters like wind zones or jump areas physically accurately interact with your ball.*/}
+                        {/*        </li>*/}
+                        {/*    </ul>*/}
+                        {/*</div>*/}
+                        {/*<div className="description_item">*/}
+                        {/*    <h3>Features</h3>*/}
+                        {/*    <ul>*/}
+                        {/*        <li>*/}
+                        {/*            Mini Golf Club has high replayability thanks to the advanced physics engine.*/}
+                        {/*        </li>*/}
+                        {/*        <li>*/}
+                        {/*            You can play the same level multiple times and you get a different gameplay experience each time.*/}
+                        {/*        </li>*/}
+                        {/*        <li>*/}
+                        {/*            The game supports touch, keyboard, mouse and controller inputs.*/}
+                        {/*        </li>*/}
+                        {/*    </ul>*/}
+                        {/*</div>*/}
+
                         <div className="description_item">
                             <h3>Release Date</h3>
                             <p>October 2021</p>
@@ -238,15 +253,22 @@ const DetailsPage = () => {
                             <h3>Last Updated</h3>
                             <p>Nov 20, 2023</p>
                         </div>
+                        {/*<div className="description_item">*/}
+                        {/*    <h3>Controls</h3>*/}
+                        {/*    <ul>*/}
+                        {/*        <li>Drag the left mouse button = shoot ball</li>*/}
+                        {/*        <li>C = camera mode</li>*/}
+                        {/*        <li>Arrow keys / Mouse = look around</li>*/}
+                        {/*        <li>Page up / mouse wheel up = zoom in</li>*/}
+                        {/*        <li>Page down / mouse wheel down = zoom out</li>*/}
+                        {/*    </ul>*/}
+                        {/*</div>*/}
+
                         <div className="description_item">
-                            <h3>Controls</h3>
-                            <ul>
-                                <li>Drag the left mouse button = shoot ball</li>
-                                <li>C = camera mode</li>
-                                <li>Arrow keys / Mouse = look around</li>
-                                <li>Page up / mouse wheel up = zoom in</li>
-                                <li>Page down / mouse wheel down = zoom out</li>
-                            </ul>
+                            <h3>Description</h3>
+                            <p>
+                                Mini Golf Club is a realistic 3D mini golf simulator with fun gameplay and hundreds of challenging levels.
+                            </p>
                         </div>
                     </div>
                     <div className="info_box_tags">
@@ -273,10 +295,10 @@ const DetailsPage = () => {
                 }}>
                     {
                         recommendData.map((item, index) => (
-                            <Col key={index} xs={12} sm={8} md={6} lg={4} xl={3} xxl={2}>
+                            <Col key={index} xs={8} sm={8} md={6} lg={4} xl={3} xxl={2}>
                                 <GameThumbBox
                                     key={item.gid}
-                                    link={"/page/details?gid=" + item.icon}
+                                    link={"/page/details?gid=" + item.gid}
                                     url={"http://test.ads-goal.com" + item.icon}
                                     name={item.name}
                                 ></GameThumbBox>

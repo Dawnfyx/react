@@ -14,6 +14,11 @@ import {
 } from "@ant-design/icons";
 import {Input, Menu, Space} from 'antd';
 
+
+import AboutContainer from "../About/About";
+
+import "./Menu.less"
+
 const { Search } = Input;
 
 const MenuContainer = (props) => {
@@ -67,12 +72,24 @@ const MenuContainer = (props) => {
     }, []);
 
     return(
-        <Menu
-            theme="dark"
-            mode="inline"
-            defaultSelectedKeys={['']}
-            items={menuItems}
-        />
+        <div
+            style={{
+                // display: 'flex',
+                // flexDirection: 'column',
+                // justifyContent: 'space-between',
+                // paddingBottom: '150px',
+                position: 'relative',
+                height: 'inherit',
+            }}
+        >
+            <Menu
+                theme="dark"
+                mode="inline"
+                defaultSelectedKeys={['']}
+                items={menuItems}
+            />
+            <AboutContainer></AboutContainer>
+        </div>
     )
 };
 

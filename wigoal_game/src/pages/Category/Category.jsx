@@ -46,7 +46,7 @@ const CategoryPage = (props) => {
             <Row gutter={[10, 15]}>
                 {
                     pageData.map((item, index) => (
-                        <Col key={index} xs={12} sm={8} md={6} lg={4} xl={3} xxl={3}>
+                        <Col key={index} xs={8} sm={8} md={6} lg={4} xl={3} xxl={3}>
                             <GameThumbBox link={"/page/details?gid=" + item.gid} url={'http://test.ads-goal.com' + item.icon} name={item.name}></GameThumbBox>
                         </Col>
                     ))

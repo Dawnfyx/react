@@ -5,7 +5,7 @@ const TitleContainer = (props) => {
     return(
         <div className="titleContainer">
             <h2 className="carouselTitle">
-                <span>CrazyGames Originals</span>
+                <span>H5&nbsp;Games Originals</span>
             </h2>
             <a className="carouselTitleLink" href="https://www.wigoalgames.com/originals">View more</a>
         </div>

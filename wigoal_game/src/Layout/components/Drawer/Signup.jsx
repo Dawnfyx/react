@@ -5,6 +5,8 @@ import { Select } from 'antd';
 
 import './Signup.less'
 
+import AboutContainer from "../About/About";
+
 const SignupPage = () => {
     const handleChange = (e) => {
         console.log('handleChange', e)
@@ -51,37 +53,7 @@ const SignupPage = () => {
                 {/*    />*/}
                 {/*</div>*/}
 
-                <div className="item_about">
-                    <a target="_blank" rel="noopener noreferrer" href="https://about.crazygames.com">
-                        <span className="link_text">About</span>
-                    </a>
-                    <a target="_blank" rel="noopener noreferrer" href="https://advertising.crazygames.com">
-                        <span className="css-1vcehaf">Advertising</span>
-                    </a>
-                    <a target="_blank" rel="noopener noreferrer" href="https://kids.crazygames.com">
-                        <span className="css-1vcehaf">Kids site</span>
-                    </a>
-                    <a href="https://www.crazygames.com/terms-and-conditions">
-                        <span className="css-1vcehaf">Terms &amp; conditions</span>
-                    </a>
-                    <a target="_blank" rel="noopener noreferrer" href="https://crazygames.recruitee.com/">
-                        <span className="css-1vcehaf">Jobs</span>
-                    </a>
-                    <a href="https://www.crazygames.com/privacy-policy">
-                        <span className="css-1vcehaf">Privacy</span>
-                    </a>
-                    <a href="https://www.crazygames.com/information-for-parents">
-                        <span className="css-1vcehaf">Info for parents</span>
-                    </a>
-                    <a target="_blank" rel="noopener noreferrer" href="https://developer.crazygames.com">
-                        <span className="css-1vcehaf">Developers</span>
-                    </a>
-                    <a href="https://www.crazygames.com/sitemap/games">
-                        <span className="css-1vcehaf">All games</span>
-                    </a>
-                    <span className="preferences-link">Preferences</span>
-                    <span className="preferences-link">Do not sell my data</span>
-                </div>
+                <AboutContainer></AboutContainer>
             </div>
         </div>
     )
