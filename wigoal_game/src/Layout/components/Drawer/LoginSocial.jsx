@@ -23,6 +23,8 @@ const REACT_APP_GOOGLE_API_ID = "235303477450-0jlibv1ip1fi1oq64l628rbmki758ksj.a
 const REACT_APP_TWITTER_API_ID = "bXh6WDJTX1RTb0xxenMtcEhvMkc6MTpjaQ";
 const REACT_APP_TWITTER_API_SECRET = "sisWhqLOhrs43sRIbKESazRW872sDXWuPC8XuaPVboWhS5oYo4";
 
+
+
 const LoginSocialContainer = (props) => {
 
     // const {} = props;
@@ -64,7 +66,28 @@ const LoginSocialContainer = (props) => {
         // return profile;
     }
 
+    const onLoginClick = () => {
+        window.FB.login();
+    };
+
     useEffect(() => {
+        window.fbAsyncInit = () => {
+            window.FB.init({
+                appId            : REACT_APP_FACEBOOK_API_ID,
+                autoLogAppEvents : true,
+                xfbml            : true,
+                version          : 'v0.0.1'
+            });
+        };
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+
         // setStepFlag(true)
     }, [])
 
@@ -87,31 +110,40 @@ const LoginSocialContainer = (props) => {
             {/*    <MicrosoftLoginButton/>*/}
             {/*</LoginSocialMicrosoft>*/}
 
-            <LoginSocialFacebook
-                className="btn btn_facebook"
-                appId={REACT_APP_FACEBOOK_API_ID || ""}
-                onLoginStart={onLoginStart}
-                onLogoutSuccess={onLogoutSuccess}
-                onResolve={({ provider, data }) => {
-                    setStepFlag(true);
-                    setProvider(provider);
-                    setProfile(data);
-                    console.log(provider, "provider");
-                    console.log(data, "data");
-                    localStorage.setItem('userInfo', JSON.stringify({provider: provider, 'data': data}));
-
-                }}
-                onReject={(err) => {
-                    console.log(err);
-                }}
-            >
-                {/*<FacebookLoginButton/>*/}
-                <Button type="primary" shape="round" icon={<FacebookOutlined />}
-                    style={{
-                        backgroundColor: '#3374dc',
-                    }}
+            <div className="btn btn_facebook">
+                <Button type="primary"  shape="round" icon={<FacebookOutlined />}
+                        style={{
+                            backgroundColor: '#3374dc',
+                        }}
+                        onClick={onLoginClick}
                 >Continue with Facebook</Button>
-            </LoginSocialFacebook>
+            </div>
+
+            {/*<LoginSocialFacebook*/}
+            {/*    className="btn btn_facebook"*/}
+            {/*    appId={REACT_APP_FACEBOOK_API_ID || ""}*/}
+            {/*    onLoginStart={onLoginStart}*/}
+            {/*    onLogoutSuccess={onLogoutSuccess}*/}
+            {/*    onResolve={({ provider, data }) => {*/}
+            {/*        setStepFlag(true);*/}
+            {/*        setProvider(provider);*/}
+            {/*        setProfile(data);*/}
+            {/*        console.log(provider, "provider");*/}
+            {/*        console.log(data, "data");*/}
+            {/*        localStorage.setItem('userInfo', JSON.stringify({provider: provider, 'data': data}));*/}
+
+            {/*    }}*/}
+            {/*    onReject={(err) => {*/}
+            {/*        console.log(err);*/}
+            {/*    }}*/}
+            {/*>*/}
+            {/*    /!*<FacebookLoginButton/>*!/*/}
+            {/*    <Button type="primary" shape="round" icon={<FacebookOutlined />}*/}
+            {/*        style={{*/}
+            {/*            backgroundColor: '#3374dc',*/}
+            {/*        }}*/}
+            {/*    >Continue with Facebook</Button>*/}
+            {/*</LoginSocialFacebook>*/}
 
             <LoginSocialGoogle
                 className="btn btn_google"
