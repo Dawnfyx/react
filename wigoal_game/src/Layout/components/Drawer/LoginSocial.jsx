@@ -67,7 +67,10 @@ const LoginSocialContainer = (props) => {
     }
 
     const onLoginClick = () => {
-        window.FB.login();
+        window.FB.login((item) => {
+            localStorage.setItem('userInfo', JSON.stringify({provider: 'Facebook', 'data': item}));
+            debugger
+        });
     };
 
     useEffect(() => {
@@ -76,7 +79,7 @@ const LoginSocialContainer = (props) => {
                 appId            : REACT_APP_FACEBOOK_API_ID,
                 autoLogAppEvents : true,
                 xfbml            : true,
-                version          : 'v0.0.1'
+                version          : 'v1.1'
             });
         };
         (function (d, s, id) {
