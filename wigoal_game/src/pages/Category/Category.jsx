@@ -8,6 +8,8 @@ import {utilsTitleCase} from "../../utils/mixin";
 
 import GameThumbBox from "../../Layout/components/Content/GameThumbBox/GameThumbBox";
 
+import './Category.less'
+
 const CategoryPage = (props) => {
     // const {} = props;
     const [spinning, setSpinning] = useState(true);
@@ -32,14 +34,14 @@ const CategoryPage = (props) => {
         <div className="category_page">
             <Spin spinning={spinning} fullscreen />
             <div>
-                <div className="MuiBox-root">
+                <div className="category_title">
                     <h1>{utilsTitleCase(cataname)} Games</h1>
                     <div>
-                        <div className="css-3r4t8s">
-                            <p>Race cars at top speed around city streets, do stunts, or just
-                            drive! Browse the complete collection of free car games and see where you’ll be driving
-                            next. You can find the best and newest car games by using the filters.</p>
-                        </div>
+                        {/*<div className="css-3r4t8s">*/}
+                        {/*    <p>Race cars at top speed around city streets, do stunts, or just*/}
+                        {/*    drive! Browse the complete collection of free car games and see where you’ll be driving*/}
+                        {/*    next. You can find the best and newest car games by using the filters.</p>*/}
+                        {/*</div>*/}
                     </div>
                 </div>
             </div>
