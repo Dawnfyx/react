@@ -94,3 +94,12 @@ export const utilsTitleCase = (title) => {
     let nStr = ''+ title[0].toUpperCase()
     return nStr + title.substr(1)
 }
+
+/**
+ *  临时方法
+ * @param e
+ * @returns {boolean}
+ */
+const ifUserLoginStatus = (e) => {
+    return window.localStorage.getItem('userInfo') == null;
+}

@@ -6,6 +6,8 @@ import {
     LoginSocialTwitter
 } from "reactjs-social-login";
 
+import { GoogleLogin } from 'react-google-login';
+
 import {
     FacebookOutlined,
     GoogleOutlined,
@@ -34,6 +36,7 @@ const LoginSocialContainer = (props) => {
     const [stepFlag, setStepFlag] = useState(false);
 
     const onLoginStart = useCallback(() => {
+        console.log("开始登录")
         // alert("login start");
     }, []);
 
@@ -42,6 +45,7 @@ const LoginSocialContainer = (props) => {
     }, []);
 
     const onLogoutSuccess = useCallback(() => {
+        console.log("授权登录成功")
         setProfile(null);
         setProvider(null);
         // alert("logout success");
@@ -62,15 +66,13 @@ const LoginSocialContainer = (props) => {
         window.location = window.location.origin;
     }
 
-    const formatProfile = () => {
-        // return profile;
-    }
 
     const onLoginClick = () => {
-        window.FB.login((item) => {
-            localStorage.setItem('userInfo', JSON.stringify({provider: 'Facebook', 'data': item}));
-            debugger
-        });
+        if(window.FB){
+                window.FB.login((item) => {
+                    localStorage.setItem('userInfo', JSON.stringify({provider: 'Facebook', 'data': item}));
+                });
+        }
     };
 
     useEffect(() => {
@@ -79,7 +81,7 @@ const LoginSocialContainer = (props) => {
                 appId            : REACT_APP_FACEBOOK_API_ID,
                 autoLogAppEvents : true,
                 xfbml            : true,
-                version          : 'v1.1'
+                version          : 'v13.1'
             });
         };
         (function (d, s, id) {
@@ -90,28 +92,12 @@ const LoginSocialContainer = (props) => {
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
 
-
-        // setStepFlag(true)
     }, [])
+
+
 
     return (
         <div className="login_social_box">
-
-            {/*<LoginSocialMicrosoft*/}
-            {/*    client_id={REACT_APP_MICROSOFT_API_ID || ""}*/}
-            {/*    redirect_uri={REDIRECT_URI}*/}
-            {/*    onLoginStart={onLoginStart}*/}
-            {/*    onLogoutSuccess={onLogoutSuccess}*/}
-            {/*    onResolve={({ provider, data }) => {*/}
-            {/*        setProvider(provider);*/}
-            {/*        setProfile(data);*/}
-            {/*    }}*/}
-            {/*    onReject={(err) => {*/}
-            {/*        console.log(err);*/}
-            {/*    }}*/}
-            {/*>*/}
-            {/*    <MicrosoftLoginButton/>*/}
-            {/*</LoginSocialMicrosoft>*/}
 
             <div className="btn btn_facebook">
                 <Button type="primary"  shape="round" icon={<FacebookOutlined />}
@@ -122,84 +108,30 @@ const LoginSocialContainer = (props) => {
                 >Continue with Facebook</Button>
             </div>
 
-            {/*<LoginSocialFacebook*/}
-            {/*    className="btn btn_facebook"*/}
-            {/*    appId={REACT_APP_FACEBOOK_API_ID || ""}*/}
-            {/*    onLoginStart={onLoginStart}*/}
-            {/*    onLogoutSuccess={onLogoutSuccess}*/}
-            {/*    onResolve={({ provider, data }) => {*/}
-            {/*        setStepFlag(true);*/}
-            {/*        setProvider(provider);*/}
-            {/*        setProfile(data);*/}
-            {/*        console.log(provider, "provider");*/}
-            {/*        console.log(data, "data");*/}
-            {/*        localStorage.setItem('userInfo', JSON.stringify({provider: provider, 'data': data}));*/}
-
-            {/*    }}*/}
-            {/*    onReject={(err) => {*/}
-            {/*        console.log(err);*/}
-            {/*    }}*/}
-            {/*>*/}
-            {/*    /!*<FacebookLoginButton/>*!/*/}
-            {/*    <Button type="primary" shape="round" icon={<FacebookOutlined />}*/}
-            {/*        style={{*/}
-            {/*            backgroundColor: '#3374dc',*/}
-            {/*        }}*/}
-            {/*    >Continue with Facebook</Button>*/}
-            {/*</LoginSocialFacebook>*/}
-
-            <LoginSocialGoogle
-                className="btn btn_google"
-                client_id={REACT_APP_GOOGLE_API_ID || ""}
-                onLogoutFailure={onLogoutFailure}
-                onLoginStart={onLoginStart}
-                onLogoutSuccess={onLogoutSuccess}
-                onResolve={({ provider, data }) => {
-                    setStepFlag(true);
-                    setProvider(provider);
-                    setProfile(data);
-                    console.log(data, "data");
-                    console.log(provider, "provider");
-                    localStorage.setItem('userInfo', JSON.stringify({provider: provider, 'data': data}));
-
-                }}
-                onReject={(err) => {
-                    console.log("hbhbdhd", err);
-                }}
-            >
-                {/*<GoogleLoginButton/>*/}
-                <Button type="primary" shape="round" icon={<GoogleOutlined />}
-                    style={{
-                        backgroundColor: '#ffffff',
-                        color: '#262a4a',
+            <div className="btn btn_google">
+                <GoogleLogin
+                    clientId={REACT_APP_GOOGLE_API_ID} // 替换成你的 Google Client ID
+                    onSuccess={(res)=>{
+                        localStorage.setItem('userInfo', JSON.stringify({provider: 'Google', 'data': res}));
                     }}
-                >Continue with Google</Button>
-            </LoginSocialGoogle>
+                    onFailure={(err)=>{
+                        console.log("登录失败")
+                        console.log(err)
+                    }}
+                    cookiePolicy={'single_host_origin'}
+                    render={renderProps => (
+                        <Button type="primary" shape="round" icon={<GoogleOutlined/>}
+                                onClick={renderProps.onClick}
+                                style={{
+                                    backgroundColor: '#ffffff',
+                                    color: '#262a4a',
+                                }}
+                        >Continue with Google</Button>
+                    )}
+                >
+                </GoogleLogin>
+            </div>
 
-
-            <LoginSocialTwitter
-                className="btn btn_twitter"
-                client_id={REACT_APP_TWITTER_API_ID || ""}
-                client_secret={REACT_APP_TWITTER_API_SECRET || ""}
-                redirect_uri={REDIRECT_URI}
-                onLoginStart={onLoginStart}
-                onLogoutSuccess={onLogoutSuccess}
-                onResolve={({ provider, data }) => {
-                    setStepFlag(true);
-                    setProvider(provider);
-                    setProfile(data);
-                    console.log(data, "data");
-                    console.log(provider, "provider");
-                    localStorage.setItem('userInfo', JSON.stringify({provider: provider, 'data': data}));
-
-                }}
-                onReject={(err) => {
-                    console.log(err);
-                }}
-            >
-                {/*<TwitterLoginButton/>*/}
-                <Button type="primary" shape="round" icon={<TwitterOutlined />} >Continue with Twitter</Button>
-            </LoginSocialTwitter>
         </div>
     )
 }
