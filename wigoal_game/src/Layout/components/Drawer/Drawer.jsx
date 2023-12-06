@@ -25,7 +25,7 @@ const DrawerContainer = (props) => {
 
     return (
         <Drawer className="container_drawer black"
-                title={tabsActive == '2' ? ifUserLoginStatus ? '' : 'Create your WigoalGames account for free!' : ''}
+                title={tabsActive == '2' ? ifUserLoginStatus() ? '' : 'Create your WigoalGames account for free!' : ''}
                 placement="right"
                 size={'large'}
                 onClose={onClose}
@@ -34,8 +34,8 @@ const DrawerContainer = (props) => {
                 tabsActive == '2'
                     ?   <>
                         {
-                            ifUserLoginStatus
-                                ? <SignupAfterPage/>
+                            ifUserLoginStatus()
+                                ? <SignupAfterPage onClose={onClose}/>
                                 : <>
                                     <svg preserveAspectRatio="none" height="170" width="100%" viewBox="0 0 375 170" fill="none"
                                          xmlns="http://www.w3.org/2000/svg"

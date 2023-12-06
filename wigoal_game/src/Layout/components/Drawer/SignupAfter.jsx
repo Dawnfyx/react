@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 import { Select } from 'antd';
 
@@ -9,13 +9,22 @@ import './Signup.less'
 
 import AboutContainer from "../About/About";
 
-const SignupAfterPage = () => {
+const SignupAfterPage = (props) => {
+
+    const {onClose} = props;
+
+    const navigate = useNavigate();
+
     const handleChange = (e) => {
         console.log('handleChange', e)
     }
 
     const handleLogout = (e) => {
         window.localStorage.removeItem('userInfo');
+        setTimeout(() => {
+            onClose()
+            navigate('')
+        }, 800);
     }
 
     return (

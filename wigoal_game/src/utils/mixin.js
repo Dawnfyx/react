@@ -101,5 +101,5 @@ export const utilsTitleCase = (title) => {
  * @returns {boolean}
  */
 export const ifUserLoginStatus = (e) => {
-    return window.localStorage.getItem('userInfo') == null;
+    return window.localStorage.getItem('userInfo') !== null;
 }

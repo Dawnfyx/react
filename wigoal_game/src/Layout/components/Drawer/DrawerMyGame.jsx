@@ -40,7 +40,7 @@ const DrawerContainer = (props) => {
                     </h2>
                 </div>
                 {
-                    ifUserLoginStatus
+                    ifUserLoginStatus()
                         ? ''
                         : <LoginSocial></LoginSocial>
                 }
@@ -88,7 +88,7 @@ const DrawerContainer = (props) => {
                     </h2>
                 </div>
                 {
-                    ifUserLoginStatus
+                    ifUserLoginStatus()
                         ? ''
                         : <LoginSocial></LoginSocial>
                 }

@@ -113,7 +113,7 @@ const LayoutContainer = () => {
                             </Space>
                             <Space>
                                 {
-                                    ifUserLoginStatus
+                                    ifUserLoginStatus()
                                         ?   <>
                                             <Button type="link" icon={<HeartOutlined/>} onClick={showDrawerMyGame.bind(this)}>My&nbsp;game</Button>
                                             <Button className="user_head_img_circular" shape="circle" icon={<img src={userimg} alt=""/>} onClick={showDrawer.bind(this, "2")}
@@ -171,7 +171,7 @@ const LayoutContainer = () => {
                                         alignItems: 'center',
                                     }}>
                                         {
-                                            ifUserLoginStatus
+                                            ifUserLoginStatus()
                                                 ? <>
                                                     <Button className="user_head_img_circular" shape="circle" icon={<img src={userimg} alt=""/>} onClick={showDrawer.bind(this, "2")}
                                                             style={{
