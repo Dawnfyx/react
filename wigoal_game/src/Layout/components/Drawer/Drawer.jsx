@@ -76,7 +76,7 @@ const DrawerContainer = (props) => {
                                 </>
                         }
                         </>
-                    :   <Login/>
+                    :   <Login onClose={onClose}/>
             }
 
         </Drawer>

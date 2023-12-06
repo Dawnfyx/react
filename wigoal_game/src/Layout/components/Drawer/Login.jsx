@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useCallback, useRef} from 'react';
+import {Link, useNavigate} from "react-router-dom";
 
 import {Button, Divider, Space} from 'antd';
 
@@ -8,7 +9,16 @@ import LoginSocial from './LoginSocial'
 
 import favicon from "../../../assets/img/logo.png";
 
-const LoginPage = () => {
+const LoginPage = (props) => {
+
+    const {onClose} = props;
+
+    const navigate = useNavigate();
+
+    const handleSignIn = (e) => {
+        console.log('handleSignIn', e)
+
+    }
 
     return (
         <div className="login_page">
@@ -18,7 +28,7 @@ const LoginPage = () => {
                 </div>
                 <div className="login_body">
 
-                    <LoginSocial></LoginSocial>
+                    <LoginSocial onClose={onClose}></LoginSocial>
 
                     <Divider plain>OR</Divider>
                     <div className="input_box">
@@ -34,7 +44,8 @@ const LoginPage = () => {
                             </span>
                     </div>
                     <div className="login_btn_box">
-                        <button id="sign_in" className="login_btn" type="submit">
+                        <button id="sign_in" className="login_btn" type="submit"
+                                onClick={() => handleSignIn()}>
                             <span className="login_btn_text">Log in</span>
                         </button>
                         {/*<div id="sign_in_register" className="login_btn">*/}

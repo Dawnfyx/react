@@ -1,4 +1,5 @@
 import React, {useState, useRef, useEffect, useCallback} from 'react';
+import {Link, useNavigate} from "react-router-dom";
 
 import {
     LoginSocialFacebook,
@@ -29,7 +30,9 @@ const REACT_APP_TWITTER_API_SECRET = "sisWhqLOhrs43sRIbKESazRW872sDXWuPC8XuaPVbo
 
 const LoginSocialContainer = (props) => {
 
-    // const {} = props;
+    const {onClose} = props;
+
+    const navigate = useNavigate();
 
     const [profile, setProfile] = useState(null);
     const [provider, setProvider] = useState(null);
@@ -71,6 +74,11 @@ const LoginSocialContainer = (props) => {
         if(window.FB){
             window.FB.login((item) => {
                 localStorage.setItem('userInfo', JSON.stringify({provider: 'Facebook', 'data': item}));
+
+                setTimeout(() => {
+                    onClose()
+                    navigate('')
+                }, 800);
             });
         }
     };
@@ -113,6 +121,10 @@ const LoginSocialContainer = (props) => {
                     clientId={REACT_APP_GOOGLE_API_ID} // 替换成你的 Google Client ID
                     onSuccess={(res)=>{
                         localStorage.setItem('userInfo', JSON.stringify({provider: 'Google', 'data': res}));
+                        setTimeout(() => {
+                            onClose()
+                            navigate('')
+                        }, 800);
                     }}
                     onFailure={(err)=>{
                         console.log("登录失败")

@@ -42,7 +42,7 @@ const DrawerContainer = (props) => {
                 {
                     ifUserLoginStatus()
                         ? ''
-                        : <LoginSocial></LoginSocial>
+                        : <LoginSocial onClose={onClose}></LoginSocial>
                 }
             </div>
         )
@@ -90,7 +90,7 @@ const DrawerContainer = (props) => {
                 {
                     ifUserLoginStatus()
                         ? ''
-                        : <LoginSocial></LoginSocial>
+                        : <LoginSocial onClose={onClose}></LoginSocial>
                 }
 
             </div>

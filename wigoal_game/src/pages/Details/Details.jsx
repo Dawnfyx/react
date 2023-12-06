@@ -49,6 +49,7 @@ const DetailsPage = () => {
             setPreviewData(res.data.preview);
             setRecommendData(res.data.recommend);
             setSpinning(false);
+            setLikeNum(res.data);
         })
     }
 
@@ -63,15 +64,52 @@ const DetailsPage = () => {
         }
     }
 
-    const randomNum = (val = 10) => {
-        let temp = val - Math.floor(Math.random(1)*10);
+    const randomNum = (val = 10, ranVal = 1) => {
+        let temp = val - Math.floor(Math.random(ranVal)*5);
         return temp;
     }
 
+    const setLikeNum = (val) => {
+        if(window.localStorage.getItem('LikeNum')){
+            let ArrMap = JSON.parse(window.localStorage.getItem('LikeNum'));
+            let cuerrtVal = ArrMap.find(item => item.gid === val.icon.split('/')[2]);
+            if(cuerrtVal){
+                return
+            } else {
+                ArrMap.push({
+                    gid: val.icon.split('/')[2],
+                    like: [randomNum(25, 7), randomNum(5, 2)]
+                })
+                window.localStorage.setItem('LikeNum', JSON.stringify(ArrMap))
+            }
+        } else {
+            let temp = [];
+            temp.push({
+                gid: val.icon.split('/')[2],
+                like: [randomNum(25, 7), randomNum(5, 2)]
+            })
+            window.localStorage.setItem('LikeNum', JSON.stringify(temp))
+        }
+    }
+
+    const getLikeNum = () => {
+        // let ArrMap = JSON.parse(window.localStorage.getItem('LikeNum'))
+        // if(window.localStorage.getItem('LikeNum')){
+            let temp = JSON.parse(window.localStorage.getItem('LikeNum'))[0].like
+            return temp
+        // }
+        // return [25, 7];
+    }
+
+
+
+
     const handleLike = (event, type, gid) => {
+        event.stopPropagation()
+
         if(type == 'Like'){
             setIsLike(!isLike);
-        } else if( type == 'DisLike'){
+        } else if(type == 'DisLike'){
             setIsDisLike(!isDisLike);
         }
         let commentData = {
@@ -167,8 +205,8 @@ const DetailsPage = () => {
                             <h1>Mini Golf Club</h1>
                         </div>
                         <div className="info_box_operate">
-                            <Button className={isLike ? 'like' : ''} type="link" icon={<LikeOutlined />} onClick={(e)=>handleLike(e, 'Like', pageData.icon.split('/')[2])}>{randomNum(30)}K</Button>
-                            <Button className={isDisLike ? 'dislike' : ''} type="link" icon={<DislikeOutlined />} onClick={(e)=>handleLike(e, 'DisLike', pageData.icon.split('/')[2])}>{randomNum(12)}K</Button>
+                            <Button className={isLike ? 'like' : ''} type="link" icon={<LikeOutlined />} onClick={(e)=>handleLike(e, 'Like', pageData.icon.split('/')[2])}>{getLikeNum()[0]}K</Button>
+                            <Button className={isDisLike ? 'dislike' : ''} type="link" icon={<DislikeOutlined />} onClick={(e)=>handleLike(e, 'DisLike', pageData.icon.split('/')[2])}>{getLikeNum()[1]}K</Button>
 
                             <Button type="link" icon={isCollect
                                                     ? <svg className="favorites_svg" viewBox="0 0 120 120" focusable="false" aria-hidden="true" width="120" height="120" fill="none">
