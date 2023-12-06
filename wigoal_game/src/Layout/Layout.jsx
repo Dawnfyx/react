@@ -23,6 +23,8 @@ import TabBarContainer from "./components/TabBar/TabBar";
 import DrawerContainer from "./components/Drawer/Drawer";
 import DramerMyGameContainer from "./components/Drawer/DrawerMyGame";
 
+import userimg from "../assets/userimg/2.png";
+
 const {Header, Content} = Layout;
 
 const LayoutContainer = () => {
@@ -114,9 +116,9 @@ const LayoutContainer = () => {
                                     ifUserLoginStatus
                                         ?   <>
                                             <Button type="link" icon={<HeartOutlined/>} onClick={showDrawerMyGame.bind(this)}>My&nbsp;game</Button>
-                                            <Button shape="circle" icon={<UserOutlined/>} onClick={showDrawer.bind(this, "2")}
+                                            <Button className="user_head_img_circular" shape="circle" icon={<img src={userimg} alt=""/>} onClick={showDrawer.bind(this, "2")}
                                                     style={{
-                                                        backgroundColor: 'transparent'
+                                                        backgroundColor:'transparent',
                                                     }}
                                             />
                                         </>
@@ -168,15 +170,29 @@ const LayoutContainer = () => {
                                         display: 'flex',
                                         alignItems: 'center',
                                     }}>
-                                        <Button type="primary" shape="round" onClick={showDrawer.bind(this, "1")}>
-                                            Log&nbsp;in
-                                        </Button>
-                                        <Button shape="circle" icon={<UserOutlined/>} onClick={showDrawer.bind(this, "2")}
-                                            style={{
-                                                backgroundColor:'transparent',
-                                                margin: '0 10px',
-                                            }}
-                                        />
+                                        {
+                                            ifUserLoginStatus
+                                                ? <>
+                                                    <Button className="user_head_img_circular" shape="circle" icon={<img src={userimg} alt=""/>} onClick={showDrawer.bind(this, "2")}
+                                                            style={{
+                                                                backgroundColor:'transparent',
+                                                                margin: '0 10px',
+                                                            }}
+                                                    />
+                                                </>
+                                                : <>
+                                                    <Button type="primary" shape="round" onClick={showDrawer.bind(this, "1")}>
+                                                        Log&nbsp;in
+                                                    </Button>
+                                                    <Button shape="circle" icon={<UserOutlined/>} onClick={showDrawer.bind(this, "2")}
+                                                            style={{
+                                                                backgroundColor:'transparent',
+                                                                margin: '0 10px',
+                                                            }}
+                                                    />
+                                                </>
+                                        }
+
                                     </div>
                                 </Space>
                                 <SearchMobileContainer ></SearchMobileContainer>
