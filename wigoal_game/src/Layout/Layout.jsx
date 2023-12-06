@@ -10,6 +10,7 @@ import {
     UserOutlined,
 } from '@ant-design/icons';
 import {Layout, Space, Menu, Button, theme, Drawer, Avatar} from 'antd';
+import {ifUserLoginStatus} from "../utils/mixin";
 
 import "./Layout.less";
 
@@ -109,15 +110,28 @@ const LayoutContainer = () => {
                                 <SearchContainer></SearchContainer>
                             </Space>
                             <Space>
-                                <Button type="link" icon={<HeartOutlined/>} onClick={showDrawer.bind(this, "3")}>My&nbsp;game</Button>
-                                <Button type="primary" shape="round" onClick={showDrawer.bind(this, "1")}>
-                                    Log&nbsp;in
-                                </Button>
-                                <Button shape="circle" icon={<UserOutlined/>} onClick={showDrawer.bind(this, "2")}
-                                        style={{
-                                            backgroundColor: 'transparent'
-                                        }}
-                                />
+                                {
+                                    ifUserLoginStatus
+                                        ?   <>
+                                            <Button type="link" icon={<HeartOutlined/>} onClick={showDrawerMyGame.bind(this)}>My&nbsp;game</Button>
+                                            <Button shape="circle" icon={<UserOutlined/>} onClick={showDrawer.bind(this, "2")}
+                                                    style={{
+                                                        backgroundColor: 'transparent'
+                                                    }}
+                                            />
+                                        </>
+                                        :   <>
+                                            <Button type="link" icon={<HeartOutlined/>} onClick={showDrawer.bind(this, "3")}>My&nbsp;game</Button>
+                                            <Button type="primary" shape="round" onClick={showDrawer.bind(this, "1")}>
+                                                Log&nbsp;in
+                                            </Button>
+                                            <Button shape="circle" icon={<UserOutlined/>} onClick={showDrawer.bind(this, "2")}
+                                                    style={{
+                                                        backgroundColor: 'transparent'
+                                                    }}
+                                            />
+                                        </>
+                                }
                             </Space>
                         </Header>
                 }

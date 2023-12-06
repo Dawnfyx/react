@@ -1,6 +1,7 @@
 import React, {useState, useRef} from 'react';
 
 import {Button, Drawer, Tabs} from "antd";
+import {ifUserLoginStatus} from "../../../utils/mixin";
 
 import './DrawerMyGame.less';
 
@@ -38,8 +39,11 @@ const DrawerContainer = (props) => {
                         Create an account to add games to your favorites
                     </h2>
                 </div>
-                <LoginSocial></LoginSocial>
-
+                {
+                    ifUserLoginStatus
+                        ? ''
+                        : <LoginSocial></LoginSocial>
+                }
             </div>
         )
     }
@@ -83,7 +87,11 @@ const DrawerContainer = (props) => {
                         Create an account to see all your liked games
                     </h2>
                 </div>
-                <LoginSocial></LoginSocial>
+                {
+                    ifUserLoginStatus
+                        ? ''
+                        : <LoginSocial></LoginSocial>
+                }
 
             </div>
         )

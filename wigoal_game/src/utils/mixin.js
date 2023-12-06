@@ -100,6 +100,6 @@ export const utilsTitleCase = (title) => {
  * @param e
  * @returns {boolean}
  */
-const ifUserLoginStatus = (e) => {
+export const ifUserLoginStatus = (e) => {
     return window.localStorage.getItem('userInfo') == null;
 }
