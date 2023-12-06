@@ -63,6 +63,11 @@ const DetailsPage = () => {
         }
     }
 
+    const randomNum = (val = 10) => {
+        let temp = val - Math.floor(Math.random(1)*10);
+        return temp;
+    }
+
     const handleLike = (event, type, gid) => {
         if(type == 'Like'){
             setIsLike(!isLike);
@@ -144,7 +149,9 @@ const DetailsPage = () => {
                         <h1>{pageData.name}</h1>
                     </div>
                     <div className="game_container_play">
-                        <Button icon={<PlayCircleOutlined />} >&nbsp; &nbsp;PLAY now&nbsp; &nbsp;</Button>
+                        <Link to={pageData.link}>
+                            <Button icon={<PlayCircleOutlined />} >&nbsp; &nbsp;PLAY now&nbsp; &nbsp;</Button>
+                        </Link>
                     </div>
                     <div className="game_container_bg_mask"></div>
                     <img src={'http://test.ads-goal.com' + pageData.icon} className='game_container_bg' alt=""/>
@@ -160,8 +167,8 @@ const DetailsPage = () => {
                             <h1>Mini Golf Club</h1>
                         </div>
                         <div className="info_box_operate">
-                            <Button className={isLike ? 'like' : ''} type="link" icon={<LikeOutlined />} onClick={(e)=>handleLike(e, 'Like', pageData.icon.split('/')[2])}>45K</Button>
-                            <Button className={isDisLike ? 'dislike' : ''} type="link" icon={<DislikeOutlined />} onClick={(e)=>handleLike(e, 'DisLike', pageData.icon.split('/')[2])}>14K</Button>
+                            <Button className={isLike ? 'like' : ''} type="link" icon={<LikeOutlined />} onClick={(e)=>handleLike(e, 'Like', pageData.icon.split('/')[2])}>{randomNum(30)}K</Button>
+                            <Button className={isDisLike ? 'dislike' : ''} type="link" icon={<DislikeOutlined />} onClick={(e)=>handleLike(e, 'DisLike', pageData.icon.split('/')[2])}>{randomNum(12)}K</Button>
 
                             <Button type="link" icon={isCollect
                                                     ? <svg className="favorites_svg" viewBox="0 0 120 120" focusable="false" aria-hidden="true" width="120" height="120" fill="none">
@@ -219,12 +226,12 @@ const DetailsPage = () => {
                                     <div>HTML5 (Unity WebGL)</div>
                                 </div>
                             </div>
-                            {/*<div className="material_item">*/}
-                            {/*    <div className="item_left">Platform</div>*/}
-                            {/*    <div className="item_right">*/}
-                            {/*        <div>Browser (desktop, mobile, tablet)</div>*/}
-                            {/*    </div>*/}
-                            {/*</div>*/}
+                            <div className="material_item">
+                                <div className="item_left">Platform</div>
+                                <div className="item_right">
+                                    <div>Browser (desktop, mobile, tablet)</div>
+                                </div>
+                            </div>
                             <div className="material_item">
                                 <div className="item_left">Classification</div>
                                 <div className="item_right">
@@ -318,7 +325,8 @@ const DetailsPage = () => {
                                     <li>
                                         Web browser (desktop and mobile)
                                     </li>
-                                    <li>Windows (<a target="_blank" rel="nofollow" href="">link</a>)</li>
+                                    {/*<li>Windows (<a target="_blank" rel="nofollow" href="">link</a>)</li>*/}
+                                    <li>Windows</li>
                                 </ul>
                             </div>
                             {/*<div className="description_item">*/}
@@ -364,7 +372,7 @@ const DetailsPage = () => {
                     </div>
                 </div>
                 <div className="game_info_recommend">
-                    <Row gutter={[10, 10]} style={{
+                    <Row gutter={[10, 12]} style={{
                         justifyContent: 'center',
                     }}>
                         {

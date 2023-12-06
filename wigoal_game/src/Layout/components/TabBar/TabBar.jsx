@@ -8,18 +8,25 @@ import {
 
 const TabBarContainer = (props) => {
 
-    const { showDrawerMyGame } = props;
+    const { openMyGame, setOpenMyGame } = props;
 
+    const [tabbarActive, setTabbarActive] = useState(true);
     const navigate = useNavigate();
 
+    const onHandleMyGame = () => {
+        setTabbarActive(false)
+        setOpenMyGame(!openMyGame)
+    }
     const onBackHome = () => {
+        setTabbarActive(true)
+        setOpenMyGame(false)
         navigate('')
     }
 
     return(
         <div className="container_tab_bar">
             <div className="container_tab_bar_wrap">
-                <div className="container_tab_bar_item container_tab_bar_item_active">
+                <div className={tabbarActive ? 'container_tab_bar_item container_tab_bar_item_active' : 'container_tab_bar_item'}>
                     <div className="adm-badge-wrapper" onClick={onBackHome}>
                         <div className="adm-tab-bar-item-icon">
                             <HomeOutlined style={{fontSize: '24px'}}></HomeOutlined>
@@ -27,13 +34,13 @@ const TabBarContainer = (props) => {
                     </div>
                     <div className="container_tab_bar_item-title" onClick={onBackHome}>Home</div>
                 </div>
-                <div className="container_tab_bar_item">
-                    <div className="adm-badge-wrapper" onClick={showDrawerMyGame}>
+                <div className={tabbarActive ? 'container_tab_bar_item' : 'container_tab_bar_item container_tab_bar_item_active'}>
+                    <div className="adm-badge-wrapper" onClick={onHandleMyGame}>
                         <div className="adm-tab-bar-item-icon">
                             <HeartOutlined style={{fontSize: '24px'}}></HeartOutlined>
                         </div>
                     </div>
-                    <div className="container_tab_bar_item-title" onClick={showDrawerMyGame}>My&nbsp;game</div>
+                    <div className="container_tab_bar_item-title" onClick={onHandleMyGame}>My&nbsp;game</div>
                 </div>
             </div>
         </div>

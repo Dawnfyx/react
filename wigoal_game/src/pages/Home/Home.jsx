@@ -59,12 +59,23 @@ const HomePage = (props) => {
             {/*    </button>*/}
             {/*</div>*/}
 
-
-            <GameCarousel viewData={gamespopu}
-                          style={{
-                              minHeight: '110px'
-                          }}
-            ></GameCarousel>
+            <div className="Game_container_item"
+                 style={{
+                     minHeight: '110px'
+                 }}
+            >
+                <div className="title_container">
+                    <h2 className="carousel_title">
+                        <span>PopularGames</span>
+                    </h2>
+                    {/*<a className="carousel_title_link" href="">View more</a>*/}
+                </div>
+                <GameCarousel viewData={gamespopu}
+                              style={{
+                                  minHeight: '110px'
+                              }}
+                ></GameCarousel>
+            </div>
 
             <div className="Game_container_item"
                  style={{

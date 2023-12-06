@@ -174,7 +174,7 @@ const LayoutContainer = () => {
                     </Content>
                     {
                         mobileFlag
-                            ? <TabBarContainer showDrawerMyGame={showDrawerMyGame}></TabBarContainer>
+                            ? <TabBarContainer openMyGame={openMyGame} setOpenMyGame={setOpenMyGame}></TabBarContainer>
                             : ''
                     }
                 </Layout>

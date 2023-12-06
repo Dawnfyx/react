@@ -66,10 +66,12 @@ const GameCarousel = (props) => {
             {/*    }*/}
             {/*</Swiper>*/}
 
-            <Row gutter={[10, 15]}>
+            <Row gutter={[10, 12]} style={{
+                justifyContent: 'center',
+            }}>
                 {
-                    viewData.map((item, key) => (
-                        <Col key={key} xs={8} sm={8} md={6} lg={4} xl={3} xxl={3}>
+                    viewData.map((item, index) => (
+                        <Col key={index} xs={8} sm={8} md={6} lg={4} xl={3} xxl={2}>
                             <GameThumbBox link={"/page/details?gid=" + item.gid} url={'http://test.ads-goal.com' + item.icon} name={item.name} tags={item.tab}></GameThumbBox>
                         </Col>
                     ))

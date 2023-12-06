@@ -38,7 +38,7 @@ const GameThumbBox = (props) => {
                             height: '27px',
                         }}
                         >
-                            <use href="#new-label"></use>
+                            <use href="#hot-label"></use>
                         </svg>;
             case 3 :
                 return <svg style={{

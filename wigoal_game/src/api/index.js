@@ -38,7 +38,7 @@ export const getHomedata = () => request.get(base(view_type));
 export const getCatedata = (para) => request.get("/api/category" + para); // ?type=
 
 // 获取搜索页
-export const getSearchdata = (para) => request.get("/api/search" + para);  // ?words=
+export const getSearchdata = (para) => request.get("/api/search" + para + "&recommend=12");  // ?words=
 
 // 获取详情页
-export const getDetailsdata = (para) => request.get("/api/details" + para); // ?gid=
+export const getDetailsdata = (para) => request.get("/api/details" + para + "&recommend=12"); // ?gid=

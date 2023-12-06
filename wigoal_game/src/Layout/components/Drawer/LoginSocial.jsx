@@ -69,9 +69,9 @@ const LoginSocialContainer = (props) => {
 
     const onLoginClick = () => {
         if(window.FB){
-                window.FB.login((item) => {
-                    localStorage.setItem('userInfo', JSON.stringify({provider: 'Facebook', 'data': item}));
-                });
+            window.FB.login((item) => {
+                localStorage.setItem('userInfo', JSON.stringify({provider: 'Facebook', 'data': item}));
+            });
         }
     };
 
