@@ -70,7 +70,7 @@ const GameCarousel = (props) => {
                 {
                     viewData.map((item, index) => (
                         <Col key={index} xs={8} sm={8} md={6} lg={4} xl={3} xxl={2}>
-                            <GameThumbBox link={"/page/details?gid=" + item.gid} url={'http://test.ads-goal.com' + item.icon} name={item.name} tags={item.tab}></GameThumbBox>
+                            <GameThumbBox link={"/page/details?gid=" + item.gid} url={process.env.REACT_APP_BASEURL + item.icon} name={item.name} tags={item.tab}></GameThumbBox>
                         </Col>
                     ))
                 }

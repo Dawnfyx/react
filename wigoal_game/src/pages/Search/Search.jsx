@@ -69,7 +69,7 @@ const SearchPage = () => {
                         {
                             resultData.map((item, index) => (
                                 <Col key={item.gid} xs={8} sm={8} md={6} lg={4} xl={3} xxl={2}>
-                                    <GameThumbBox link={"/page/details?gid=" + item.gid} url={'http://test.ads-goal.com' + item.icon} name={item.name}></GameThumbBox>
+                                    <GameThumbBox link={"/page/details?gid=" + item.gid} url={process.env.REACT_APP_BASEURL + item.icon} name={item.name}></GameThumbBox>
                                 </Col>
                             ))
                         }
@@ -81,7 +81,7 @@ const SearchPage = () => {
                         {
                             pageData.map((item, index) => (
                                 <Col key={index} xs={8} sm={8} md={6} lg={4} xl={3} xxl={2}>
-                                    <GameThumbBox key={item.gid} link={"/page/details?gid=" + item.gid} url={'http://test.ads-goal.com' + item.icon} name={item.name}></GameThumbBox>
+                                    <GameThumbBox key={item.gid} link={"/page/details?gid=" + item.gid} url={process.env.REACT_APP_BASEURL + item.icon} name={item.name}></GameThumbBox>
                                 </Col>
                             ))
                         }

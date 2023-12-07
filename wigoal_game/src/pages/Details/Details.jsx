@@ -452,7 +452,7 @@ const DetailsPage = () => {
                                     <GameThumbBox
                                         key={item.gid}
                                         link={"/page/details?gid=" + item.gid}
-                                        url={"http://test.ads-goal.com" + item.icon}
+                                        url={process.env.REACT_APP_BASEURL + item.icon}
                                         name={item.name}
                                     ></GameThumbBox>
                                 </Col>
