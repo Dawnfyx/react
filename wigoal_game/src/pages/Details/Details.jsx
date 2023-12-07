@@ -69,36 +69,54 @@ const DetailsPage = () => {
         return temp;
     }
 
-    const setLikeNum = (val) => {
-        if(window.localStorage.getItem('LikeNum')){
-            let ArrMap = JSON.parse(window.localStorage.getItem('LikeNum'));
-            let cuerrtVal = ArrMap.find(item => item.gid === val.icon.split('/')[2]);
-            if(cuerrtVal){
-                return
-            } else {
-                ArrMap.push({
-                    gid: val.icon.split('/')[2],
-                    like: [randomNum(25, 7), randomNum(5, 2)]
-                })
-                window.localStorage.setItem('LikeNum', JSON.stringify(ArrMap))
-            }
-        } else {
-            let temp = [];
-            temp.push({
-                gid: val.icon.split('/')[2],
+    const setLocalLikeItem = (gid) => {
+        let temp = [];
+        temp.push({
+            gid: gid,
+            like: [randomNum(25, 7), randomNum(5, 2)]
+        })
+        window.localStorage.setItem('LikeNum', JSON.stringify(temp))
+    }
+
+    const setLikeNum = () => {
+        if(
+            typeof window.localStorage.getItem('LikeNum') == 'object' ||
+            !window.localStorage.getItem('LikeNum') ||
+            !JSON.parse(window.localStorage.getItem('LikeNum')) ||
+            window.localStorage.getItem('LikeNum') == '{}'
+        ) {
+            setLocalLikeItem(search.split('?gid=')[1])
+        }
+
+        let ArrMap = JSON.parse(window.localStorage.getItem('LikeNum'));
+        let cuerrtVal = ArrMap.find(item => item.gid === search.split('?gid=')[1]);
+        if(!cuerrtVal){
+            ArrMap.push({
+                gid: search.split('?gid=')[1],
                 like: [randomNum(25, 7), randomNum(5, 2)]
             })
-            window.localStorage.setItem('LikeNum', JSON.stringify(temp))
+            window.localStorage.setItem('LikeNum', JSON.stringify(ArrMap))
         }
     }
 
     const getLikeNum = () => {
-        // let ArrMap = JSON.parse(window.localStorage.getItem('LikeNum'))
-        // if(window.localStorage.getItem('LikeNum')){
-            let temp = JSON.parse(window.localStorage.getItem('LikeNum'))[0].like
-            return temp
-        // }
-        // return [25, 7];
+        if(
+            typeof window.localStorage.getItem('LikeNum') == 'object' ||
+            !window.localStorage.getItem('LikeNum') ||
+            !JSON.parse(window.localStorage.getItem('LikeNum')) ||
+            window.localStorage.getItem('LikeNum') == '{}'
+        ) {
+            setLikeNum()
+        }
+
+        let ArrMap = JSON.parse(window.localStorage.getItem('LikeNum'));
+        let cuerrtVal = ArrMap.find(item => item.gid === search.split('?gid=')[1]);
+        if(!cuerrtVal){
+            setLikeNum()
+            ArrMap = JSON.parse(window.localStorage.getItem('LikeNum'));
+            cuerrtVal = ArrMap.find(item => item.gid === search.split('?gid=')[1]);
+        }
+        return cuerrtVal.like;
     }
 
 
