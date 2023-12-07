@@ -11,7 +11,7 @@ import { Spin, Modal } from "antd";
 
 //创建一个axios示例
 const service = axios.create({
-  baseURL: process.env.NODE_ENV == 'development' ? 'http://test.ads-goal.com' : '', // 动态域名 http://test.ads-goal.com
+  baseURL: process.env.REACT_APP_ENV == 'development' ? 'http://test.ads-goal.com' : '', // 动态域名 http://test.ads-goal.com
   timeout: 5000, // request timeout
 });
 
