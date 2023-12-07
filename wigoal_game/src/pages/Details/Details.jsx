@@ -119,8 +119,21 @@ const DetailsPage = () => {
         return cuerrtVal.like;
     }
 
+    const splitVotes = () => {
+        if(typeof pageData.count !== 'number') return;
 
+        // 可以用正则实现 但是我写不好 pass
+        // let sss = /^[a-zA-Z0-9]{4,6})?\d{3}$/;
+        // console.log("ssss", sss);
 
+        //几个等于是 空间转变的需要 字符串变成数组 数组变成 字符串
+        let temp = "" + pageData.count;
+        temp = temp.split('').reverse()
+        temp.splice(3, 0, ',')
+        temp.reverse()
+        temp = temp.join('')
+        return temp;
+    }
 
     const handleLike = (event, type, gid) => {
         event.stopPropagation()
@@ -205,9 +218,11 @@ const DetailsPage = () => {
                         <h1>{pageData.name}</h1>
                     </div>
                     <div className="game_container_play">
-                        <Link to={pageData.link}>
+                        {/*<Link to={pageData.link}>*/}
+                        <a href={pageData.link}>
                             <Button icon={<PlayCircleOutlined />} >&nbsp; &nbsp;PLAY now&nbsp; &nbsp;</Button>
-                        </Link>
+                        </a>
+                        {/*</Link>*/}
                     </div>
                     <div className="game_container_bg_mask"></div>
                     <img src={'http://test.ads-goal.com' + pageData.icon} className='game_container_bg' alt=""/>
@@ -250,8 +265,8 @@ const DetailsPage = () => {
                             <div className="material_item">
                                 <div className="item_left">Rating</div>
                                 <div className="item_right">
-                                    <div>{pageData.score}</div>
-                                    <div>({pageData.count}votes)</div>
+                                    <div><span>{pageData.score}</span>&nbsp;</div>
+                                    <div>&nbsp;({splitVotes()}&nbsp;votes) </div>
                                 </div>
                             </div>
                             {/*<div className="material_item">*/}
