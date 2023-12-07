@@ -37,7 +37,7 @@ const DetailsPage = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isLike, setIsLike] = useState(false);
     const [isDisLike, setIsDisLike] = useState(false);
-    const [isCollect, setIsCollect] = useState(false);
+    const [isFavorites, setIsFavorites] = useState(false);
     const [operateData, setOperateData] = useState([]);
     const { search } = useLocation()
 
@@ -50,6 +50,7 @@ const DetailsPage = () => {
             setRecommendData(res.data.recommend);
             setSpinning(false);
             setLikeNum(res.data);
+            getMyGames(res.data)
         })
     }
 
@@ -73,7 +74,7 @@ const DetailsPage = () => {
         let temp = [];
         temp.push({
             gid: gid,
-            like: [randomNum(25, 7), randomNum(5, 2)]
+            likeNum: [randomNum(25, 7), randomNum(5, 2)]
         })
         window.localStorage.setItem('LikeNum', JSON.stringify(temp))
     }
@@ -93,7 +94,7 @@ const DetailsPage = () => {
         if(!cuerrtVal){
             ArrMap.push({
                 gid: search.split('?gid=')[1],
-                like: [randomNum(25, 7), randomNum(5, 2)]
+                likeNum: [randomNum(25, 7), randomNum(5, 2)]
             })
             window.localStorage.setItem('LikeNum', JSON.stringify(ArrMap))
         }
@@ -116,7 +117,76 @@ const DetailsPage = () => {
             ArrMap = JSON.parse(window.localStorage.getItem('LikeNum'));
             cuerrtVal = ArrMap.find(item => item.gid === search.split('?gid=')[1]);
         }
-        return cuerrtVal.like;
+        return cuerrtVal.likeNum;
+    }
+
+    const setMyGamesItem = (gid, like = false, dislike = false, favorites = false) => {
+        let temp = []
+        temp.push({
+            gid: gid,
+            like: like,
+            dislike: dislike,
+            favorites: favorites,
+            details: pageData
+        })
+        window.localStorage.setItem('MyGames', JSON.stringify(temp))
+    }
+
+    const setMyGames = (gid, like = false, dislike = false, favorites = false) => {
+        if(
+            typeof window.localStorage.getItem('MyGames') == 'object' ||
+            !window.localStorage.getItem('MyGames') ||
+            !JSON.parse(window.localStorage.getItem('MyGames')) ||
+            window.localStorage.getItem('MyGames') == '{}'
+        ) {
+            setMyGamesItem(search.split('?gid=')[1], like, dislike, favorites)
+        }
+
+        let ArrMap = JSON.parse(window.localStorage.getItem('MyGames'));
+        let cuerrtVal = ArrMap.find(item => item.gid === search.split('?gid=')[1]);
+        if(!cuerrtVal){
+            ArrMap.push({
+                gid: search.split('?gid=')[1],
+                like: like,
+                dislike: dislike,
+                favorites: favorites,
+                details: pageData
+            })
+            window.localStorage.setItem('MyGames', JSON.stringify(ArrMap))
+        } else {
+            cuerrtVal.like = like;
+            cuerrtVal.dislike = dislike;
+            cuerrtVal.favorites = favorites;
+            cuerrtVal.details = pageData;
+            window.localStorage.setItem('MyGames', JSON.stringify(ArrMap))
+
+            setIsLike(like);
+            setIsDisLike(dislike);
+            setIsFavorites(favorites);
+        }
+    }
+
+    const getMyGames = () => {
+        if(
+            typeof window.localStorage.getItem('MyGames') == 'object' ||
+            !window.localStorage.getItem('MyGames') ||
+            !JSON.parse(window.localStorage.getItem('MyGames')) ||
+            window.localStorage.getItem('MyGames') == '{}'
+        ) {
+            return;
+        }
+
+        let ArrMap = JSON.parse(window.localStorage.getItem('MyGames'));
+        let cuerrtVal = ArrMap.find(item => item.gid === search.split('?gid=')[1]);
+        if(!cuerrtVal){
+            setIsLike(false);
+            setIsDisLike(false);
+            setIsFavorites(false);
+            return;
+        }
+        setIsLike(cuerrtVal.like);
+        setIsDisLike(cuerrtVal.dislike);
+        setIsFavorites(cuerrtVal.favorites);
     }
 
     const splitVotes = () => {
@@ -140,20 +210,17 @@ const DetailsPage = () => {
 
         if(type == 'Like'){
             setIsLike(!isLike);
+            setMyGames(search.split('?gid=')[1], !isLike, isDisLike, isFavorites)
         } else if(type == 'DisLike'){
             setIsDisLike(!isDisLike);
+            setMyGames(search.split('?gid=')[1], isLike, !isDisLike, isFavorites)
         }
-        let commentData = {
-            gid: gid,
-            Like: isLike,
-            DisLike: isDisLike,
-        }
-        setOperateData(commentData)
-        window.localStorage.setItem("commentEdit", JSON.stringify(commentData));
     }
 
-    const handleCollect = (event, gid) => {
-        setIsCollect(!isCollect);
+    const handleFavorites = (event, gid) => {
+        setIsFavorites(!isFavorites);
+        setMyGames(search.split('?gid=')[1], isLike, isDisLike, !isFavorites)
+
         // let title = 'sss'
         // let url = 'sss'
         // if (window.sidebar && window.sidebar.addPanel) { // Mozilla Firefox
@@ -178,14 +245,20 @@ const DetailsPage = () => {
     useEffect(() => {
         detailsPageData(search)
 
-        if(isLike == true){
-            setIsDisLike(false);
-        }
-        if(isDisLike == true){
-            setIsLike(false);
-        }
-        console.log("operateData", operateData)
-    }, [search, isLike, isDisLike, operateData])
+        // //有BUG
+        // if(isLike == true){
+        //     // setIsLike(true);
+        //     setIsDisLike(false);
+        //     setMyGames(search.split('?gid=')[1], true, false, isFavorites)
+        // }
+        //
+        // if(isDisLike == true) {
+        //     setIsLike(false);
+        //     // setIsDisLike(true);
+        //     setMyGames(search.split('?gid=')[1], false, true, isFavorites)
+        // }
+
+    }, [search])
 
     return(
         <>
@@ -220,12 +293,12 @@ const DetailsPage = () => {
                     <div className="game_container_play">
                         {/*<Link to={pageData.link}>*/}
                         <a href={pageData.link}>
-                            <Button icon={<PlayCircleOutlined />} >&nbsp; &nbsp;PLAY now&nbsp; &nbsp;</Button>
+                            <Button>&nbsp; &nbsp;PLAY now&nbsp; &nbsp;</Button>
                         </a>
                         {/*</Link>*/}
                     </div>
                     <div className="game_container_bg_mask"></div>
-                    <img src={'http://test.ads-goal.com' + pageData.icon} className='game_container_bg' alt=""/>
+                    <img src={process.env.REACT_APP_BASEURL + pageData.icon} className='game_container_bg' alt=""/>
                     {/*<div className="game_container_menu">*/}
                     {/*    <CloudUploadOutlined /> &nbsp;&nbsp;&nbsp;*/}
                     {/*    <div>Don&apos;t lose your progress! <span className="btn">Login now</span></div>*/}
@@ -241,7 +314,7 @@ const DetailsPage = () => {
                             <Button className={isLike ? 'like' : ''} type="link" icon={<LikeOutlined />} onClick={(e)=>handleLike(e, 'Like', pageData.icon.split('/')[2])}>{getLikeNum()[0]}K</Button>
                             <Button className={isDisLike ? 'dislike' : ''} type="link" icon={<DislikeOutlined />} onClick={(e)=>handleLike(e, 'DisLike', pageData.icon.split('/')[2])}>{getLikeNum()[1]}K</Button>
 
-                            <Button type="link" icon={isCollect
+                            <Button type="link" icon={isFavorites
                                                     ? <svg className="favorites_svg" viewBox="0 0 120 120" focusable="false" aria-hidden="true" width="120" height="120" fill="none">
                                                         <path fillRule="evenodd" clipRule="evenodd"
                                                               d="M40.2223 15C33.318 15 27.6735 16.4827 23.1717 19.1231C18.6594 21.7698 15.571 25.4186 13.5457 29.3108C9.59151 36.9098 9.62884 45.499 10.593 50.4327C13.1027 63.2751 22.0972 76.7358 31.5186 86.7905C36.2887 91.8812 41.354 96.3 46.0789 99.4881C50.5575 102.51 55.5562 105 60.0001 105C64.444 105 69.4427 102.51 73.9213 99.4881C78.6462 96.3 83.7115 91.8812 88.4816 86.7905C97.903 76.7358 106.897 63.2751 109.407 50.4327C110.371 45.499 110.409 36.9098 106.455 29.3108C104.429 25.4186 101.341 21.7698 96.8285 19.1231C92.3267 16.4827 86.6822 15 79.7779 15C74.2905 15 69.5521 17.478 65.892 20.5653C63.6296 22.4736 61.6515 24.7163 60.0001 27.0366C58.3487 24.7163 56.3706 22.4736 54.1082 20.5653C50.4481 17.478 45.7097 15 40.2223 15Z"
@@ -253,9 +326,9 @@ const DetailsPage = () => {
                                                             </linearGradient>
                                                         </defs>
                                                     </svg>
-                                                    : <HeartOutlined />
+                                                    : <HeartOutlined className="favorites_svg" />
                                                 }
-                                    onClick={(e)=>handleCollect(e, pageData.icon.split('/')[2])}></Button>
+                                    onClick={(e)=>handleFavorites(e, pageData.icon.split('/')[2])}></Button>
                             {/*<hr className="vertical_line" />*/}
                             {/*<Button type="link" icon={<ExclamationCircleOutlined />} ></Button>*/}
                             <hr className="vertical_line" />

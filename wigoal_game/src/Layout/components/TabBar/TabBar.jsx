@@ -40,7 +40,7 @@ const TabBarContainer = (props) => {
                             <HeartOutlined style={{fontSize: '24px'}}></HeartOutlined>
                         </div>
                     </div>
-                    <div className="container_tab_bar_item-title" onClick={onHandleMyGame}>My&nbsp;game</div>
+                    <div className="container_tab_bar_item-title" onClick={onHandleMyGame}>My&nbsp;games</div>
                 </div>
             </div>
         </div>
