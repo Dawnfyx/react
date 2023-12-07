@@ -2,6 +2,14 @@
   "name": "wigoal_game",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "node scripts/start.js",
+    "start:dev": "dotenv -e .env.dev node node scripts/start.js",
+    "start:pro": "dotenv -e .env.pro node scripts/start.js",
+    "start:https": "dotenv -e .env.https node scripts/start.js",
+    "build": "node scripts/build.js",
+    "test": "node scripts/test.js"
+  },
   "homepage": "https://tingo.fun/",
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
@@ -72,13 +80,11 @@
     "webpack-manifest-plugin": "^4.0.2",
     "workbox-webpack-plugin": "^6.4.1"
   },
-  "scripts": {
-    "start": "node scripts/start.js",
-    "start:dev": "cross-env NODE_ENV=development node scripts/start.js",
-    "start:pro": "dotenv -e .env.pro node scripts/start.js",
-    "start:https": "dotenv -e .env.https node scripts/start.js",
-    "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+  "devDependencies": {
+    "dotenv-cli": "^7.3.0",
+    "eslint-plugin-react": "^7.33.2",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack-bundle-analyzer": "^4.10.1"
   },
   "eslintConfig": {
     "extends": [
@@ -153,8 +159,5 @@
     "presets": [
       "react-app"
     ]
-  },
-  "devDependencies": {
-    "eslint-plugin-react": "^7.33.2"
   }
 }
