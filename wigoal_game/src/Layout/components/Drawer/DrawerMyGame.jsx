@@ -26,35 +26,46 @@ const DrawerContainer = (props) => {
     };
 
     const formatData = () => {
-        let ArrMap = JSON.parse(window.localStorage.getItem('MyGames'));
-        let temp1 = [];
-        // let temp2 = [];
-        let temp3 = [];
+        if(
+            typeof window.localStorage.getItem('MyGames') == 'object' ||
+            !window.localStorage.getItem('MyGames') ||
+            !JSON.parse(window.localStorage.getItem('MyGames')) ||
+            window.localStorage.getItem('MyGames') == '{}'
+        ) {
+            setLikeData([]);
+            // setDisLikeData([]]);
+            setFavoritesData([]);
+        } else {
+            let ArrMap = JSON.parse(window.localStorage.getItem('MyGames'));
+            let temp1 = [];
+            // let temp2 = [];
+            let temp3 = [];
 
-        ArrMap.map(item => {
-            if(item.like){
-                temp1.push({
-                    gid: item.gid,
-                    details: item.details,
-                })
-            }
-            // if(item.dislike){
-            //     temp2.push({
-            //         gid: item.gid,
-            //         details: item.details,
-            //     })
-            // }
-            if(item.favorites){
-                temp3.push({
-                    gid: item.gid,
-                    details: item.details,
-                })
-            }
-        })
+            ArrMap.map(item => {
+                if(item.like){
+                    temp1.push({
+                        gid: item.gid,
+                        details: item.details,
+                    })
+                }
+                // if(item.dislike){
+                //     temp2.push({
+                //         gid: item.gid,
+                //         details: item.details,
+                //     })
+                // }
+                if(item.favorites){
+                    temp3.push({
+                        gid: item.gid,
+                        details: item.details,
+                    })
+                }
+            })
 
-        setLikeData(temp1);
-        // setDisLikeData(temp2);
-        setFavoritesData(temp3);
+            setLikeData(temp1);
+            // setDisLikeData(temp2);
+            setFavoritesData(temp3);
+        }
     }
 
     const FavoritesPage = (props) => {
