@@ -3,7 +3,7 @@ import {Link, useNavigate} from "react-router-dom";
 
 import { Select } from 'antd';
 
-import userimg from "../../../assets/userimg/2.png";
+import userimg from "../../../assets/userimg/9.png";
 
 import './Signup.less'
 

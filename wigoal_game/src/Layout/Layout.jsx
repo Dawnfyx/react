@@ -23,7 +23,7 @@ import TabBarContainer from "./components/TabBar/TabBar";
 import DrawerContainer from "./components/Drawer/Drawer";
 import DramerMyGameContainer from "./components/Drawer/DrawerMyGame";
 
-import userimg from "../assets/userimg/2.png";
+import userimg from "../assets/userimg/9.png";
 
 const {Header, Content} = Layout;
 
