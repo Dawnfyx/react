@@ -293,7 +293,7 @@ const DetailsPage = () => {
                     <div className="game_container_play">
                         {/*<Link to={pageData.link}>*/}
                         <a href={pageData.link}>
-                            <Button>&nbsp; &nbsp;PLAY now&nbsp; &nbsp;</Button>
+                            <Button>&nbsp; &nbsp;PLAY NOW&nbsp; &nbsp;</Button>
                         </a>
                         {/*</Link>*/}
                     </div>

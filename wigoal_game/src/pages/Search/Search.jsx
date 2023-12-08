@@ -75,7 +75,9 @@ const SearchPage = () => {
                         }
                     </Row>
                 </div>
-
+                <div className="title_container">
+                    <h2 className="carousel_title"><span>Recommend Games</span></h2>
+                </div>
                 <div className="page_item">
                     <Row gutter={[10, 12]}>
                         {

@@ -13,39 +13,65 @@
     }
   }
 
-  .page_search{
-    input{
+  .page_search {
+    input {
       background-color: #e5e6ee;
       border-right-color: #d9d9d9;
       border-radius: 8px;
       color: #878a9e;
     }
-    .ant-input-group-addon{
-      button{
+
+    .ant-input-group-addon {
+      button {
         background-color: #e5e6ee;
       }
     }
   }
 
-  .page_body{
+  .page_body {
     margin-top: 30px;
 
-    .page_item + .page_item{
+    .page_item + .page_item {
       margin-top: 60px;
+    }
+
+    .title_container {
+      padding-left: 8px;
+      margin: 50px 0 10px 0;
+      min-height: 32px;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      width: 100%;
+
+      .carousel_title {
+        -webkit-align-self: flex-end;
+        -ms-flex-item-align: flex-end;
+        align-self: flex-end;
+        padding-right: 16px;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        font-size: 24px;
+      }
     }
   }
 }
 
 .computer {
-  .search_page{
-    .page_search{
+  .search_page {
+    .page_search {
       max-width: 922px;
       display: block;
       margin: 0 auto;
     }
-    .page_body{
-      .page_item{
-        .ant-row{
+
+    .page_body {
+      .page_item {
+        .ant-row {
           justify-content: center;
         }
       }

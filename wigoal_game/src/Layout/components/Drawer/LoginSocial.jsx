@@ -127,7 +127,6 @@ const LoginSocialContainer = (props) => {
                         }, 800);
                     }}
                     onFailure={(err)=>{
-                        console.log("登录失败")
                         console.log(err)
                     }}
                     cookiePolicy={'single_host_origin'}
