@@ -34,9 +34,10 @@ const LayoutContainer = () => {
     //     },
     // } = theme.useToken();
     const [storeData, setStoreData] = useState({
-        items: [],
-        totalAmount: 0,
-        totalPrice: 0
+        testNum: 10,
+        testItems: [],
+        drawerCTX: false,
+        drawerMyGameCTX: false,
     });
     const [collapsed, setCollapsed] = useState(false);
     const [mobileFlag, setMobileFlag] = useState(false);

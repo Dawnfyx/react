@@ -1,9 +1,5 @@
 import React from 'react';
 
-const StoreContext = React.createContext({
-    items: [],
-    totalAmount: 0,
-    totalPrice: 0,
-});
+const StoreContext = React.createContext();
 
 export default StoreContext;

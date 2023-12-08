@@ -1,4 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
+
+import StoreContext from "../../store/StoreContext";
 
 import {Col, Row, Spin} from 'antd';
 
@@ -8,6 +10,7 @@ import GameCarousel from "../../Layout/components/Content/GameCarousel/GameCarou
 import GameThumbBox from "../../Layout/components/Content/GameThumbBox/GameThumbBox";
 
 import './Home.less'
+
 
 // import {useDispatch, useSelector} from "react-redux";
 // import {decrement, increment} from "../../store/features/counterSlice";
@@ -20,6 +23,8 @@ const HomePage = (props) => {
     const [gameslist, setGameslist] = useState([])
     const [gamescate, setGamescate] = useState([])
 
+    const ctx = useContext(StoreContext);
+
     const homePageData = () => {
         getHomedata().then(res => {
             setGamespopu(res.data.populargames);
@@ -31,7 +36,6 @@ const HomePage = (props) => {
             setLoading(!loading);
         })
     }
-
 
     // const dispatch = useDispatch();
     // const countval = useSelector((state) => state.counter.value);
