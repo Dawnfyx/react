@@ -1,11 +1,11 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {useLocation} from "react-router";
+import {useNavigate} from "react-router-dom";
 
 import {Button, Col, Drawer, Image, Row, Tabs} from "antd";
 import {ifUserLoginStatus} from "../../../utils/mixin";
 
 import './DrawerMyGame.less';
-import GameThumbBox from "../../components/Content/GameThumbBox/GameThumbBox";
 import LoginSocial from './LoginSocial'
 
 const DrawerContainer = (props) => {
@@ -14,6 +14,8 @@ const DrawerContainer = (props) => {
     const [likeData, setLikeData] = useState([]);
     // const [disLikeData, setDisLikeData] = useState([]);
     const [favoritesData, setFavoritesData] = useState([]);
+
+    const navigate = useNavigate();
 
     const {search} = useLocation()
 
@@ -24,6 +26,11 @@ const DrawerContainer = (props) => {
     const onTabClick = (key) => {
 
     };
+
+    const handleLink = (url) => {
+        onClose()
+        navigate(url)
+    }
 
     const formatData = () => {
         if(
@@ -69,7 +76,7 @@ const DrawerContainer = (props) => {
     }
 
     const FavoritesPage = (props) => {
-        const {favoritesData} = props;
+        const {favoritesData, onClose} = props;
 
         return (
             <div className="mygame_favorites_page">
@@ -83,7 +90,13 @@ const DrawerContainer = (props) => {
                                             {
                                                 favoritesData.map((item, index) => (
                                                     <Col key={index} xs={8} sm={8} md={6} lg={6}>
-                                                        <GameThumbBox key={index} link={"/page/details?gid=" + item.gid} url={process.env.REACT_APP_BASEURL + item.details.icon}></GameThumbBox>
+                                                        <div className="game_thumb_box" onClick={() => handleLink("/page/details?gid=" + item.gid)}>
+                                                            <Image
+                                                                className="game_thumb_box_img"
+                                                                preview={false}
+                                                                src={process.env.REACT_APP_BASEURL + item.details.icon}
+                                                            />
+                                                        </div>
                                                     </Col>
                                                 ))
                                             }
@@ -170,7 +183,13 @@ const DrawerContainer = (props) => {
                                             {
                                                 likeData.map((item, index) => (
                                                     <Col key={index} xs={8} sm={8} md={6} lg={6}>
-                                                        <GameThumbBox key={index} link={"/page/details?gid=" + item.gid} url={process.env.REACT_APP_BASEURL + item.details.icon}></GameThumbBox>
+                                                        <div className="game_thumb_box" onClick={() => handleLink("/page/details?gid=" + item.gid)}>
+                                                            <Image
+                                                                className="game_thumb_box_img"
+                                                                preview={false}
+                                                                src={process.env.REACT_APP_BASEURL + item.details.icon}
+                                                            />
+                                                        </div>
                                                     </Col>
                                                 ))
                                             }
@@ -250,7 +269,7 @@ const DrawerContainer = (props) => {
                     {
                         key: '1',
                         label: 'Favorites',
-                        children: <FavoritesPage favoritesData={favoritesData}/>
+                        children: <FavoritesPage favoritesData={favoritesData} onClose={onClose}/>
                     },
                     {
                         key: '2',
@@ -260,7 +279,7 @@ const DrawerContainer = (props) => {
                     {
                         key: '3',
                         label: 'Liked',
-                        children: <LikedPage likeData={likeData}/>
+                        children: <LikedPage likeData={likeData} onClose={onClose}/>
                     },
                 ]}
                 onTabClick={onTabClick}
