@@ -16,7 +16,7 @@ import {
     GoogleOutlined,
     TwitterOutlined
 } from "@ant-design/icons";
-import {Button} from "antd";
+import {Button, message} from "antd";
 
 // const REDIRECT_URI = "http://localhost:3000/account/login";
 const REDIRECT_URI = "";
@@ -35,6 +35,8 @@ const REACT_APP_TWITTER_API_SECRET = "sisWhqLOhrs43sRIbKESazRW872sDXWuPC8XuaPVbo
 const LoginSocialContainer = (props) => {
 
     const {onClose} = props;
+
+    const [messageApi, contextHolder] = message.useMessage();
 
     const navigate = useNavigate();
 
@@ -69,9 +71,20 @@ const LoginSocialContainer = (props) => {
     }
 
     const handleRegister = () => {
-        // goBackPre();
         window.location = window.location.origin;
     }
+
+    const registerWarning = (err) => {
+        if(err.message){
+            err = err.message
+        } else {
+            err = 'login error'
+        }
+        messageApi.open({
+            type: 'warning',
+            content: err,
+        });
+    };
 
 
     // const onLoginClick = () => {
@@ -130,7 +143,8 @@ const LoginSocialContainer = (props) => {
                     }, 800);
                 }}
                 onReject={(err) => {
-                    console.log(err);
+                    console.log("Facebook login Error:", err);
+                    registerWarning(err)
                 }}
             >
                 {/*<FacebookLoginButton/>*/}
@@ -171,7 +185,8 @@ const LoginSocialContainer = (props) => {
 
                 }}
                 onReject={(err) => {
-                    console.log("Google login:", err);
+                    console.log("Google login Error:", err);
+                    registerWarning(err)
                 }}
             >
                 {/*<GoogleLoginButton/>*/}
@@ -213,6 +228,8 @@ const LoginSocialContainer = (props) => {
             {/*    >*/}
             {/*    </GoogleLogin>*/}
             {/*</div>*/}
+
+            {contextHolder}
 
         </div>
     )

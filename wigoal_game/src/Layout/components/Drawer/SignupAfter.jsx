@@ -41,7 +41,7 @@ const SignupAfterPage = (props) => {
                         </div>
                     </div>
                     <div className="user_head_text">
-                        {handleLoginInfo().provider} User
+                        { handleLoginInfo().data.name? handleLoginInfo().data.name : handleLoginInfo().provider + ' User'}
                     </div>
                     <div className="user_head_info">
                         {/*<button className="css-oj4imb" type="button">*/}
