@@ -40,7 +40,7 @@ const MenuContainer = (props) => {
     //         Menuicon[index]
     //     )
     // }
-    const SiderPageData = () => {
+    const SiderPageData = async () => {
         let Menuicon = [
             <BlockOutlined  key='BlockOutlined'/>,
             <UserOutlined key='UserOutlined' />,
@@ -66,16 +66,25 @@ const MenuContainer = (props) => {
                 })
             });
         } else {
-            getHomedata().then(res => {
-                res.data.category.map((item, index) => {
-                    temp.push({
-                        key: "/page/category?type=" + item.type,
-                        icon: Menuicon[index],
-                        label: item.name,
-                        onClick: handleNavigate,
-                    })
-                });
+            let category = await getHomedata().then(res => {
+                return res.data.category;
+                // res.data.category.map((item, index) => {
+                //     temp.push({
+                //         key: "/page/category?type=" + item.type,
+                //         icon: Menuicon[index],
+                //         label: item.name,
+                //         onClick: handleNavigate,
+                //     })
+                // });
             })
+            category.map((item, index) => {
+                temp.push({
+                    key: "/page/category?type=" + item.type,
+                    icon: Menuicon[index],
+                    label: item.name,
+                    onClick: handleNavigate,
+                })
+            });
         }
 
         setMenuItems(temp);
