@@ -18,6 +18,7 @@ import {Input, Menu, Space} from 'antd';
 import AboutContainer from "../About/About";
 
 import "./Menu.less"
+import {getHomedata} from "../../../api";
 
 const { Search } = Input;
 
@@ -55,14 +56,27 @@ const MenuContainer = (props) => {
             label: "Home",
             onClick: handleNavigate,
         }];
-        JSON.parse(window.localStorage.getItem('category')).map((item, index) => {
-            temp.push({
-                key: "/page/category?type=" + item.type,
-                icon: Menuicon[index],
-                label: item.name,
-                onClick: handleNavigate,
+        if(window.localStorage.getItem('category')){
+            JSON.parse(window.localStorage.getItem('category')).map((item, index) => {
+                temp.push({
+                    key: "/page/category?type=" + item.type,
+                    icon: Menuicon[index],
+                    label: item.name,
+                    onClick: handleNavigate,
+                })
+            });
+        } else {
+            getHomedata().then(res => {
+                res.data.category.map((item, index) => {
+                    temp.push({
+                        key: "/page/category?type=" + item.type,
+                        icon: Menuicon[index],
+                        label: item.name,
+                        onClick: handleNavigate,
+                    })
+                });
             })
-        });
+        }
 
         setMenuItems(temp);
     }

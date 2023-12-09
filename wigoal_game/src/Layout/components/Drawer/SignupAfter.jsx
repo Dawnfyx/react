@@ -19,6 +19,10 @@ const SignupAfterPage = (props) => {
         console.log('handleChange', e)
     }
 
+    const handleLoginInfo = (e) => {
+        return JSON.parse(window.localStorage.getItem('userInfo'))
+    }
+
     const handleLogout = (e) => {
         window.localStorage.removeItem('userInfo');
         setTimeout(() => {
@@ -37,7 +41,7 @@ const SignupAfterPage = (props) => {
                         </div>
                     </div>
                     <div className="user_head_text">
-
+                        {handleLoginInfo().provider} User
                     </div>
                     <div className="user_head_info">
                         {/*<button className="css-oj4imb" type="button">*/}

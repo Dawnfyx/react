@@ -20,8 +20,10 @@ import {Button} from "antd";
 const REDIRECT_URI = "";
 
 const REACT_APP_MICROSOFT_API_ID = "";
-const REACT_APP_FACEBOOK_API_ID= "362395739476949";
-const REACT_APP_GOOGLE_API_ID = "235303477450-0jlibv1ip1fi1oq64l628rbmki758ksj.apps.googleusercontent.com";
+// const REACT_APP_FACEBOOK_API_ID= "362395739476949";
+const REACT_APP_FACEBOOK_API_ID= "341369151843691";
+// const REACT_APP_GOOGLE_API_ID = "235303477450-0jlibv1ip1fi1oq64l628rbmki758ksj.apps.googleusercontent.com";
+const REACT_APP_GOOGLE_API_ID = "48801388645-iir73djli3h150dq4it8crdkmmge6jr9.apps.googleusercontent.com";
 // const REACT_APP_GOOGLE_API_SECRET = "AIzaSyDf4K0KnIQchv-nUQNz2764ds85GdgFgxQ";
 const REACT_APP_TWITTER_API_ID = "bXh6WDJTX1RTb0xxenMtcEhvMkc6MTpjaQ";
 const REACT_APP_TWITTER_API_SECRET = "sisWhqLOhrs43sRIbKESazRW872sDXWuPC8XuaPVboWhS5oYo4";
@@ -107,41 +109,104 @@ const LoginSocialContainer = (props) => {
     return (
         <div className="login_social_box">
 
-            <div className="btn btn_facebook">
-                <Button type="primary"  shape="round" icon={<FacebookOutlined />}
-                        style={{
-                            backgroundColor: '#3374dc',
-                        }}
-                        onClick={onLoginClick}
-                >Continue with Facebook</Button>
-            </div>
+            <LoginSocialFacebook
+                className="btn btn_facebook"
+                appId={REACT_APP_FACEBOOK_API_ID || ""}
+                onLoginStart={onLoginStart}
+                onLogoutSuccess={onLogoutSuccess}
+                onResolve={({ provider, data }) => {
+                    setStepFlag(true);
+                    setProvider(provider);
+                    setProfile(data);
+                    console.log(provider, "provider");
+                    console.log(data, "data");
+                    localStorage.setItem('userInfo', JSON.stringify({provider: provider, 'data': data}));
 
-            <div className="btn btn_google">
-                <GoogleLogin
-                    clientId={REACT_APP_GOOGLE_API_ID} // 替换成你的 Google Client ID
-                    onSuccess={(res)=>{
-                        localStorage.setItem('userInfo', JSON.stringify({provider: 'Google', 'data': res}));
-                        setTimeout(() => {
-                            onClose()
-                            navigate('')
-                        }, 800);
+                    setTimeout(() => {
+                        onClose()
+                        navigate('')
+                    }, 800);
+                }}
+                onReject={(err) => {
+                    console.log(err);
+                }}
+            >
+                {/*<FacebookLoginButton/>*/}
+                <Button type="primary" shape="round" icon={<FacebookOutlined />}
+                    style={{
+                        backgroundColor: '#3374dc',
                     }}
-                    onFailure={(err)=>{
-                        console.log(err)
+                >Continue with Facebook</Button>
+            </LoginSocialFacebook>
+
+            {/*<div className="btn btn_facebook">*/}
+            {/*    <Button type="primary"  shape="round" icon={<FacebookOutlined />}*/}
+            {/*            style={{*/}
+            {/*                backgroundColor: '#3374dc',*/}
+            {/*            }}*/}
+            {/*            onClick={onLoginClick}*/}
+            {/*    >Continue with Facebook</Button>*/}
+            {/*</div>*/}
+
+            <LoginSocialGoogle
+                className="btn btn_google"
+                client_id={REACT_APP_GOOGLE_API_ID || ""}
+                onLogoutFailure={onLogoutFailure}
+                onLoginStart={onLoginStart}
+                onLogoutSuccess={onLogoutSuccess}
+                onResolve={({ provider, data }) => {
+                    setStepFlag(true);
+                    setProvider(provider);
+                    setProfile(data);
+                    console.log(provider, "provider");
+                    console.log(data, "data");
+                    localStorage.setItem('userInfo', JSON.stringify({provider: provider, 'data': data}));
+
+                    setTimeout(() => {
+                        onClose()
+                        navigate('')
+                    }, 800);
+
+                }}
+                onReject={(err) => {
+                    console.log("Google login:", err);
+                }}
+            >
+                {/*<GoogleLoginButton/>*/}
+                <Button type="primary" shape="round" icon={<GoogleOutlined />}
+                    style={{
+                        backgroundColor: '#ffffff',
+                        color: '#262a4a',
                     }}
-                    cookiePolicy={'single_host_origin'}
-                    render={renderProps => (
-                        <Button type="primary" shape="round" icon={<GoogleOutlined/>}
-                                onClick={renderProps.onClick}
-                                style={{
-                                    backgroundColor: '#ffffff',
-                                    color: '#262a4a',
-                                }}
-                        >Continue with Google</Button>
-                    )}
-                >
-                </GoogleLogin>
-            </div>
+                >Continue with Google</Button>
+            </LoginSocialGoogle>
+
+            {/*<div className="btn btn_google">*/}
+            {/*    <GoogleLogin*/}
+            {/*        clientId={REACT_APP_GOOGLE_API_ID} // 替换成你的 Google Client ID*/}
+            {/*        onSuccess={(res)=>{*/}
+            {/*            localStorage.setItem('userInfo', JSON.stringify({provider: 'Google', 'data': res}));*/}
+            {/*            setTimeout(() => {*/}
+            {/*                onClose()*/}
+            {/*                navigate('')*/}
+            {/*            }, 800);*/}
+            {/*        }}*/}
+            {/*        onFailure={(err)=>{*/}
+            {/*            console.log(err)*/}
+            {/*        }}*/}
+            {/*        cookiePolicy={'single_host_origin'}*/}
+            {/*        render={renderProps => (*/}
+            {/*            <Button type="primary" shape="round" icon={<GoogleOutlined/>}*/}
+            {/*                    onClick={renderProps.onClick}*/}
+            {/*                    style={{*/}
+            {/*                        backgroundColor: '#ffffff',*/}
+            {/*                        color: '#262a4a',*/}
+            {/*                    }}*/}
+            {/*            >Continue with Google</Button>*/}
+            {/*        )}*/}
+            {/*    >*/}
+            {/*    </GoogleLogin>*/}
+            {/*</div>*/}
 
         </div>
     )

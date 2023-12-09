@@ -22,7 +22,6 @@ const DrawerContainer = (props) => {
         setTabsActive(key)
     };
 
-
     return (
         <Drawer className="container_drawer black"
                 title={tabsActive == '2' ? ifUserLoginStatus() ? '' : 'Create your WigoalGames account for free!' : ''}
@@ -55,7 +54,8 @@ const DrawerContainer = (props) => {
                                         items={[
                                             {
                                                 key: '2',
-                                                label: <Button shape="round" size="large" style={{ color: '#2f3148',}}>Sign up</Button>,
+                                                // label: <Button shape="round" size="large" style={{ color: '#2f3148',}}>Sign up</Button>,
+                                                label:'',
                                                 children: <Signup/>,
                                             },
                                             {
