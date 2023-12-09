@@ -36,6 +36,9 @@ const SiderMobileContainer = (props) => {
                 onClick={() => setCollapsed(!collapsed)}
             />
             <MenuContainer collapsed={collapsed} setCollapsed={setCollapsed} collapsedFlag={false}></MenuContainer>
+            <div className="ant-drawer" onClick={() => setCollapsed(!collapsed)}>
+                <div className="ant-drawer-mask"></div>
+            </div>
         </Sider>
     )
 }

@@ -135,6 +135,24 @@
         margin-top: 0.5rem;
         margin-left: 1rem;
         margin-bottom: 0.5rem;
+        z-index: 10;
+    }
+    .sider_menu{
+        z-index: 10;
+    }
+    .ant-drawer{
+        position: fixed;
+        inset: 0;
+        z-index: 9;
+        pointer-events: none;
+
+        .ant-drawer-mask{
+            position: absolute;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.45);
+            pointer-events: auto;
+        }
     }
 
     .container_header{
@@ -230,6 +248,7 @@
             }
         }
     }
+
 }
 
 .computer{

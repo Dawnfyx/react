@@ -87,6 +87,7 @@ const MenuContainer = (props) => {
 
     return(
         <div
+            className="sider_menu"
             style={{
                 // display: 'flex',
                 // flexDirection: 'column',

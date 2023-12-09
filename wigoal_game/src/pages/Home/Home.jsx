@@ -15,7 +15,7 @@ import './Home.less'
 // import {useDispatch, useSelector} from "react-redux";
 // import {decrement, increment} from "../../store/features/counterSlice";
 
-const HomePage = (props) => {
+const HomePage = () => {
     const [spinning, setSpinning] = useState(true);
     const [loading, setLoading] = useState(true);
     const [gamespopu, setGamespopu] = useState([])
