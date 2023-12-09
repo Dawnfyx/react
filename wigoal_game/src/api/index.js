@@ -42,3 +42,28 @@ export const getSearchdata = (para) => request.get("/api/search" + para + "&reco
 
 // 获取详情页
 export const getDetailsdata = (para) => request.get("/api/details" + para + "&recommend=12"); // ?gid=
+
+/**
+ * {
+ *     "host": "test.ads-goal.com", //网站域名，window.location.hostname
+ *     "userId": "793878347", //账户唯一ID
+ *     "accountType": 1 //1为google账户，2为facebook账户，3为twitter账户，4为注册账户
+ * }
+ * @param data
+ * @returns {Promise<axios.AxiosResponse<any>>}
+ */
+export const getUserData = (data) => request.post("/api/getud", data);
+
+
+/**
+ * {
+ *     "host": "test.ads-goal.com", //网站域名，window.location.hostname
+ *     "userId": "793878347", //账户唯一ID
+ *     "accountType": 1, //1为google账户，2为facebook账户，3为twitter账户，4为注册账户
+ *     "data": "{\"test\":1}" //用户数据，字符串类型
+ * }
+ * @param data
+ * @returns {Promise<axios.AxiosResponse<any>>}
+ */
+export const setUserData = (data) => request.post("/api/setud", data);
+

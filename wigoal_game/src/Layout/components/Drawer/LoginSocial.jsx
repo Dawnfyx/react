@@ -17,6 +17,7 @@ import {
     TwitterOutlined
 } from "@ant-design/icons";
 import {Button, message} from "antd";
+import {getUserData} from "../../../api";
 
 // const REDIRECT_URI = "http://localhost:3000/account/login";
 const REDIRECT_URI = "";
@@ -27,7 +28,6 @@ const REACT_APP_GOOGLE_API_ID = "48801388645-iir73djli3h150dq4it8crdkmmge6jr9.ap
 const REACT_APP_GOOGLE_API_SECRET = "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";
 const REACT_APP_TWITTER_API_ID = "bXh6WDJTX1RTb0xxenMtcEhvMkc6MTpjaQ";
 const REACT_APP_TWITTER_API_SECRET = "sisWhqLOhrs43sRIbKESazRW872sDXWuPC8XuaPVboWhS5oYo4";
-
 
 
 const LoginSocialContainer = (props) => {
@@ -58,14 +58,52 @@ const LoginSocialContainer = (props) => {
         // alert("logout success");
     }, []);
 
+    const handleResolve = (provider, data) => {
+        setStepFlag(true);
+        setProvider(provider);
+        setProfile(data);
+        console.log(provider, "provider");
+        console.log(data, "data");
+        let accountType = (provider) => {
+            switch(provider){
+                case 'google' :
+                    return 1;
+                case 'facebook' :
+                    return 2;
+                case 'twitter' :
+                    return 3;
+                default :
+                    return 4;
+            }
+        }
+        let userId = (provider) => {
+            switch(provider){
+                case 'google' :
+                    return data.sub;
+                case 'facebook' :
+                    return data.userID;
+                case 'twitter' :
+                    return null;
+                default :
+                    return null;
+            }
+        }
+        let temp = {
+            "host": window.location.hostname,
+            "userId": userId(provider), //账户唯一ID
+            "accountType": accountType(provider), //1为google账户，2为facebook账户，3为twitter账户，4为注册账户
+            "response": data
+        }
+        localStorage.setItem('userInfo', JSON.stringify({provider: provider, 'data': temp}));
 
-    const goback = () => {
-        // setStepFlag(false)
-    }
+        getUserData(JSON.stringify(temp)).then(res =>{
+            debugger
+        })
 
-    const goBackPre = () => {
-        // window.history.back();
-        window.location = window.location.origin;
+        setTimeout(() => {
+            onClose()
+            navigate('')
+        }, 800);
     }
 
     const handleRegister = () => {
@@ -128,17 +166,7 @@ const LoginSocialContainer = (props) => {
                 onLoginStart={onLoginStart}
                 onLogoutSuccess={onLogoutSuccess}
                 onResolve={({ provider, data }) => {
-                    setStepFlag(true);
-                    setProvider(provider);
-                    setProfile(data);
-                    console.log(provider, "provider");
-                    console.log(data, "data");
-                    localStorage.setItem('userInfo', JSON.stringify({provider: provider, 'data': data}));
-
-                    setTimeout(() => {
-                        onClose()
-                        navigate('')
-                    }, 800);
+                    handleResolve(provider, data);
                 }}
                 onReject={(err) => {
                     console.log("Facebook login Error:", err);
@@ -169,18 +197,7 @@ const LoginSocialContainer = (props) => {
                 onLoginStart={onLoginStart}
                 onLogoutSuccess={onLogoutSuccess}
                 onResolve={({ provider, data }) => {
-                    setStepFlag(true);
-                    setProvider(provider);
-                    setProfile(data);
-                    console.log(provider, "provider");
-                    console.log(data, "data");
-                    localStorage.setItem('userInfo', JSON.stringify({provider: provider, 'data': data}));
-
-                    setTimeout(() => {
-                        onClose()
-                        navigate('')
-                    }, 800);
-
+                    handleResolve(provider, data);
                 }}
                 onReject={(err) => {
                     console.log("Google login Error:", err);
