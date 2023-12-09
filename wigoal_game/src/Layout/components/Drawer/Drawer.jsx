@@ -65,6 +65,7 @@ const DrawerContainer = (props) => {
                                                                    backgroundColor: 'transparent',
                                                                    borderColor: '#d9d9d9',
                                                                    color: '#d9d9d9',
+                                                                   fontWeight: '800'
                                                                }}
                                                 >Log in</Button>,
                                                 children: '',

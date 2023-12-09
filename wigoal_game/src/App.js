@@ -25,8 +25,7 @@ function App() {
                     colorText: '#FFFFFF',
                     colorTextPlaceholder: '#AAADBE',
                     colorLink: '#FFFFFF',
-                    // colorBgContainer: 'red',
-                    // colorBgLayout: 'red',
+                    fontFamily: 'Nunito,Arial,"Helvetica Neue",Helvetica,sans-serif',
                 },
                 components: {
                     Layout: {
