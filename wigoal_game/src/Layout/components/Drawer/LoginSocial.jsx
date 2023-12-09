@@ -22,11 +22,9 @@ import {Button, message} from "antd";
 const REDIRECT_URI = "";
 
 const REACT_APP_MICROSOFT_API_ID = "";
-// const REACT_APP_FACEBOOK_API_ID= "362395739476949";
 const REACT_APP_FACEBOOK_API_ID= "341369151843691";
-// const REACT_APP_GOOGLE_API_ID = "235303477450-0jlibv1ip1fi1oq64l628rbmki758ksj.apps.googleusercontent.com";
 const REACT_APP_GOOGLE_API_ID = "48801388645-iir73djli3h150dq4it8crdkmmge6jr9.apps.googleusercontent.com";
-// const REACT_APP_GOOGLE_API_SECRET = "AIzaSyDf4K0KnIQchv-nUQNz2764ds85GdgFgxQ";
+const REACT_APP_GOOGLE_API_SECRET = "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";
 const REACT_APP_TWITTER_API_ID = "bXh6WDJTX1RTb0xxenMtcEhvMkc6MTpjaQ";
 const REACT_APP_TWITTER_API_SECRET = "sisWhqLOhrs43sRIbKESazRW872sDXWuPC8XuaPVboWhS5oYo4";
 

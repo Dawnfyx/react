@@ -150,14 +150,20 @@ const DetailsPage = () => {
                 like: like,
                 dislike: dislike,
                 favorites: favorites,
-                details: pageData
+                details: {
+                    icon: pageData.icon,
+                    link: pageData.link
+                }
             })
             window.localStorage.setItem('MyGames', JSON.stringify(ArrMap))
         } else {
             cuerrtVal.like = like;
             cuerrtVal.dislike = dislike;
             cuerrtVal.favorites = favorites;
-            cuerrtVal.details = pageData;
+            cuerrtVal.details = {
+                icon: pageData.icon,
+                link: pageData.link
+            };
             window.localStorage.setItem('MyGames', JSON.stringify(ArrMap))
 
             setIsLike(like);
