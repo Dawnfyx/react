@@ -74,18 +74,18 @@ const LoginSocialContainer = (props) => {
     }
 
 
-    const onLoginClick = () => {
-        if(window.FB){
-            window.FB.login((item) => {
-                localStorage.setItem('userInfo', JSON.stringify({provider: 'Facebook', 'data': item}));
-
-                setTimeout(() => {
-                    onClose()
-                    navigate('')
-                }, 800);
-            });
-        }
-    };
+    // const onLoginClick = () => {
+    //     if(window.FB){
+    //         window.FB.login((item) => {
+    //             localStorage.setItem('userInfo', JSON.stringify({provider: 'Facebook', 'data': item}));
+    //
+    //             setTimeout(() => {
+    //                 onClose()
+    //                 navigate('')
+    //             }, 800);
+    //         });
+    //     }
+    // };
 
     // useEffect(() => {
         // window.fbAsyncInit = () => {
