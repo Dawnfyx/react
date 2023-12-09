@@ -9,6 +9,8 @@ import {
 
 import { GoogleLogin } from 'react-google-login';
 
+import googleSvg from "../../../assets/img/google.svg";
+
 import {
     FacebookOutlined,
     GoogleOutlined,
@@ -173,7 +175,11 @@ const LoginSocialContainer = (props) => {
                 }}
             >
                 {/*<GoogleLoginButton/>*/}
-                <Button type="primary" shape="round" icon={<GoogleOutlined />}
+                <Button type="primary" shape="round" icon={
+                    <svg width={20} height={20} style={{ transform: 'translateY(4px)'}}>
+                        <image href={googleSvg} style={{ width: '20px', height: '20px'}} />
+                    </svg>
+                }
                     style={{
                         backgroundColor: '#ffffff',
                         color: '#262a4a',
