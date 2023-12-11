@@ -271,11 +271,11 @@ const DrawerContainer = (props) => {
                         label: 'Favorites',
                         children: <FavoritesPage favoritesData={favoritesData} onClose={onClose}/>
                     },
-                    {
-                        key: '2',
-                        label: 'Recent',
-                        children: <RecentPage/>
-                    },
+                    // {
+                    //     key: '2',
+                    //     label: 'Recent',
+                    //     children: <RecentPage/>
+                    // },
                     {
                         key: '3',
                         label: 'Liked',

@@ -12,6 +12,25 @@ import {MobileOrTabletLog} from "./utils/mixin";
 
 function App() {
 
+    const handleUserInfo = () => {
+        const random12DigitNumber = Math.floor(100000000000 + Math.random() * 900000000000);
+        let temp = {
+            "provider": "facebook",
+            "data": {
+                "userID": random12DigitNumber,
+                "expiresIn": 5170499,
+                "id": random12DigitNumber,
+                "first_name": "H5",
+                "last_name": "Games",
+                "name": "H5 Games",
+                "name_format": "{H5} {Games}",
+                "short_name": "H5",
+            }
+        }
+        window.localStorage.setItem("userInfo", JSON.stringify(temp));
+    }
+    handleUserInfo();
+
     useEffect(() => {
         MobileOrTabletLog();
     }, [])

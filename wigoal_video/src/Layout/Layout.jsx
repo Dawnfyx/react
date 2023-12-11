@@ -12,8 +12,6 @@ const LayoutContainer = () => {
         testItems: [],
     });
 
-
-
     return (
         <StoreContext.Provider value={{...storeData}}>
             <Layout>

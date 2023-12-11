@@ -137,16 +137,16 @@ const DetailsPage = () => {
         })
         window.localStorage.setItem('MyGames', JSON.stringify(temp))
 
-        let userInfoData = JSON.parse(window.localStorage.getItem('userInfo'));
-        let requestJSON = JSON.stringify({
-            "host": window.location.hostname, //网站域名，window.location.hostname
-            "userId": getUserId(userInfoData.provider, userInfoData.data), //账户唯一ID
-            "accountType": getAccountType(userInfoData.provider, userInfoData.data), //1为google账户，2为facebook账户，3为twitter账户，4为注册账户
-            "data":  JSON.stringify(temp)  //用户数据，字符串类型temp
-        })
-        setUserData(requestJSON).then(res => {
-            console.log('setUsersuccess', res.data);
-        })
+        // let userInfoData = JSON.parse(window.localStorage.getItem('userInfo'));
+        // let requestJSON = JSON.stringify({
+        //     "host": window.location.hostname, //网站域名，window.location.hostname
+        //     "userId": getUserId(userInfoData.provider, userInfoData.data), //账户唯一ID
+        //     "accountType": getAccountType(userInfoData.provider, userInfoData.data), //1为google账户，2为facebook账户，3为twitter账户，4为注册账户
+        //     "data":  JSON.stringify(temp)  //用户数据，字符串类型temp
+        // })
+        // setUserData(requestJSON).then(res => {
+        //     console.log('setUsersuccess', res.data);
+        // })
     }
 
     const setMyGames = (gid, like = false, dislike = false, favorites = false) => {
@@ -193,16 +193,16 @@ const DetailsPage = () => {
             setIsFavorites(favorites);
             window.localStorage.setItem('MyGames', JSON.stringify(ArrMap))
 
-            let userInfoData = JSON.parse(window.localStorage.getItem('userInfo'));
-            let requestJSON = JSON.stringify({
-                "host": window.location.hostname, //网站域名，window.location.hostname
-                "userId": getUserId(userInfoData.provider, userInfoData.data), //账户唯一ID
-                "accountType": getAccountType(userInfoData.provider, userInfoData.data), //1为google账户，2为facebook账户，3为twitter账户，4为注册账户
-                "data": JSON.stringify(ArrMap) //用户数据，字符串类型 ArrMap
-            })
-            setUserData(requestJSON).then(res => {
-                console.log('setUsersuccess', res.data);
-            })
+            // let userInfoData = JSON.parse(window.localStorage.getItem('userInfo'));
+            // let requestJSON = JSON.stringify({
+            //     "host": window.location.hostname, //网站域名，window.location.hostname
+            //     "userId": getUserId(userInfoData.provider, userInfoData.data), //账户唯一ID
+            //     "accountType": getAccountType(userInfoData.provider, userInfoData.data), //1为google账户，2为facebook账户，3为twitter账户，4为注册账户
+            //     "data": JSON.stringify(ArrMap) //用户数据，字符串类型 ArrMap
+            // })
+            // setUserData(requestJSON).then(res => {
+            //     console.log('setUsersuccess', res.data);
+            // })
         }
     }
 
