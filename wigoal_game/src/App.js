@@ -16,12 +16,11 @@ function App() {
         const random12DigitNumber = Math.floor(100000000000 + Math.random() * 900000000000);
         function generateRandomName() {
             var adjectives = ["Happy", "Sunny", "Brave", "Clever", "Gentle", "Kind"];
-            var nouns = ["Bear", "Moon", "Star", "River", "Ocean", "Tree"];
 
             var randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
-            var randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+            var random6DigitNumber =  Math.floor(100000 + Math.random() * 900000);
 
-            return randomAdjective + randomNoun;
+            return randomAdjective + random6DigitNumber;
         }
 
         var randomName = generateRandomName();
