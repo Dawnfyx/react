@@ -76,6 +76,9 @@ const LoginSocialContainer = (props) => {
         })
         getUserData(requestJSON).then(res =>{
             console.log("getUserData", res.data)
+            window.localStorage.setItem('MyGames', res.data)
+        }).catch(err => {
+            console.log("getUserData", err)
         })
 
         setTimeout(() => {

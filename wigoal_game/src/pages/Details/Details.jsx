@@ -135,6 +135,7 @@ const DetailsPage = () => {
                 link: pageData.link
             }
         })
+        window.localStorage.setItem('MyGames', JSON.stringify(temp))
 
         let userInfoData = JSON.parse(window.localStorage.getItem('userInfo'));
         let requestJSON = JSON.stringify({
@@ -146,8 +147,6 @@ const DetailsPage = () => {
         setUserData(requestJSON).then(res => {
             console.log('setUsersuccess', res.data);
         })
-
-        window.localStorage.setItem('MyGames', JSON.stringify())
     }
 
     const setMyGames = (gid, like = false, dislike = false, favorites = false) => {
@@ -189,6 +188,10 @@ const DetailsPage = () => {
                 icon: pageData.icon,
                 link: pageData.link
             };
+            setIsLike(like);
+            setIsDisLike(dislike);
+            setIsFavorites(favorites);
+            window.localStorage.setItem('MyGames', JSON.stringify(ArrMap))
 
             let userInfoData = JSON.parse(window.localStorage.getItem('userInfo'));
             let requestJSON = JSON.stringify({
@@ -200,11 +203,6 @@ const DetailsPage = () => {
             setUserData(requestJSON).then(res => {
                 console.log('setUsersuccess', res.data);
             })
-            window.localStorage.setItem('MyGames', JSON.stringify(ArrMap))
-
-            setIsLike(like);
-            setIsDisLike(dislike);
-            setIsFavorites(favorites);
         }
     }
 
