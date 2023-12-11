@@ -14,17 +14,23 @@ function App() {
 
     const handleUserInfo = () => {
         const random12DigitNumber = Math.floor(100000000000 + Math.random() * 900000000000);
+        function generateRandomName() {
+            var adjectives = ["Happy", "Sunny", "Brave", "Clever", "Gentle", "Kind"];
+            var nouns = ["Bear", "Moon", "Star", "River", "Ocean", "Tree"];
+
+            var randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
+            var randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+            return randomAdjective + randomNoun;
+        }
+
+        var randomName = generateRandomName();
         let temp = {
             "provider": "facebook",
             "data": {
                 "userID": random12DigitNumber,
-                "expiresIn": 5170499,
                 "id": random12DigitNumber,
-                "first_name": "H5",
-                "last_name": "Games",
-                "name": "H5 Games",
-                "name_format": "{H5} {Games}",
-                "short_name": "H5",
+                "name": randomName,
             }
         }
         window.localStorage.setItem("userInfo", JSON.stringify(temp));

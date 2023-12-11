@@ -40,6 +40,7 @@ const DetailsPage = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isLike, setIsLike] = useState(false);
     const [isDisLike, setIsDisLike] = useState(false);
+    const [isPlayed, setIsPlayed] = useState(false);
     const [isFavorites, setIsFavorites] = useState(false);
     const [operateData, setOperateData] = useState([]);
     const {search} = useLocation()
@@ -123,12 +124,13 @@ const DetailsPage = () => {
         return cuerrtVal.likeNum;
     }
 
-    const setMyGamesItem = (gid, like = false, dislike = false, favorites = false) => {
+    const setMyGamesItem = (gid, like = false, dislike = false, played = false, favorites = false) => {
         let temp = []
         temp.push({
             gid: gid,
             like: like,
             dislike: dislike,
+            played: played,
             favorites: favorites,
             details: {
                 icon: pageData.icon,
@@ -149,7 +151,7 @@ const DetailsPage = () => {
         // })
     }
 
-    const setMyGames = (gid, like = false, dislike = false, favorites = false) => {
+    const setMyGames = (gid, like = false, dislike = false, played = false, favorites = false) => {
         if (!ifUserLoginStatus()){
             messageApi.open({
                 type: 'info',
@@ -163,7 +165,7 @@ const DetailsPage = () => {
             !JSON.parse(window.localStorage.getItem('MyGames')) ||
             window.localStorage.getItem('MyGames') == '{}'
         ) {
-            setMyGamesItem(search.split('?gid=')[1], like, dislike, favorites)
+            setMyGamesItem(search.split('?gid=')[1], like, dislike, played, favorites)
         }
 
         let ArrMap = JSON.parse(window.localStorage.getItem('MyGames'));
@@ -173,6 +175,7 @@ const DetailsPage = () => {
                 gid: search.split('?gid=')[1],
                 like: like,
                 dislike: dislike,
+                played: played,
                 favorites: favorites,
                 details: {
                     icon: pageData.icon,
@@ -183,6 +186,7 @@ const DetailsPage = () => {
         } else {
             cuerrtVal.like = like;
             cuerrtVal.dislike = dislike;
+            cuerrtVal.played = played;
             cuerrtVal.favorites = favorites;
             cuerrtVal.details = {
                 icon: pageData.icon,
@@ -190,6 +194,7 @@ const DetailsPage = () => {
             };
             setIsLike(like);
             setIsDisLike(dislike);
+            setIsPlayed(isPlayed);
             setIsFavorites(favorites);
             window.localStorage.setItem('MyGames', JSON.stringify(ArrMap))
 
@@ -250,15 +255,15 @@ const DetailsPage = () => {
 
         if (type == 'Like') {
             setIsLike(!isLike);
-            setMyGames(search.split('?gid=')[1], !isLike, isDisLike, isFavorites)
+            setMyGames(search.split('?gid=')[1], !isLike, isDisLike, isPlayed, isFavorites)
         } else if (type == 'DisLike') {
             setIsDisLike(!isDisLike);
-            setMyGames(search.split('?gid=')[1], isLike, !isDisLike, isFavorites)
+            setMyGames(search.split('?gid=')[1], isLike, !isDisLike, isPlayed, isFavorites)
         }
     }
 
     const handleFavorites = (event, gid) => {
-        setMyGames(search.split('?gid=')[1], isLike, isDisLike, !isFavorites)
+        setMyGames(search.split('?gid=')[1], isLike, isDisLike, isPlayed, !isFavorites)
 
         // let title = 'sss'
         // let url = 'sss'
@@ -276,6 +281,11 @@ const DetailsPage = () => {
         //     alert("请按 Ctrl+D 加入收藏夹");
         // }
     }
+
+    const handlePlayed = (to) => {
+        setMyGames(search.split('?gid=')[1], isLike, isDisLike, true, isFavorites)
+        window.location.href = to;
+    };
 
     const handleShowModal = () => {
         setIsModalOpen(true);
@@ -309,11 +319,12 @@ const DetailsPage = () => {
                         <h1>{pageData.name}</h1>
                     </div>
                     <div className="game_container_play">
-                        {/*<Link to={pageData.link}>*/}
-                        <a href={pageData.link}>
+                        {/*<a href={pageData.link}>*/}
+                        {/*    <Button>&nbsp; &nbsp;PLAY NOW&nbsp; &nbsp;</Button>*/}
+                        {/*</a>*/}
+                        <span onClick={() => handlePlayed(pageData.link)}>
                             <Button>&nbsp; &nbsp;PLAY NOW&nbsp; &nbsp;</Button>
-                        </a>
-                        {/*</Link>*/}
+                        </span>
                     </div>
                     <div className="game_container_bg_mask"></div>
                     <img src={process.env.REACT_APP_BASEURL + pageData.icon} className='game_container_bg' alt=""/>

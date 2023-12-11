@@ -12,7 +12,7 @@ const DrawerContainer = (props) => {
 
     const {openSwitch, onClose, tabsActive, setTabsActive} = props;
     const [likeData, setLikeData] = useState([]);
-    // const [disLikeData, setDisLikeData] = useState([]);
+    const [playedData, setPlayedData] = useState([]);
     const [favoritesData, setFavoritesData] = useState([]);
 
     const navigate = useNavigate();
@@ -20,7 +20,7 @@ const DrawerContainer = (props) => {
     const {search} = useLocation()
 
     const onChange = (key) => {
-        console.log(key);
+        // console.log(key);
     };
 
     const onTabClick = (key) => {
@@ -40,12 +40,12 @@ const DrawerContainer = (props) => {
             window.localStorage.getItem('MyGames') == '{}'
         ) {
             setLikeData([]);
-            // setDisLikeData([]]);
+            setPlayedData([]);
             setFavoritesData([]);
         } else {
             let ArrMap = JSON.parse(window.localStorage.getItem('MyGames'));
             let temp1 = [];
-            // let temp2 = [];
+            let temp2 = [];
             let temp3 = [];
 
             ArrMap.map(item => {
@@ -55,12 +55,12 @@ const DrawerContainer = (props) => {
                         details: item.details,
                     })
                 }
-                // if(item.dislike){
-                //     temp2.push({
-                //         gid: item.gid,
-                //         details: item.details,
-                //     })
-                // }
+                if(item.played){
+                    temp2.push({
+                        gid: item.gid,
+                        details: item.details,
+                    })
+                }
                 if(item.favorites){
                     temp3.push({
                         gid: item.gid,
@@ -70,7 +70,7 @@ const DrawerContainer = (props) => {
             })
 
             setLikeData(temp1);
-            // setDisLikeData(temp2);
+            setPlayedData(temp2);
             setFavoritesData(temp3);
         }
     }
@@ -155,16 +155,51 @@ const DrawerContainer = (props) => {
     const RecentPage = () => {
         return (
             <div className="mygame_recent_page">
+                {
+                    ifUserLoginStatus()
+                        ? <>
+                            {
+                                playedData.length > 0
+                                    ? <div className="recent_box">
+                                        <Row gutter={[10, 12]}>
+                                            {
+                                                playedData.map((item, index) => (
+                                                    <Col key={index} xs={8} sm={8} md={6} lg={6}>
+                                                        <div className="game_thumb_box" onClick={() => handleLink("/page/details?gid=" + item.gid)}>
+                                                            <Image
+                                                                className="game_thumb_box_img"
+                                                                preview={false}
+                                                                src={process.env.REACT_APP_BASEURL + item.details.icon}
+                                                            />
+                                                        </div>
+                                                    </Col>
+                                                ))
+                                            }
+                                        </Row>
+                                    </div>
+                                    : <div className="recent_item">
+                                        <svg className="recent_svg" viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                                            <path fillRule="evenodd" clipRule="evenodd"
+                                                  d="M12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4ZM2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM12 7C12.5523 7 13 7.44772 13 8V11.5858L15.7071 14.2929C16.0976 14.6834 16.0976 15.3166 15.7071 15.7071C15.3166 16.0976 14.6834 16.0976 14.2929 15.7071L11.2929 12.7071C11.1054 12.5196 11 12.2652 11 12V8C11 7.44772 11.4477 7 12 7Z"></path>
+                                        </svg>
+                                        <div className="recent_text">
+                                            All your recently played games will be listed here. Have some fun!
+                                        </div>
+                                    </div>
 
-                <div className="recent_item">
-                    <svg className="recent_svg" viewBox="0 0 24 24" focusable="false" aria-hidden="true">
-                        <path fillRule="evenodd" clipRule="evenodd"
-                              d="M12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4ZM2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM12 7C12.5523 7 13 7.44772 13 8V11.5858L15.7071 14.2929C16.0976 14.6834 16.0976 15.3166 15.7071 15.7071C15.3166 16.0976 14.6834 16.0976 14.2929 15.7071L11.2929 12.7071C11.1054 12.5196 11 12.2652 11 12V8C11 7.44772 11.4477 7 12 7Z"></path>
-                    </svg>
-                    <div className="recent_text">
-                        All your recently played games will be listed here. Have some fun!
-                    </div>
-                </div>
+                            }
+                        </>
+                        : <div className="recent_item">
+                            <svg className="recent_svg" viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                                <path fillRule="evenodd" clipRule="evenodd"
+                                      d="M12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4ZM2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM12 7C12.5523 7 13 7.44772 13 8V11.5858L15.7071 14.2929C16.0976 14.6834 16.0976 15.3166 15.7071 15.7071C15.3166 16.0976 14.6834 16.0976 14.2929 15.7071L11.2929 12.7071C11.1054 12.5196 11 12.2652 11 12V8C11 7.44772 11.4477 7 12 7Z"></path>
+                            </svg>
+                            <div className="recent_text">
+                                All your recently played games will be listed here. Have some fun!
+                            </div>
+                        </div>
+                }
+
 
             </div>
         )
@@ -271,11 +306,11 @@ const DrawerContainer = (props) => {
                         label: 'Favorites',
                         children: <FavoritesPage favoritesData={favoritesData} onClose={onClose}/>
                     },
-                    // {
-                    //     key: '2',
-                    //     label: 'Recent',
-                    //     children: <RecentPage/>
-                    // },
+                    {
+                        key: '2',
+                        label: 'Recent',
+                        children: <RecentPage/>
+                    },
                     {
                         key: '3',
                         label: 'Liked',
