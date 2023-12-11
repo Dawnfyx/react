@@ -17,19 +17,22 @@ import {
     PlayCircleOutlined,
     CloudUploadOutlined,
 } from '@ant-design/icons';
-import {Row, Col, Image, Button, Space, Tag, Spin, Modal} from "antd";
+import {Row, Col, Image, Button, Space, Tag, Spin, Modal, message} from "antd";
 
-import {getDetailsdata} from "../../api";
+import {getDetailsdata, setUserData} from "../../api";
 
 import GameThumbBox from "../../Layout/components/Content/GameThumbBox/GameThumbBox";
 
 import './Details.less';
 
-import {starsScore} from "../../utils/mixin";
+import {ifUserLoginStatus, getUserId, getAccountType} from "../../utils/mixin";
 
 import ShareContainer from "../../Layout/components/Share/Share";
 
 const DetailsPage = () => {
+
+    const [messageApi, contextHolder] = message.useMessage();
+
     const [spinning, setSpinning] = useState(true);
     const [pageData, setPageData] = useState({});
     const [previewData, setPreviewData] = useState([]);
@@ -127,12 +130,34 @@ const DetailsPage = () => {
             like: like,
             dislike: dislike,
             favorites: favorites,
-            details: pageData
+            details: {
+                icon: pageData.icon,
+                link: pageData.link
+            }
         })
-        window.localStorage.setItem('MyGames', JSON.stringify(temp))
+
+        let userInfoData = JSON.parse(window.localStorage.getItem('userInfo'));
+        let requestJSON = JSON.stringify({
+            "host": window.location.hostname, //网站域名，window.location.hostname
+            "userId": getUserId(userInfoData.provider, userInfoData.data), //账户唯一ID
+            "accountType": getAccountType(userInfoData.provider, userInfoData.data), //1为google账户，2为facebook账户，3为twitter账户，4为注册账户
+            "data":  JSON.stringify(temp)  //用户数据，字符串类型temp
+        })
+        setUserData(requestJSON).then(res => {
+            console.log('setUsersuccess', res.data);
+        })
+
+        window.localStorage.setItem('MyGames', JSON.stringify())
     }
 
     const setMyGames = (gid, like = false, dislike = false, favorites = false) => {
+        if (!ifUserLoginStatus()){
+            messageApi.open({
+                type: 'info',
+                content: 'Create an account to add games to your favorites',
+            });
+            return;
+        }
         if (
             typeof window.localStorage.getItem('MyGames') == 'object' ||
             !window.localStorage.getItem('MyGames') ||
@@ -164,6 +189,17 @@ const DetailsPage = () => {
                 icon: pageData.icon,
                 link: pageData.link
             };
+
+            let userInfoData = JSON.parse(window.localStorage.getItem('userInfo'));
+            let requestJSON = JSON.stringify({
+                "host": window.location.hostname, //网站域名，window.location.hostname
+                "userId": getUserId(userInfoData.provider, userInfoData.data), //账户唯一ID
+                "accountType": getAccountType(userInfoData.provider, userInfoData.data), //1为google账户，2为facebook账户，3为twitter账户，4为注册账户
+                "data": JSON.stringify(ArrMap) //用户数据，字符串类型 ArrMap
+            })
+            setUserData(requestJSON).then(res => {
+                console.log('setUsersuccess', res.data);
+            })
             window.localStorage.setItem('MyGames', JSON.stringify(ArrMap))
 
             setIsLike(like);
@@ -224,7 +260,6 @@ const DetailsPage = () => {
     }
 
     const handleFavorites = (event, gid) => {
-        setIsFavorites(!isFavorites);
         setMyGames(search.split('?gid=')[1], isLike, isDisLike, !isFavorites)
 
         // let title = 'sss'
@@ -526,6 +561,7 @@ const DetailsPage = () => {
 
             </div>
             <ShareContainer isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}></ShareContainer>
+            {contextHolder}
         </>
     )
 };

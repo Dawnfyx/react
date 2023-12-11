@@ -2,6 +2,13 @@ import React, {useState, useRef, useEffect, useCallback} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 
 import {
+    FacebookOutlined,
+    GoogleOutlined,
+    TwitterOutlined
+} from "@ant-design/icons";
+import {Button, message} from "antd";
+
+import {
     LoginSocialFacebook,
     LoginSocialGoogle,
     LoginSocialTwitter
@@ -11,12 +18,8 @@ import { GoogleLogin } from 'react-google-login';
 
 import googleSvg from "../../../assets/img/google.svg";
 
-import {
-    FacebookOutlined,
-    GoogleOutlined,
-    TwitterOutlined
-} from "@ant-design/icons";
-import {Button, message} from "antd";
+
+import {getUserId, getAccountType} from "../../../utils/mixin";
 import {getUserData} from "../../../api";
 
 // const REDIRECT_URI = "http://localhost:3000/account/login";
@@ -64,40 +67,15 @@ const LoginSocialContainer = (props) => {
         setProfile(data);
         console.log(provider, "provider");
         console.log(data, "data");
-        let accountType = (provider) => {
-            switch(provider){
-                case 'google' :
-                    return 1;
-                case 'facebook' :
-                    return 2;
-                case 'twitter' :
-                    return 3;
-                default :
-                    return 4;
-            }
-        }
-        let userId = (provider) => {
-            switch(provider){
-                case 'google' :
-                    return data.sub;
-                case 'facebook' :
-                    return data.userID;
-                case 'twitter' :
-                    return null;
-                default :
-                    return null;
-            }
-        }
-        let temp = {
-            "host": window.location.hostname,
-            "userId": userId(provider), //账户唯一ID
-            "accountType": accountType(provider), //1为google账户，2为facebook账户，3为twitter账户，4为注册账户
-            "response": data
-        }
-        localStorage.setItem('userInfo', JSON.stringify({provider: provider, 'data': temp}));
+        localStorage.setItem('userInfo', JSON.stringify({provider: provider, 'data': data}));
 
-        getUserData(JSON.stringify(temp)).then(res =>{
-            debugger
+        let requestJSON = JSON.stringify({
+            "host": window.location.hostname,
+            "userId": getUserId(provider, data), //账户唯一ID
+            "accountType": getAccountType(provider, data), //1为google账户，2为facebook账户，3为twitter账户，4为注册账户
+        })
+        getUserData(requestJSON).then(res =>{
+            console.log("getUserData", res.data)
         })
 
         setTimeout(() => {

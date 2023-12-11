@@ -103,3 +103,35 @@ export const utilsTitleCase = (title) => {
 export const ifUserLoginStatus = (e) => {
     return window.localStorage.getItem('userInfo') !== null;
 }
+
+/**
+ * getUserId
+ */
+export const getUserId = (provider, data) => {
+    switch(provider){
+        case 'google' :
+            return data.sub;
+        case 'facebook' :
+            return data.userID;
+        case 'twitter' :
+            return null;
+        default :
+            return null;
+    }
+}
+
+/**
+ * getAccountType
+ */
+export const getAccountType = (provider, data) => {
+    switch(provider){
+        case 'google' :
+            return 1;
+        case 'facebook' :
+            return 2;
+        case 'twitter' :
+            return 3;
+        default :
+            return 4;
+    }
+}

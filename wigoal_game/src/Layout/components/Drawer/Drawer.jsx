@@ -24,7 +24,7 @@ const DrawerContainer = (props) => {
 
     return (
         <Drawer className="container_drawer black"
-                title={tabsActive == '2' ? ifUserLoginStatus() ? '' : 'Create your WigoalGames account for free!' : ''}
+                title={tabsActive == '2' ? ifUserLoginStatus() ? '' : 'Create your H5Games account for free!' : ''}
                 placement="right"
                 size={'large'}
                 onClose={onClose}

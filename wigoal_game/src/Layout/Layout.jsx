@@ -35,9 +35,8 @@ const LayoutContainer = () => {
     // } = theme.useToken();
     const [storeData, setStoreData] = useState({
         testNum: 10,
-        testItems: [],
-        drawerCTX: false,
-        drawerMyGameCTX: false,
+        userInfo: {},
+        openMyGame: false,
     });
     const [collapsed, setCollapsed] = useState(false);
     const [mobileFlag, setMobileFlag] = useState(false);
@@ -47,7 +46,6 @@ const LayoutContainer = () => {
     const [openMyGame, setOpenMyGame] = useState(false);
 
     const showDrawer = (value, e) => {
-        console.log(value, e)
         setTabsActive(value);
         setOpen(true);
     };

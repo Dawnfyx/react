@@ -52,7 +52,11 @@ export const getDetailsdata = (para) => request.get("/api/details" + para + "&re
  * @param data
  * @returns {Promise<axios.AxiosResponse<any>>}
  */
-export const getUserData = (data) => request.post("/api/getud", data);
+export const getUserData = (data) => request.post("/api/getud", data, {
+    headers: {
+        'Content-Type': 'application/json'
+    }
+});
 
 
 /**
@@ -65,5 +69,9 @@ export const getUserData = (data) => request.post("/api/getud", data);
  * @param data
  * @returns {Promise<axios.AxiosResponse<any>>}
  */
-export const setUserData = (data) => request.post("/api/setud", data);
+export const setUserData = (data) => request.post("/api/setud", data, {
+    headers: {
+        'Content-Type': 'application/json'
+    }
+});
 
