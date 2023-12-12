@@ -20,6 +20,8 @@
 *.idea
 *.idea/
 *.iml
+*.rar
+
 
 package-lock.json
 npm-debug.log*
