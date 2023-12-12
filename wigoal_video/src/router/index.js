@@ -4,6 +4,7 @@ import asyncComponent from '../utils/asyncComponent';
 
 import Layout from "../Layout/Layout";
 import Play from "../pages/Play/Play";
+import Test from "../pages/Test/Test";
 // const Search = asyncComponent(() => import("../pages/Search/Search"));
 // const Details = asyncComponent(() => import("../pages/Details/Details"));
 // const Category = asyncComponent(() => import("../pages/Category/Category"));
@@ -16,7 +17,7 @@ export default class RouteConfig extends Component{
                 <Routes>
                     <Route path="/" element={<Layout />} >
                         <Route path="" element={<Play />} />
-                        {/*<Route path="home" element={<Home />} />*/}
+                        <Route path="test" element={<Test />} />
                         {/*<Route path="/page/search" element={<Search />} />*/}
                         {/*<Route path="/page/details" element={<Details />} />*/}
                         {/*<Route path="/page/category" element={<Category />} />*/}

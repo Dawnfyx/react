@@ -1,4 +1,9 @@
 import React, {useState, useEffect} from 'react';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+
+import rootReducer from './store/RootReducer';
+const store = createStore(rootReducer);
 
 import RouteConfig from "./router";
 
@@ -13,9 +18,11 @@ function App() {
   }, [])
 
   return (
-    <div className="App">
-      <RouteConfig></RouteConfig>
-    </div>
+      <Provider store={store}>
+        <div className="App">
+          <RouteConfig></RouteConfig>
+        </div>
+      </Provider>
   );
 }
 

@@ -1,10 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import './Play.less'
 
-const PlayPage = () => {
+const PlayPage = ({ count }) => {
+
     return (
         <div className="play_box">
+            <h1>{count}</h1>
             <video controls style={{width: '100%', height: '100%'}}>
                 <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm" type="video/webm" />
 
@@ -19,4 +22,11 @@ const PlayPage = () => {
         </div>
     )
 }
-export default PlayPage;
+
+const mapStateToProps = (state) => {
+    return {
+        count: state.count
+    };
+};
+
+export default connect(mapStateToProps)(PlayPage);
