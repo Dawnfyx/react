@@ -25,6 +25,7 @@
         left: 0;
         z-index: 99;
         width: 100%;
+        background-color: #212233;
 
         .container_button {
             width: 48px;
@@ -50,6 +51,7 @@
                 -webkit-justify-content: flex-start;
                 justify-content: flex-start;
                 align-items: center;
+                height: inherit;
             }
         }
 
@@ -129,7 +131,7 @@
 
 .mobile{
     .ant-layout{
-        padding-top: 94px;
+        padding-top: 50px;
     }
     .header_mobile_menu_btn{
         margin-top: 0.5rem;
@@ -156,15 +158,15 @@
     }
 
     .container_header{
-        -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-        flex-direction: column;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
         align-content: space-between;
         justify-items: center;
-        height: 94px;
+        height: 50px;
 
         & > div {
-            height: 48px;
+            height: inherit;
         }
 
         .container_logo{

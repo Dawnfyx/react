@@ -19,7 +19,9 @@ const LayoutContainer = () => {
         <StoreContext.Provider value={{...storeData}}>
             <Layout className="container mobile">
                 <HeaderContainer></HeaderContainer>
-                <Outlet></Outlet>
+                <Content className="container_content">
+                    <Outlet></Outlet>
+                </Content>
             </Layout>
         </StoreContext.Provider>
     )

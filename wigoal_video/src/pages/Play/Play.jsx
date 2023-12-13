@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import SwiperVideo from '../../Layout/components/Content/SwiperVideo/SwiperVideo';
+
 import './Play.less'
 
 const PlayPage = ({ count }) => {
@@ -19,6 +21,7 @@ const PlayPage = ({ count }) => {
                 <a href="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4">MP4</a>
                 video.
             </video>
+            <SwiperVideo></SwiperVideo>
         </div>
     )
 }

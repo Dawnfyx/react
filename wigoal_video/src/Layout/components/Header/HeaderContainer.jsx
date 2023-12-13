@@ -9,9 +9,11 @@ const HeaderContainer = (props) => {
     return(
         <div className="container_header">
             <LogoContainer></LogoContainer>
-            <Space>
+            <div style={{
+                color: '#ffffff'
+            }}>
                 building
-            </Space>
+            </div>
         </div>
     )
 }
