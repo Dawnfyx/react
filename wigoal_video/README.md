@@ -72,9 +72,10 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 # 项目需求
 1. 视频播放页面
-2. 锁
-3. 付费
-4. 点赞
+2. 视频滑动
+3. 锁
+4. 付费
+5. 点赞
 
 
 ```text
