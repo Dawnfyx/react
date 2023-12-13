@@ -3,7 +3,7 @@ import {Outlet} from 'react-router-dom';
 import StoreContext from "../store/StoreContext"
 
 import {Layout} from "antd"
-const {Header, Content} = Layout;
+const {Content} = Layout;
 
 import HeaderContainer from "./components/Header/HeaderContainer";
 
@@ -19,7 +19,9 @@ const LayoutContainer = () => {
         <StoreContext.Provider value={{...storeData}}>
             <Layout className="container mobile">
                 <HeaderContainer></HeaderContainer>
-                <Outlet></Outlet>
+                <Content className="container_body">
+                    <Outlet></Outlet>
+                </Content>
             </Layout>
         </StoreContext.Provider>
     )

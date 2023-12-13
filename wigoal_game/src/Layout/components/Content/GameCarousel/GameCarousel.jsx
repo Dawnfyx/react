@@ -67,6 +67,8 @@ const GameCarousel = (props) => {
             {/*</Swiper>*/}
 
             <Row gutter={[10, 12]}>
+
+
                 {
                     viewData.map((item, index) => (
                         <Col key={index} xs={8} sm={8} md={6} lg={4} xl={3} xxl={2}>
