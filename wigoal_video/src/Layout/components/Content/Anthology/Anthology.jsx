@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import {Drawer} from "antd"
 
 const Anthology = (props) =>{
-
-    const {drawerStatus, drawerSwitch, drawerSwitchSet } = props;
+    console.log(props, 'props');
+    const {drawerStatus, drawerSwitch, drawerSwitchSet, videoData } = props;
 
     return (
         <div>
@@ -17,18 +17,26 @@ const Anthology = (props) =>{
                 open={drawerStatus}
                 key="bottom"
             >
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
+                <>
+                    {
+                        videoData.map((item, index) => (
+                            <div key={index}>
+                                {
+                                    item.img
+                                }
+                            </div>
+                        ))
+                    }
+                </>
             </Drawer>
         </div>
     )
 }
 
 const mapStateToProps = (state) => {
-    console.log(state,'state')
     return {
-        drawerStatus: state.anthology.anthologyStatus
+        drawerStatus: state.anthology.anthologyStatus,
+        videoData: state.videoData.videoData,
     };
 };
 

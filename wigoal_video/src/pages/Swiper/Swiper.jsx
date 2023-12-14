@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import {connect} from "react-redux";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -10,7 +11,10 @@ import { Pagination } from 'swiper/modules';
 
 import PlayPage from "../Play/Play";
 
-const SwiperContainer = () => {
+const SwiperContainer = (props) => {
+
+    const {videoData, setVideoData } = props;
+
     const videoInfo = [
         {
             url: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
@@ -60,6 +64,10 @@ const SwiperContainer = () => {
         }
     }
 
+    useEffect(()=>{
+        setVideoData(videoInfo)
+    }, []);
+
     return (
         <div className="swiper_box">
             <Swiper
@@ -82,5 +90,17 @@ const SwiperContainer = () => {
     )
 }
 
+const mapStateToProps = (state) => {
+    console.log(state,'state')
+    return {
+        videoData: state.videoData.videoData
+    };
+};
 
-export default SwiperContainer;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setVideoData: (data) => dispatch({ type: 'SETVIDEODATA', data: data}),
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SwiperContainer);

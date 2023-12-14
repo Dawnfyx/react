@@ -32,7 +32,6 @@ const PlayPage = (props) => {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state,'state')
     return {
         drawerStatus: state.anthology.anthologyStatus
     };
