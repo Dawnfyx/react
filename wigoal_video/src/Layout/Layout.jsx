@@ -5,23 +5,27 @@ import StoreContext from "../store/StoreContext"
 import {Layout} from "antd"
 const {Content} = Layout;
 
-import HeaderContainer from "./components/Header/HeaderContainer";
-
 import "./Layout.less";
 
+import HeaderContainer from "./components/Header/HeaderContainer";
+import Anthology from "./components/Content/Anthology/Anthology";
+
 const LayoutContainer = () => {
-    const [storeData, setStoreData] = useState({
+
+    const [storeContextData, setStoreContextData] = useState({
         testNum: 10,
         testItems: [],
     });
 
     return (
-        <StoreContext.Provider value={{...storeData}}>
+        <StoreContext.Provider value={{...storeContextData}}>
             <Layout className="container mobile">
                 <HeaderContainer></HeaderContainer>
                 <Content className="container_body">
                     <Outlet></Outlet>
                 </Content>
+
+                <Anthology></Anthology>
             </Layout>
         </StoreContext.Provider>
     )

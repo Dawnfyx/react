@@ -3,35 +3,40 @@ import { connect } from 'react-redux';
 
 import Play from "../Play/Play";
 
-const TestPage = ({ count, increment, decrement }) => {
+const TestPage = ({ anthologyStatus, anthologyopen, anthologyclose }) => {
     return (
         <div className="test_box">
             <h1>i am TestPage</h1>
 
-            <p>{count}</p>
-            <button onClick={increment}>Increment</button>
-            <button onClick={decrement}>Decrement</button>
+            <p>{'' + anthologyStatus}</p>
+            <button onClick={anthologyopen}>ANTHOLOGYOPEN</button>
+            <button onClick={anthologyclose}>ANTHOLOGYCLOSE</button>
 
             <br/>
             ========我是分割线========
             <br/>
 
-            <Play></Play>
+            {/*<Play*/}
+            {/*    style={{*/}
+            {/*        display: 'none'*/}
+            {/*    }}*/}
+            {/*></Play>*/}
 
         </div>
     );
 };
 
 const mapStateToProps = (state) => {
+    console.log(state, 'state');
     return {
-        count: state.count
+        anthologyStatus: state.anthologyStatus
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        increment: () => dispatch({ type: 'INCREMENT' }),
-        decrement: () => dispatch({ type: 'DECREMENT' })
+        anthologyopen: () => dispatch({ type: 'OPEN' }),
+        anthologyclose: () => dispatch({ type: 'CLOSE' })
     };
 };
 

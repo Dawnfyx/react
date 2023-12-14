@@ -1,9 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-
-import rootReducer from './store/RootReducer';
-const store = createStore(rootReducer);
+import storeReduex from "./store/redux";
 
 import RouteConfig from "./router";
 
@@ -18,7 +15,7 @@ function App() {
   }, [])
 
   return (
-      <Provider store={store}>
+      <Provider store={storeReduex}>
         <div className="App">
           <RouteConfig></RouteConfig>
         </div>

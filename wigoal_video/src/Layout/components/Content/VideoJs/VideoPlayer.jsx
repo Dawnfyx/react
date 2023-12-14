@@ -32,7 +32,11 @@ const VideoPlayer = (props) => {
         <div data-vjs-player>
             <video ref={videoRef}
                    className="video-js vjs-default-skin video"
-                   autoPlay="autoplay">
+                   autoPlay="autoplay"
+                   style={{
+                       height: 'inherit'
+                   }}
+            >
             </video>
         </div>
     )

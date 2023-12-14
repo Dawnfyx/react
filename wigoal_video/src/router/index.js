@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
 import asyncComponent from '../utils/asyncComponent';
 
 import Layout from "../Layout/Layout";
-import Play from "../pages/Play/Play";
+import Swiper from "../pages/Swiper/Swiper";
 import Test from "../pages/Test/Test";
 import TestVideo from "../pages/Test/TestVideo";
 // const Search = asyncComponent(() => import("../pages/Search/Search"));
@@ -17,7 +17,7 @@ export default class RouteConfig extends Component{
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Layout />} >
-                        <Route path="" element={<Play />} />
+                        <Route path="" element={<Swiper />} />
                         <Route path="test" element={<Test />} />
                         <Route path="testplay" element={<TestVideo />} />
                         {/*<Route path="/page/details" element={<Details />} />*/}

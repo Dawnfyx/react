@@ -1,9 +1,9 @@
-// rootReducer.js
+// testReducer.js
 const initialState = {
     count: 0
 };
 
-function rootReducer(state = initialState, action) {
+function testReducer(state = initialState, action) {
     switch (action.type) {
         case 'INCREMENT':
             return { ...state, count: state.count + 1 };
@@ -14,4 +14,4 @@ function rootReducer(state = initialState, action) {
     }
 }
 
-export default rootReducer;
+export default testReducer;

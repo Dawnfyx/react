@@ -12,7 +12,7 @@ const HeaderContainer = (props) => {
             <div style={{
                 color: '#ffffff'
             }}>
-                building
+                &nbsp;
             </div>
         </div>
     )
