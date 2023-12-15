@@ -73,6 +73,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 # 项目需求
 一、 视频播放页面
     - 把原生的去掉绑定到目前的
+    - 本质是一张图片 遮罩层
 二、视频滑动
 三、锁 (目前没有锁，没有付费功能但是要预留)
 四、付费

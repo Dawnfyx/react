@@ -3,13 +3,16 @@ import { connect } from 'react-redux';
 
 import {Drawer} from "antd"
 
+import "./Anthology.less"
+
 const Anthology = (props) =>{
     console.log(props, 'props');
     const {drawerStatus, drawerSwitch, drawerSwitchSet, videoData } = props;
 
     return (
-        <div>
+        <>
             <Drawer
+                className="Anthology_box"
                 title="Basic Drawer"
                 placement="bottom"
                 closable={false}
@@ -17,19 +20,17 @@ const Anthology = (props) =>{
                 open={drawerStatus}
                 key="bottom"
             >
-                <>
+                <div className="episodesList_box">
                     {
                         videoData.map((item, index) => (
-                            <div key={index}>
-                                {
-                                    item.img
-                                }
+                            <div key={index} className="episodesList_item">
+                                {index}
                             </div>
                         ))
                     }
-                </>
+                </div>
             </Drawer>
-        </div>
+        </>
     )
 }
 

@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import videojs from "video.js";
 import "video.js/dist/video-js.css";
 
-const VideoPlayer = (props) => {
+const VideoPlayerContainer = (props) => {
     const { options, onReady } = props;
     const videoRef = useRef();
     const playerRef = useRef();
@@ -42,4 +42,4 @@ const VideoPlayer = (props) => {
     )
 }
 
-export default VideoPlayer;
+export default VideoPlayerContainer;
