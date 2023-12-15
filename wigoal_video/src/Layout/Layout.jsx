@@ -8,13 +8,15 @@ const {Content} = Layout;
 import "./Layout.less";
 
 import HeaderContainer from "./components/Header/HeaderContainer";
-import Anthology from "./components/Content/Anthology/Anthology";
 
 const LayoutContainer = () => {
 
     const [storeContextData, setStoreContextData] = useState({
         testNum: 10,
         testItems: [],
+        setSlideTo: (ref, val)=>{
+            console.log(ref, val)
+        }
     });
 
     return (
@@ -24,8 +26,6 @@ const LayoutContainer = () => {
                 <Content className="container_body">
                     <Outlet></Outlet>
                 </Content>
-
-                <Anthology></Anthology>
             </Layout>
         </StoreContext.Provider>
     )

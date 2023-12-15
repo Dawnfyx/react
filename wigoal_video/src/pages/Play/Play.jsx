@@ -1,14 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import { connect } from 'react-redux';
 
 import './Play.less'
 
 import SwiperContainer from "../../Layout/components/Swiper/Swiper"
 import VideoPlayerContainer from "../../Layout/components/Content/VideoJs/VideoPlayer";
+import Anthology from "../../Layout/components/Content/Anthology/Anthology";
 
 const PlayPage = (props) => {
 
-    const {drawerSwitch, drawerSwitchSet } = props;
+    const {drawerSwitch, drawerSwitchSet, setVideoData } = props;
+    const childRef = useRef();
 
     const videoInfo = [
         {
@@ -83,10 +85,20 @@ const PlayPage = (props) => {
         }
     }
 
+    const swiperSlideTo = (val) => {
+        console.log(childRef, 'childRef.current');
+        childRef.current.slideTo(val);
+    }
+
+    useEffect(() => {
+        setVideoData(videoInfo)
+    }, []);
+
     return (
         <div className="play_box">
-            <SwiperContainer className="play_swiper" videoData={videoInfo}></SwiperContainer>
-            <VideoPlayerContainer className="play_videoJs" data={videoInfo} options={videoOptions}></VideoPlayerContainer>
+            <SwiperContainer className="play_swiper" videoData={videoInfo} childRef={childRef}></SwiperContainer>
+            <VideoPlayerContainer className="play_videoJs" videoData={videoInfo} options={videoOptions}></VideoPlayerContainer>
+            <Anthology swiperSlideTo={swiperSlideTo}></Anthology>
         </div>
     )
 }
@@ -101,6 +113,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         drawerSwitch: () => dispatch({ type: 'SWITCH' }),
         drawerSwitchSet: (value) => dispatch({ type: 'SWITCHSET', value: value}),
+        setVideoData: (value) => dispatch({ type: 'SETVIDEODATA', data: value}),
     };
 };
 

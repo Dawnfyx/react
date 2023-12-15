@@ -1,43 +1,67 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect, useRef, useImperativeHandle, forwardRef } from "react";
 import {connect} from "react-redux";
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-
+import { register } from 'swiper/element/bundle';
 import 'swiper/css';
-import 'swiper/css/pagination';
-
-import { Pagination } from 'swiper/modules';
 
 import './Swiper.less'
 
-const SwiperContainer = (props) => {
+register();
 
-    const {videoData, drawerSwitch, drawerSwitchSet} = props;
+const SwiperContainer = (props) => {
+    const {videoData, drawerSwitch, drawerSwitchSet, childRef} = props;
+
+    const swiperElRef = useRef(null);
+
+    const setSlideTo = (val = 1)=>{
+        swiperElRef.current?.swiper?.slideTo(val, 0);
+    }
+
+    useImperativeHandle(childRef, () => ({
+        slideTo: setSlideTo
+    }));
+
+    useEffect(() => {
+
+        // listen for Swiper events using addEventListener
+        swiperElRef.current.addEventListener('swiperprogress', (e) => {
+            const [swiper, progress] = e.detail;
+        });
+
+        swiperElRef.current.addEventListener('swiperslidechange', (e) => {
+            const [swiper, progress] = e.detail;
+            console.log('slide changed');
+        });
+    }, []);
 
     return (
         <div className="swiper_box">
-            <Swiper
+            <swiper-container
+                ref={swiperElRef}
                 direction={'vertical'}
-                pagination={{
-                    clickable: true,
-                }}
-                modules={[Pagination]}
-                className="mySwiper"
+                class="swiper"
             >
                 {
                     videoData.map((item, index) => (
-                        <SwiperSlide key={index}>
-                            <img className="play_image"  src={item.img} alt=""/>
-                            <div className="play_content"  onClick={()=> drawerSwitchSet(true)}>
+                        <swiper-slide key={index} class="swiper-slide">
+                            <img className="play_image" src={item.img} alt="" />
+                            <h1 style={{
+                                zIndex: '2',
+                                position: 'absolute',
+                            }}>
+                                {index + 1}
+                                <button onClick={()=>{setSlideTo(3)}}>{index + 1}</button>
+                            </h1>
+                            <div className="play_content" onClick={() => drawerSwitchSet(true)}>
                                 DRAWERSWITCHSET
                             </div>
-                        </SwiperSlide>
+                        </swiper-slide>
                     ))
                 }
-            </Swiper>
+            </swiper-container>
         </div>
-    )
-}
+    );
+};
 
 const mapStateToProps = (state) => {
     return {
@@ -52,4 +76,9 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SwiperContainer);
+
+export default connect(mapStateToProps, mapDispatchToProps, null, {forwardRef: true})(forwardRef(SwiperContainer));
+
+
+
+

@@ -15,12 +15,12 @@ const VideoPlayerContainer = (props) => {
             if (!videoElement) return;
 
             const player = playerRef.current = videojs(videoElement, options, () => {
-                console.log("player is ready");
+                // console.log("player is ready");
                 // onReady && onReady(player);
             });
         } else {
             const player = playerRef.current;
-            console.log('playerplayerplayer===',player);
+            // console.log('playerplayerplayer===',player);
             // player.src(options.sources[0].src);
             // player.autoplay(true);
 

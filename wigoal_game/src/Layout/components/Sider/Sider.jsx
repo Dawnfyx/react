@@ -12,9 +12,9 @@ import MenuContainer from "./Menu";
 
 const { Sider } = Layout;
 
-const SiderContainer = (props, ref) => {
+const SiderContainer = (props) => {
 
-    const {collapsed, setCollapsed} = props;
+    const {collapsed, setCollapsed, ref} = props;
 
     const [collapsedFlag, setCollapsedFlag] = useState(true);
 

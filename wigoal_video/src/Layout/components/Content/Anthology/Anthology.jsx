@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import storeContext from "../../../../store/StoreContext";
 
 import {Drawer} from "antd"
 
 import "./Anthology.less"
 
 const Anthology = (props) =>{
-    console.log(props, 'props');
-    const {drawerStatus, drawerSwitch, drawerSwitchSet, videoData } = props;
+    const {drawerStatus, drawerSwitch, drawerSwitchSet, videoData, swiperSlideTo } = props;
 
     return (
         <>
@@ -23,8 +23,10 @@ const Anthology = (props) =>{
                 <div className="episodesList_box">
                     {
                         videoData.map((item, index) => (
-                            <div key={index} className="episodesList_item">
-                                {index}
+                            <div key={index}
+                                 onClick={() => swiperSlideTo(index)}
+                                 className="episodesList_item">
+                                {index +1 }
                             </div>
                         ))
                     }

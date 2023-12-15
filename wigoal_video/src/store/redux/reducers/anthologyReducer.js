@@ -4,7 +4,6 @@ const initState = {
 };
 
 function anthologyReducer(state = initState, action) {
-    console.log(action, 'action')
     switch (action.type) {
         case 'SWITCH':
             return {
