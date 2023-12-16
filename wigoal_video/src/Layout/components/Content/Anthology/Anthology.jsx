@@ -13,7 +13,7 @@ const Anthology = (props) =>{
         <>
             <Drawer
                 className="Anthology_box"
-                title="Basic Drawer"
+                title="Title"
                 placement="bottom"
                 closable={false}
                 onClose={() => drawerSwitchSet(false)}

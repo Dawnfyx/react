@@ -11,6 +11,8 @@ const PlayPage = (props) => {
 
     const {drawerSwitch, drawerSwitchSet, setVideoData } = props;
     const childRef = useRef();
+    const videoRef = useRef();
+    const [isShowVideo, setIsShowVideo] = useState(false);
 
     const videoInfo = [
         {
@@ -59,7 +61,7 @@ const PlayPage = (props) => {
         },
     ]
     const videoOptions = {
-        controls: true,
+        controls: false,
         playbackRates: [0.7, 1.0, 1.5, 2.0], // 播放速度
         autoplay: true, // 如果true,浏览器准备好时开始回放。
         muted: false, // 默认情况下将会消除任何音频。
@@ -78,10 +80,11 @@ const PlayPage = (props) => {
         width: document.documentElement.clientWidth,
         notSupportedMessage: '此视频暂无法播放，请稍后再试', // 允许覆盖Video.js无法播放媒体源时显示的默认信息。
         controlBar: {
-            timeDivider: true,
-            durationDisplay: true,
-            remainingTimeDisplay: true,
-            fullscreenToggle: true // 全屏按钮
+            timeDivider: false,
+            durationDisplay: false,
+            remainingTimeDisplay: false,
+            progressControl: false,
+            fullscreenToggle: false // 全屏按钮
         }
     }
 
@@ -96,8 +99,8 @@ const PlayPage = (props) => {
 
     return (
         <div className="play_box">
-            <SwiperContainer className="play_swiper" videoData={videoInfo} childRef={childRef}></SwiperContainer>
-            <VideoPlayerContainer className="play_videoJs" videoData={videoInfo} options={videoOptions}></VideoPlayerContainer>
+            <SwiperContainer childRef={childRef} videoRef={videoRef} videoData={videoInfo} isShowVideo={isShowVideo} setIsShowVideo={setIsShowVideo}></SwiperContainer>
+            <VideoPlayerContainer videoRef={videoRef} videoData={videoInfo} options={videoOptions} isShowVideo={isShowVideo}></VideoPlayerContainer>
             <Anthology swiperSlideTo={swiperSlideTo}></Anthology>
         </div>
     )

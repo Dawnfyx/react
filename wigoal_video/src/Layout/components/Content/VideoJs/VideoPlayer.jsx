@@ -4,9 +4,9 @@ import videojs from "video.js";
 import "video.js/dist/video-js.css";
 
 const VideoPlayerContainer = (props) => {
-    const { options, onReady } = props;
-    const videoRef = useRef();
+    const { options, onReady, isShowVideo, videoRef } = props;
     const playerRef = useRef();
+
 
 
     useEffect(() => {
@@ -17,13 +17,14 @@ const VideoPlayerContainer = (props) => {
             const player = playerRef.current = videojs(videoElement, options, () => {
                 // console.log("player is ready");
                 // onReady && onReady(player);
+                // debugger
             });
         } else {
             const player = playerRef.current;
             // console.log('playerplayerplayer===',player);
             // player.src(options.sources[0].src);
             // player.autoplay(true);
-
+            // debugger
         }
 
     }, [options, videoRef])
@@ -31,10 +32,10 @@ const VideoPlayerContainer = (props) => {
     return (
         <div data-vjs-player>
             <video ref={videoRef}
-                   className="video-js vjs-default-skin video"
+                   className="play_videoJs video-js vjs-default-skin video"
                    autoPlay="autoplay"
                    style={{
-                       height: 'inherit'
+                       height: 'inherit',
                    }}
             >
             </video>
