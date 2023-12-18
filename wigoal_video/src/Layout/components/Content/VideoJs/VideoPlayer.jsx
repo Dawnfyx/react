@@ -7,24 +7,19 @@ const VideoPlayerContainer = (props) => {
     const { options, onReady, isShowVideo, videoRef } = props;
     const playerRef = useRef();
 
-
-
     useEffect(() => {
         if (!playerRef.current) {
             const videoElement = videoRef.current;
             if (!videoElement) return;
-
             const player = playerRef.current = videojs(videoElement, options, () => {
-                // console.log("player is ready");
-                // onReady && onReady(player);
-                // debugger
+                console.log("player is ready");
+                onReady && onReady(player);
             });
         } else {
             const player = playerRef.current;
             // console.log('playerplayerplayer===',player);
-            // player.src(options.sources[0].src);
-            // player.autoplay(true);
-            // debugger
+            player.src(options.sources[0].src);
+            player.autoplay(true);
         }
 
     }, [options, videoRef])

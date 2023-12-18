@@ -6,27 +6,30 @@ import 'swiper/css';
 
 import { Slider } from 'antd';
 
+import videojs from "video.js";
 import btnPlay from '../../../assets/img/btn_play.png'
+import {formatTime} from "../../../utils/mixin";
 
 register();
 
 const SwiperContainer = (props) => {
-    const {childRef, videoRef, videoData, drawerSwitch, drawerSwitchSet, isShowVideo, setIsShowVideo} = props;
-
+    const {childRef, videoRef, videoData, options, drawerSwitch, drawerSwitchSet, isShowVideo, setIsShowVideo} = props;
+    const playerRef = useRef();
     const swiperElRef = useRef(null);
     const [isShowPlayBtn, setIsShowPlayBtn] = useState(true);
     const [progressValue, setProgressValue] = useState(0);
+    const [progressCurrentTime, setProgressCurrentTime] = useState(0);
+    const [progressDuration, setProgressDuration] = useState(0);
 
     const setSlideTo = (val = 1) => {
         swiperElRef.current.swiper.slideTo(val, 0);
     }
 
     const onProgressChange = (value) => {
-        setProgressValue(progressValue);
+        setProgressValue(value);
     }
 
     const handleTouchStart = (event) => {
-
     }
 
     const handleTouchMove = (event) => {
@@ -60,9 +63,35 @@ const SwiperContainer = (props) => {
     }));
 
     useEffect(() => {
-        const player = videoRef.current;
-        console.log(player, 'videoRef.current')
-    }, []);
+        if (!playerRef.current) {
+            const videoElement = videoRef.current;
+            if (!videoElement) return;
+            const player = playerRef.current = videojs(videoElement, options, () => {
+
+            });
+            player.on('timeupdate', function() {
+                // 获取当前播放时间
+                const currentTime = player.currentTime();
+                setProgressCurrentTime(currentTime);
+
+                // 获取视频总时长
+                const duration = player.duration();
+                setProgressDuration(duration);
+            });
+        } else {
+            const player = playerRef.current;
+
+            player.on('timeupdate', function() {
+                // 获取当前播放时间
+                const currentTime = player.currentTime();
+                setProgressCurrentTime(currentTime);
+
+                // 获取视频总时长
+                const duration = player.duration();
+                setProgressDuration(duration);
+            });
+        }
+    }, [videoRef]);
 
     return (
         <div className="play_swiper">
@@ -115,14 +144,35 @@ const SwiperContainer = (props) => {
                                  }}
                             />
                             <div className="play_content">
-                                <Slider
-                                    className="progress_box"
-                                    min={0}
-                                    max={1}
-                                    onChange={onProgressChange}
-                                    value={typeof progressValue === 'number' ? progressValue : 0}
-                                    step={0.01}
-                                />
+                                <div className="schedule_box">
+                                    <div className="time time_s">
+                                        {
+                                            formatTime(progressCurrentTime)
+                                        }
+                                        {/*<br/>*/}
+                                        {/*{*/}
+                                        {/*    progressCurrentTime*/}
+                                        {/*}*/}
+                                    </div>
+                                    <Slider
+                                        className="progress_box"
+                                        min={0}
+                                        max={progressDuration}
+                                        onChange={onProgressChange}
+                                        value={typeof progressCurrentTime === 'number' ? progressCurrentTime : 0}
+                                        step={0.1}
+                                    />
+
+                                    <div className="time time_e">
+                                        {
+                                            formatTime(progressDuration)
+                                        }
+                                        {/*<br/>*/}
+                                        {/*{*/}
+                                        {/*    progressDuration*/}
+                                        {/*}*/}
+                                    </div>
+                                </div>
                                 <div className="episode_box" onClick={() => drawerSwitchSet(true)}>
                                     DRAWERSWITCHSET
                                 </div>

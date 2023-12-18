@@ -99,7 +99,7 @@ const PlayPage = (props) => {
 
     return (
         <div className="play_box">
-            <SwiperContainer childRef={childRef} videoRef={videoRef} videoData={videoInfo} isShowVideo={isShowVideo} setIsShowVideo={setIsShowVideo}></SwiperContainer>
+            <SwiperContainer childRef={childRef} videoRef={videoRef} videoData={videoInfo} options={videoOptions} isShowVideo={isShowVideo} setIsShowVideo={setIsShowVideo}></SwiperContainer>
             <VideoPlayerContainer videoRef={videoRef} videoData={videoInfo} options={videoOptions} isShowVideo={isShowVideo}></VideoPlayerContainer>
             <Anthology swiperSlideTo={swiperSlideTo}></Anthology>
         </div>

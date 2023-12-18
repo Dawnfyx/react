@@ -50,7 +50,7 @@
           object-fit: cover;
         }
 
-        .play_swiper_btn{
+        .play_swiper_btn {
           position: absolute;
           z-index: 2;
           pointer-events: auto;
@@ -64,13 +64,13 @@
       }
     }
 
-    .swiper-pagination{
+    .swiper-pagination {
       display: none;
     }
   }
 
 
-  .play_content{
+  .play_content {
     position: absolute;
     left: 0;
     bottom: 0;
@@ -80,11 +80,32 @@
     padding-bottom: 2vw;
     width: 100%;
 
-    .progress_box{
-      .ant-slider-rail{
+    .schedule_box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .time{
+        color: #fff;
+        font-size: 14px;
+        line-height: 14px;
+        word-break: normal;
+      }
+      .time_s{
+        padding-right: 15px;
+      }
+      .time_e{
+        padding-left: 15px;
+      }
+    }
+    .progress_box {
+      width: 100%;
+
+      .ant-slider-rail {
         background-color: rgba(255, 255, 255, 0.75);
       }
     }
+
     .episode_box {
       pointer-events: auto;
       width: 60vw;
@@ -95,5 +116,5 @@
       color: #ffffff;
     }
   }
-
 }
+

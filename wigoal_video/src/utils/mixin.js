@@ -94,3 +94,22 @@ export const utilsTitleCase = (title) => {
     let nStr = ''+ title[0].toUpperCase()
     return nStr + title.substr(1)
 }
+
+export const formatTime = (number) => {
+    // 创建一个Date对象并将秒数转换为毫秒
+    let date = new Date(number * 1000);
+
+    // 获取小时、分钟和秒数
+    let hours = date.getUTCHours();
+    let minutes = date.getUTCMinutes();
+    let seconds = date.getUTCSeconds();
+
+    // 格式化为两位数
+    let formattedHours = hours.toString().padStart(2, '0');
+    let formattedMinutes = minutes.toString().padStart(2, '0');
+    let formattedSeconds = seconds.toString().padStart(2, '0');
+
+    // 返回格式化后的时间
+    // return formattedHours + ':' + formattedMinutes + ':' + formattedSeconds;
+    return formattedMinutes + ':' + formattedSeconds;
+}
