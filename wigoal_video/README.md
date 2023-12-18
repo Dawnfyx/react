@@ -83,5 +83,68 @@ theme={{
 }}
 ```
 
+```text
+*  loadstart : 当视频开始加载时触发。
+*  progress : 当视频加载进度发生变化时触发。
+*  play : 当视频开始播放时触发。
+*  pause : 当视频暂停时触发。
+*  ended : 当视频播放结束时触发。
+*  error : 当视频播放出现错误时触发。
+*  timeupdate : 当视频播放时间发生变化时触发。
+*  volumechange : 当视频音量发生变化时触发。
+*  fullscreenchange : 当视频全屏模式发生变化时触发。
+*  controlschange : 当视频控制栏显示或隐藏时触发。
+*  seeking : 当视频正在缓冲时触发。
+*  seeked : 当视频缓冲完成时触发。
+*  canplay : 当视频可以播放时触发。
+*  canplaythrough : 当视频可以完整播放时触发。
+*  waiting : 当视频正在缓冲时触发。
+*  playthroughend : 当视频播放到结尾时触发。
+*  ratechange : 当视频播放速度发生变化时触发。
+*  volumechange : 当视频音量发生变化时触发。
+*  mutedchange : 当视频静音状态发生变化时触发。
+*  captionschange : 当视频字幕状态发生变化时触发。
+*  audiotrackchange : 当视频音轨状态发生变化时触发。
+*  posterchange : 当视频海报发生变化时触发。
+*  dimensionschange : 当视频尺寸发生变化时触发。
+*  readyStatechange : 当视频状态发生变化时触发。
+*  networkstatechange : 当视频网络状态发生变化时触发。
+*  playbackratechange : 当视频播放速度发生变化时触发。
+*  playbackqualitychange : 当视频播放质量发生变化时触发。
+*  playbackerror : 当视频播放出现错误时触发。
+*  audioprocess : 当视频音频处理发生变化时触发。
+*  videoprocess : 当视频视频处理发生变化时触发。
+*  audiotrackchange : 当视频音轨发生变化时触发。
+*  texttrackchange : 当视频字幕发生变化时触发。
+*  cuechange : 当视频提示发生变化时触发。
+*  load : 当视频加载完成时触发。
+*  unload : 当视频卸载时触发。
+*  error : 当视频播放出现错误时触发。
+*  abort : 当视频播放被中断时触发。
+*  suspend : 当视频播放被暂停时触发。
+*  resume : 当视频播放被恢复时触发。
+*  seek : 当视频播放位置发生变化时触发。
+*  ended : 当视频播放结束时触发。
+*  play : 当视频开始播放时触发。
+*  pause : 当视频暂停时触发。
+*  timeupdate : 当视频播放时间发生变化时触发。
+*  volumechange : 当视频音量发生变化时触发。
+*  fullscreenchange : 当视频全屏模式发生变化时触发。
+*  controlschange : 当视频控制栏显示或隐藏时触发。
+*  seeking : 当视频正在缓冲时触发。
+*  seeked : 当视频缓冲完成时触发。
+*  canplay : 当视频可以播放时触发。
+*  canplaythrough : 当视频可以完整播放时触发。
+*  waiting : 当视频正在缓冲时触发。
+*  playthroughend : 当视频播放到结尾时触发。
+*  ratechange : 当视频播放速度发生变化时触发。
+*  volumechange : 当视频音量发生变化时触发。
+*  mutedchange : 当视频静音状态发生变化时触发。
+*  captionschange : 当视频字幕状态发生变化时触发。
+*  audiotrackchange : 当视频音轨状态发生变化时触发。
+*  posterchange : 当视频海报发生变化时触发。
+*  dimensionschange : 当视频尺寸发生变化
+```
+
 
 

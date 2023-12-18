@@ -13,13 +13,22 @@ import {formatTime} from "../../../utils/mixin";
 register();
 
 const SwiperContainer = (props) => {
-    const {childRef, videoRef, videoData, options, drawerSwitch, drawerSwitchSet, isShowVideo, setIsShowVideo} = props;
+    const {
+        childRef,
+        videoRef,
+        videoData,
+        drawerSwitch,
+        drawerSwitchSet,
+        isShowVideo,
+        setIsShowVideo,
+        videoDataKey,
+        progressTimeCurrent,
+        progressTimeDuration,
+    } = props;
     const playerRef = useRef();
     const swiperElRef = useRef(null);
     const [isShowPlayBtn, setIsShowPlayBtn] = useState(true);
     const [progressValue, setProgressValue] = useState(0);
-    const [progressCurrentTime, setProgressCurrentTime] = useState(0);
-    const [progressDuration, setProgressDuration] = useState(0);
 
     const setSlideTo = (val = 1) => {
         swiperElRef.current.swiper.slideTo(val, 0);
@@ -62,49 +71,8 @@ const SwiperContainer = (props) => {
         slideTo: setSlideTo
     }));
 
-    useEffect(() => {
-        if (!playerRef.current) {
-            const videoElement = videoRef.current;
-            if (!videoElement) return;
-            const player = playerRef.current = videojs(videoElement, options, () => {
-
-            });
-            player.on('timeupdate', function() {
-                // 获取当前播放时间
-                const currentTime = player.currentTime();
-                setProgressCurrentTime(currentTime);
-
-                // 获取视频总时长
-                const duration = player.duration();
-                setProgressDuration(duration);
-            });
-
-            player.on('ended', function() {
-                // 在这里可以切换到下一个视频
-                // 比如播放下一个视频的 URL 是 nextVideoUrl
-                player.src(videoData[2].url);
-                player.play(); // 播放下一个视频
-            });
-        } else {
-            const player = playerRef.current;
-
-            player.on('timeupdate', function() {
-                // 获取当前播放时间
-                const currentTime = player.currentTime();
-                setProgressCurrentTime(currentTime);
-
-                // 获取视频总时长
-                const duration = player.duration();
-                setProgressDuration(duration);
-            });
-            player.on('ended', function() {
-                // 在这里可以切换到下一个视频
-                // 比如播放下一个视频的 URL 是 nextVideoUrl
-                player.src(videoData[2].url);
-                player.play(); // 播放下一个视频
-            });
-        }
-    }, [videoRef]);
+    // useEffect(() => {
+    // }, []);
 
     return (
         <div className="play_swiper">
@@ -145,6 +113,7 @@ const SwiperContainer = (props) => {
                             <h1>
                                 {index + 1}
                                 {'' + isShowVideo}
+                                <br/>
                             </h1>
 
 
@@ -160,29 +129,29 @@ const SwiperContainer = (props) => {
                                 <div className="schedule_box">
                                     <div className="time time_s">
                                         {
-                                            formatTime(progressCurrentTime)
+                                            formatTime(progressTimeCurrent)
                                         }
                                         {/*<br/>*/}
                                         {/*{*/}
-                                        {/*    progressCurrentTime*/}
+                                        {/*    progressTimeCurrent*/}
                                         {/*}*/}
                                     </div>
                                     <Slider
                                         className="progress_box"
                                         min={0}
-                                        max={progressDuration}
+                                        max={progressTimeDuration}
                                         onChange={onProgressChange}
-                                        value={typeof progressCurrentTime === 'number' ? progressCurrentTime : 0}
+                                        value={typeof progressTimeCurrent === 'number' ? progressTimeCurrent : 0}
                                         step={0.1}
                                     />
 
                                     <div className="time time_e">
                                         {
-                                            formatTime(progressDuration)
+                                            formatTime(progressTimeDuration)
                                         }
                                         {/*<br/>*/}
                                         {/*{*/}
-                                        {/*    progressDuration*/}
+                                        {/*    progressTimeDuration*/}
                                         {/*}*/}
                                     </div>
                                 </div>
