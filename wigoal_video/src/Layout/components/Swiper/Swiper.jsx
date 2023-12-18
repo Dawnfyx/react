@@ -78,6 +78,13 @@ const SwiperContainer = (props) => {
                 const duration = player.duration();
                 setProgressDuration(duration);
             });
+
+            player.on('ended', function() {
+                // 在这里可以切换到下一个视频
+                // 比如播放下一个视频的 URL 是 nextVideoUrl
+                player.src(videoData[2].url);
+                player.play(); // 播放下一个视频
+            });
         } else {
             const player = playerRef.current;
 
@@ -89,6 +96,12 @@ const SwiperContainer = (props) => {
                 // 获取视频总时长
                 const duration = player.duration();
                 setProgressDuration(duration);
+            });
+            player.on('ended', function() {
+                // 在这里可以切换到下一个视频
+                // 比如播放下一个视频的 URL 是 nextVideoUrl
+                player.src(videoData[2].url);
+                player.play(); // 播放下一个视频
             });
         }
     }, [videoRef]);

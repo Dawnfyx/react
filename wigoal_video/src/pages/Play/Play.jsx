@@ -20,31 +20,19 @@ const PlayPage = (props) => {
             img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
         },
         {
-            url: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+            url: 'http://test2.dreamerlaw.work/mackvideo/test_video01.mp4',
             img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
         },
         {
-            url: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+            url: 'http://test2.dreamerlaw.work/mackvideo/test_video02.mp4',
             img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
         },
         {
-            url: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+            url: 'http://test2.dreamerlaw.work/mackvideo/test_video03.mp4',
             img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
         },
         {
-            url: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
-            img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
-        },
-        {
-            url: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
-            img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
-        },
-        {
-            url: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
-            img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
-        },
-        {
-            url: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+            url: 'http://test2.dreamerlaw.work/mackvideo/test_video04.mp4',
             img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
         },
         {
@@ -95,12 +83,20 @@ const PlayPage = (props) => {
 
     useEffect(() => {
         setVideoData(videoInfo)
-    }, []);
+
+
+    }, [videoRef]);
 
     return (
         <div className="play_box">
             <SwiperContainer childRef={childRef} videoRef={videoRef} videoData={videoInfo} options={videoOptions} isShowVideo={isShowVideo} setIsShowVideo={setIsShowVideo}></SwiperContainer>
-            <VideoPlayerContainer videoRef={videoRef} videoData={videoInfo} options={videoOptions} isShowVideo={isShowVideo}></VideoPlayerContainer>
+            <VideoPlayerContainer
+                videoRef={videoRef}
+                videoData={videoInfo}
+                options={videoOptions}
+                isShowVideo={isShowVideo}
+            >
+            </VideoPlayerContainer>
             <Anthology swiperSlideTo={swiperSlideTo}></Anthology>
         </div>
     )
