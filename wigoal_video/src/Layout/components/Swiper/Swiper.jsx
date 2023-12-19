@@ -4,6 +4,9 @@ import {connect} from "react-redux";
 import {register} from 'swiper/element/bundle';
 import 'swiper/css';
 
+import {
+    MenuUnfoldOutlined,
+} from '@ant-design/icons';
 import { Slider, message } from 'antd';
 
 import videojs from "video.js";
@@ -174,7 +177,7 @@ const SwiperContainer = (props) => {
                                     </div>
                                 </div>
                                 <div className="episode_box" onClick={() => drawerSwitchSet(true)}>
-                                    DRAWERSWITCHSET
+                                    <MenuUnfoldOutlined /> Episodes <span> {index + 1}/{videoData.length} </span>
                                 </div>
                             </div>
                         </swiper-slide>

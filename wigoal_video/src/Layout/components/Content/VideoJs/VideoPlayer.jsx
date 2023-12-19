@@ -9,6 +9,7 @@ const VideoPlayerContainer = (props) => {
         playerRef,
         videoData,
         videoDataKey,
+        setVideoDataKey,
         setIsShowPlayBtn,
         setProgressTimeCurrent,
         setProgressTimeDuration,
@@ -44,7 +45,12 @@ const VideoPlayerContainer = (props) => {
     }
 
     const handleVideoEnded = (key) => {
-        msgVideoEnded(key + 1)
+        if(key +1 >= videoData.length){
+            playerRef.current.pause();
+        } else {
+            msgVideoEnded(key + 1)
+        }
+        setVideoDataKey(key);
     }
 
     useEffect(() => {
@@ -102,6 +108,23 @@ const VideoPlayerContainer = (props) => {
         }
 
 
+        return () => {
+            const player = playerRef.current;
+
+            player.off('progress', function() {});
+
+            player.off('play', function() {});
+
+            player.off('canplay', function() {});
+
+            player.off('pause', function() {});
+
+            player.off('ended', function() {});
+
+            player.off('error', function() {});
+
+            player.off('timeupdate', function() {});
+        };
 
     }, [videoRef, videoDataKey]);
 

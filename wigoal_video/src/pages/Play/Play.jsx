@@ -36,6 +36,10 @@ const PlayPage = (props) => {
             img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
         },
         {
+            src: 'https://jf360videos.peopletech.cn/production/464f2fe20b1211ee83bef3d9bb3dfecd_1_video.mp4',
+            img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
+        },
+        {
             src: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
             img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
         },
@@ -67,10 +71,6 @@ const PlayPage = (props) => {
     }
 
     const videoPlayNext = (key) => {
-        if(key >= videoData.length) {
-            videoPause()
-            return;
-        }
         videoPlayKey(key)
         swiperSlideTo(key)
     }
@@ -91,6 +91,9 @@ const PlayPage = (props) => {
 
     return (
         <div className="play_box">
+            <span style={{
+                color: '#ffffff',
+            }}>{videoDataKey}</span>
             <SwiperContainer
                 childRef={childRef}
                 videoData={videoData}
@@ -107,6 +110,7 @@ const PlayPage = (props) => {
                 playerRef={playerRef}
                 videoData={videoData}
                 videoDataKey={videoDataKey}
+                setVideoDataKey={setVideoDataKey}
                 setIsShowPlayBtn={setIsShowPlayBtn}
                 setProgressTimeCurrent={setProgressTimeCurrent}
                 setProgressTimeDuration={setProgressTimeDuration}
