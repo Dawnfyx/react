@@ -14,18 +14,19 @@ register();
 
 const SwiperContainer = (props) => {
     const {
-        childRef,
-        videoRef,
-        videoData,
         drawerSwitch,
         drawerSwitchSet,
+        childRef,
+        playerRef,
+        videoData,
         isShowVideo,
         setIsShowVideo,
         videoDataKey,
         progressTimeCurrent,
         progressTimeDuration,
+        msgSlideEnd,
     } = props;
-    const playerRef = useRef();
+
     const swiperElRef = useRef(null);
     const [isShowPlayBtn, setIsShowPlayBtn] = useState(true);
     const [progressValue, setProgressValue] = useState(0);
@@ -44,26 +45,30 @@ const SwiperContainer = (props) => {
     const handleTouchMove = (event) => {
         setIsShowVideo(true)
         setIsShowPlayBtn(true)
-        const player = videoRef.current;
+        const player = playerRef.current;
         player.pause()
     }
 
     const handleTouchEnd = (event) => {
         setIsShowVideo(false)
         setIsShowPlayBtn(false);
-        const player = videoRef.current;
+        const player = playerRef.current;
         player.play();
+    }
+
+    const handleSlideEnd = (event) => {
+        msgSlideEnd('slideChangeEnd')
     }
 
     const handleSlideClick = (event) => {
         setIsShowPlayBtn(true)
-        const player = videoRef.current;
+        const player = playerRef.current;
         player.pause();
     }
 
     const handleSwiperPlayClick = (event) => {
         setIsShowPlayBtn(false);
-        const player = videoRef.current;
+        const player = playerRef.current;
         player.play();
     }
 
@@ -77,26 +82,12 @@ const SwiperContainer = (props) => {
     return (
         <div className="play_swiper">
 
-            {/*swiper事件：*/}
-            {/*- onInit：在swiper初始化完成时触发。*/}
-            {/*- onSlideChangeStart：在swiper切换开始时触发。*/}
-            {/*- onSlideChangeEnd：在swiper切换结束时触发。*/}
-            {/*- onTouchStart：在swiper在触摸开始时触发。*/}
-            {/*- onTouchMove：在swiper在触摸移动时触发。*/}
-            {/*- onTouchEnd：在swiper在触摸结束时触发。*/}
-            {/*- onResize：在swiper容器大小改变时触发。*/}
-            {/*- onProgress：在swiper切换进度改变时触发。*/}
-            {/*- onSlideClick：在swiper滑块被点击时触发。*/}
-            {/*- onDoubleTap：在swiper被双击时触发。*/}
-            {/*- onTouchMoveStart：在swiper在触摸开始时触发。*/}
-            {/*- onTouchMoveEnd：在swiper在触摸结束时触发。*/}
-            {/*- onTouchMoveStart：在swiper在触摸开始时触发。*/}
-
             <swiper-container
                 ref={swiperElRef}
                 direction={'vertical'}
                 onTouchMove={(event) => handleTouchMove(event)}
                 onTouchEnd={(event) => handleTouchEnd(event)}
+                onSlideChangeEnd={(event) => handleSlideEnd(event)}
                 class="swiper"
             >
                 {

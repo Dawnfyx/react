@@ -4,7 +4,7 @@ import videojs from "video.js";
 import "video.js/dist/video-js.css";
 
 const VideoPlayerContainer = (props) => {
-    const { videoRef, playerRef, videoData, videoDataKey, setVideoDataKey, setProgressTimeCurrent, setProgressTimeDuration, msgVideoEnded} = props;
+    const { videoRef, playerRef, videoData, videoDataKey, setProgressTimeCurrent, setProgressTimeDuration, msgVideoEnded} = props;
 
     const videoOptions = {
         controls: false,
@@ -34,8 +34,8 @@ const VideoPlayerContainer = (props) => {
         }
     }
 
-    const handleVideoEnded = () => {
-        msgVideoEnded('sssss')
+    const handleVideoEnded = (msg) => {
+        msgVideoEnded(msg)
     }
 
     useEffect(() => {
@@ -44,57 +44,55 @@ const VideoPlayerContainer = (props) => {
             if (!videoElement) return;
             playerRef.current = videojs(videoElement, videoOptions, () => {
                 console.log('player is ready')
-
-                const player = playerRef.current;
-
-                player.on('progress', function() {
-                    console.log('player => progress')
-                });
-
-                player.on('play', function() {
-                    console.log('player => play')
-                });
-                player.on('canplay', function() {
-                    console.log('player => canplay')
-                    console.log('视频总时长：', player.duration())
-                    setProgressTimeDuration(player.duration())
-                });
-
-                player.on('pause', function() {
-                    console.log('player => pause')
-                });
-
-                player.on('ended', function() {
-                    console.log('player => ended')
-                    player.src(videoData[videoDataKey+1].src);
-                    player.play();
-                    setVideoDataKey(videoDataKey+1)
-
-                    /**
-                     * todo
-                     * 锁在这里做
-                     *
-                     */
-                    handleVideoEnded()
-                    // debugger
-                });
-
-                player.on('error', function() {
-                    console.log('player => error')
-                });
-
-                player.on('timeupdate', function() {
-                    console.log('player => timeupdate', player.currentTime())
-                    setProgressTimeCurrent(player.currentTime())
-                });
             });
         } else {
-            console.log('1111')
+            console.log('111111111')
+            console.log(videoDataKey, 'VideoPlayer')
+
+            const player = playerRef.current;
+
+            player.on('progress', function() {
+                console.log('player => progress')
+            });
+
+            player.on('play', function() {
+                console.log('player => play')
+            });
+            player.on('canplay', function() {
+                console.log('player => canplay')
+                console.log('视频总时长：', player.duration())
+                setProgressTimeDuration(player.duration())
+            });
+
+            player.on('pause', function() {
+                console.log('player => pause')
+            });
+
+            player.on('ended', function() {
+                console.log('player => ended')
+                handleVideoEnded(videoDataKey)
+
+                /**
+                 * todo
+                 * 锁在这里做
+                 *
+                 */
+                // debugger
+            });
+
+            player.on('error', function() {
+                console.log('player => error')
+            });
+
+            player.on('timeupdate', function() {
+                // console.log('player => timeupdate', player.currentTime())
+                setProgressTimeCurrent(player.currentTime())
+            });
         }
 
 
 
-    }, [videoRef]);
+    }, [videoRef, videoDataKey]);
 
     return (
         <div data-vjs-player>

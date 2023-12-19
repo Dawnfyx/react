@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useCallback} from 'react';
 import { connect } from 'react-redux';
 
 import './Play.less'
@@ -6,7 +6,6 @@ import './Play.less'
 import SwiperContainer from "../../Layout/components/Swiper/Swiper"
 import VideoPlayerContainer from "../../Layout/components/Content/VideoJs/VideoPlayer";
 import Anthology from "../../Layout/components/Content/Anthology/Anthology";
-import videojs from "video.js";
 
 const PlayPage = (props) => {
     const {drawerSwitch, drawerSwitchSet, setVideoData } = props;
@@ -21,7 +20,11 @@ const PlayPage = (props) => {
             img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
         },
         {
-            src: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+            src: 'http://test2.dreamerlaw.work/mackvideo/test_video01.mp4',
+            img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
+        },
+        {
+            src: 'https://vjs.zencdn.net/v/oceans.mp4',
             img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
         },
         {
@@ -63,32 +66,52 @@ const PlayPage = (props) => {
     const [isShowVideo, setIsShowVideo] = useState(false);
 
     const swiperSlideTo = (val) => {
-        console.log(childRef, 'childRef.current');
+        videoPlayKey(val)
         childRef.current.slideTo(val);
     }
 
-    const handleVideoEnded = (message) => {
-        console.log(message, videoDataKey, 'message')
+    const swiperSlideEnd = (val) => {
+        playerRef.current.play();
     }
 
-    // useEffect(() => {
-    //     setVideoDataKey({
-    //         src: videoData[0].src,
-    //         img: videoData[0].img,
-    //     })
+    // const handleVideoEnded = useCallback((message) => {
+    //     console.log(videoDataKey, 'videoDataKey')
+    //     console.log(message, 'message')
+    //     // console.log(playerRef.current, 'playerRef.current')
+    //     // console.log(videoRef.current, 'videoRef.current')
+    //
+    //     setVideoDataKey(message => message + 1)
+    //
+    //     const player = playerRef.current;
+    //     player.src(videoData[message + 1].src);
+    //     player.play();
     // }, []);
+
+    const videoPlayNext = (message) => {
+        setVideoDataKey(message + 1)
+        playerRef.current.src(videoData[message + 1].src);
+    }
+    const videoPlayKey = (key) => {
+        setVideoDataKey(key)
+        playerRef.current.src(videoData[key].src);
+    }
+
+    useEffect(() => {
+        setVideoData(videoData)
+    }, [videoData]);
 
     return (
         <div className="play_box">
             <SwiperContainer
                 childRef={childRef}
-                videoRef={videoRef}
+                playerRef={playerRef}
                 videoData={videoData}
                 isShowVideo={isShowVideo}
                 setIsShowVideo={setIsShowVideo}
                 videoDataKey={videoDataKey}
                 progressTimeCurrent={progressTimeCurrent}
                 progressTimeDuration={progressTimeDuration}
+                msgSlideEnd={videoPlayKey}
             >
             </SwiperContainer>
             <VideoPlayerContainer
@@ -96,10 +119,9 @@ const PlayPage = (props) => {
                 playerRef={playerRef}
                 videoData={videoData}
                 videoDataKey={videoDataKey}
-                setVideoDataKey={setVideoDataKey}
                 setProgressTimeCurrent={setProgressTimeCurrent}
                 setProgressTimeDuration={setProgressTimeDuration}
-                msgVideoEnded={handleVideoEnded}
+                msgVideoEnded={videoPlayNext}
             >
             </VideoPlayerContainer>
             <Anthology swiperSlideTo={swiperSlideTo}></Anthology>
@@ -109,7 +131,8 @@ const PlayPage = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        drawerStatus: state.anthology.anthologyStatus
+        drawerStatus: state.anthology.anthologyStatus,
+        videoDataKey: state.videoData.videoDataKey,
     };
 };
 
