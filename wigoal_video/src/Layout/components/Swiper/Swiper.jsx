@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {register} from 'swiper/element/bundle';
 import 'swiper/css';
 
-import { Slider } from 'antd';
+import { Slider, message } from 'antd';
 
 import videojs from "video.js";
 import btnPlay from '../../../assets/img/btn_play.png'
@@ -17,77 +17,106 @@ const SwiperContainer = (props) => {
         drawerSwitch,
         drawerSwitchSet,
         childRef,
-        playerRef,
         videoData,
-        isShowVideo,
-        setIsShowVideo,
-        videoDataKey,
+        isShowPlayBtn,
         progressTimeCurrent,
         progressTimeDuration,
-        msgSlideEnd,
+        msgSwiperSlideEnd,
+        msgVideoPlay,
+        msgVideoPause,
     } = props;
 
+    const [messageApi, contextHolder] = message.useMessage();
+
     const swiperElRef = useRef(null);
-    const [isShowPlayBtn, setIsShowPlayBtn] = useState(true);
+    const [isShowPlayImg, setIsShowPlayImg] = useState(false);
     const [progressValue, setProgressValue] = useState(0);
 
-    const setSlideTo = (val = 1) => {
-        swiperElRef.current.swiper.slideTo(val, 0);
+    const setSlideTo = (val = 0) => {
+        swiperElRef.current.swiper.slideTo(val, 100);
     }
 
     const onProgressChange = (value) => {
-        setProgressValue(value);
+        // setProgressValue(value);
     }
 
-    const handleTouchStart = (event) => {
+    const videoPause = (event) => {
+        msgVideoPause()
     }
 
-    const handleTouchMove = (event) => {
-        setIsShowVideo(true)
-        setIsShowPlayBtn(true)
-        const player = playerRef.current;
-        player.pause()
-    }
-
-    const handleTouchEnd = (event) => {
-        setIsShowVideo(false)
-        setIsShowPlayBtn(false);
-        const player = playerRef.current;
-        player.play();
-    }
-
-    const handleSlideEnd = (event) => {
-        msgSlideEnd('slideChangeEnd')
-    }
-
-    const handleSlideClick = (event) => {
-        setIsShowPlayBtn(true)
-        const player = playerRef.current;
-        player.pause();
-    }
-
-    const handleSwiperPlayClick = (event) => {
-        setIsShowPlayBtn(false);
-        const player = playerRef.current;
-        player.play();
+    const videoPlay = (event) => {
+        msgVideoPlay()
     }
 
     useImperativeHandle(childRef, () => ({
         slideTo: setSlideTo
     }));
 
-    // useEffect(() => {
-    // }, []);
+    useEffect(() => {
+        // swiperElRef.current.addEventListener('swiper-progress', (event) => {
+        //     const [swiper, progress] = event.detail;
+        // });
+
+        swiperElRef.current.addEventListener('swiper-touchmove', (event) => {
+            const [swiper, progress] = event.detail;
+            setIsShowPlayImg(true)
+            // if(swiper.activeIndex === 0){
+            //     messageApi.open({
+            //         type: 'warning',
+            //         content: 'You\'ve reached the first episode',
+            //     });
+            // }
+        });
+
+        swiperElRef.current.addEventListener('swiper-touchend', (event) => {
+            const [swiper, progress] = event.detail;
+            setIsShowPlayImg(false)
+        });
+
+        swiperElRef.current.addEventListener('swiper-slidechange', (event) => {
+            const [swiper] = event.detail;
+            // console.log('slide changed', swiper.activeIndex );
+        });
+
+        // swiperElRef.current.addEventListener('swiper-slidenexttransitionend', (event) => {
+        //     const [swiper] = event.detail;
+        //     console.log('slide slidenexttransitionend', swiper.activeIndex );
+        //     // if (swiper.activeIndex === 0) {
+        //     //     alert('已经是第一张了');
+        //     // }
+        // });
+
+        // swiperElRef.current.addEventListener('swiper-slideprevtransitionend', (event) => {
+        //     const [swiper] = event.detail;
+        //     console.log('slide slideprevtransitionend', swiper.activeIndex );
+        //     // if (swiper.activeIndex === 0) {
+        //     //     alert('已经是第一张了');
+        //     // }
+        // });
+
+        swiperElRef.current.addEventListener('swiper-touchend', (event) => {
+            // console.log('slide touchEnd');
+        });
+
+        swiperElRef.current.addEventListener('swiper-transitionend', (event) => {
+            const [swiper] = event.detail;
+            msgSwiperSlideEnd(swiper.activeIndex)
+            // console.log('slide changed end', swiper.activeIndex );
+        });
+
+        // swiperElRef.current.addEventListener('swiper-slidechangetransitionend', (event) => {
+        //     console.log('slide changed end');
+        // });
+
+    }, [swiperElRef]);
 
     return (
         <div className="play_swiper">
 
             <swiper-container
                 ref={swiperElRef}
+                events-prefix="swiper-"
                 direction={'vertical'}
-                onTouchMove={(event) => handleTouchMove(event)}
-                onTouchEnd={(event) => handleTouchEnd(event)}
-                onSlideChangeEnd={(event) => handleSlideEnd(event)}
                 class="swiper"
             >
                 {
@@ -95,7 +124,7 @@ const SwiperContainer = (props) => {
                         <swiper-slide key={index} class="swiper-slide">
                             <img className="play_swiper_btn"
                                  src={btnPlay} alt=""
-                                 onClick={(event) => handleSwiperPlayClick(event)}
+                                 onClick={(event) => videoPlay(event)}
                                  style={{
                                      opacity: isShowPlayBtn ? 1 : 0,
                                  }}
@@ -103,17 +132,15 @@ const SwiperContainer = (props) => {
 
                             <h1>
                                 {index + 1}
-                                {'' + isShowVideo}
                                 <br/>
                             </h1>
-
 
                             <img className="play_image"
                                  src="https://storage.flyingshort.com/upload/ee85b2a6-a9e8-446a-a514-59830fa47146.png"
                                  alt=""
-                                 onClick={(event) => handleSlideClick(event)}
+                                 onClick={(event) => videoPause(event)}
                                  style={{
-                                     opacity: isShowVideo ? 1 : 0,
+                                     opacity: isShowPlayImg ? 1 : 0,
                                  }}
                             />
                             <div className="play_content">
@@ -154,6 +181,7 @@ const SwiperContainer = (props) => {
                     ))
                 }
             </swiper-container>
+            {contextHolder}
         </div>
     );
 };

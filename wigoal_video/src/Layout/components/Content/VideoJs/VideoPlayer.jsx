@@ -4,7 +4,16 @@ import videojs from "video.js";
 import "video.js/dist/video-js.css";
 
 const VideoPlayerContainer = (props) => {
-    const { videoRef, playerRef, videoData, videoDataKey, setProgressTimeCurrent, setProgressTimeDuration, msgVideoEnded} = props;
+    const {
+        videoRef,
+        playerRef,
+        videoData,
+        videoDataKey,
+        setIsShowPlayBtn,
+        setProgressTimeCurrent,
+        setProgressTimeDuration,
+        msgVideoEnded,
+    } = props;
 
     const videoOptions = {
         controls: false,
@@ -34,8 +43,8 @@ const VideoPlayerContainer = (props) => {
         }
     }
 
-    const handleVideoEnded = (msg) => {
-        msgVideoEnded(msg)
+    const handleVideoEnded = (key) => {
+        msgVideoEnded(key + 1)
     }
 
     useEffect(() => {
@@ -47,25 +56,27 @@ const VideoPlayerContainer = (props) => {
             });
         } else {
             console.log('111111111')
-            console.log(videoDataKey, 'VideoPlayer')
 
             const player = playerRef.current;
 
             player.on('progress', function() {
-                console.log('player => progress')
+                // console.log('player => progress')
             });
 
             player.on('play', function() {
                 console.log('player => play')
+                setIsShowPlayBtn(false);
             });
+
             player.on('canplay', function() {
                 console.log('player => canplay')
-                console.log('视频总时长：', player.duration())
+                // console.log('视频总时长：', player.duration())
                 setProgressTimeDuration(player.duration())
             });
 
             player.on('pause', function() {
                 console.log('player => pause')
+                setIsShowPlayBtn(true);
             });
 
             player.on('ended', function() {
@@ -97,7 +108,7 @@ const VideoPlayerContainer = (props) => {
     return (
         <div data-vjs-player>
             <video ref={videoRef}
-                   className="play_videoJs video-js vjs-default-skin video"
+                   className="play_videoJs video-js"
                    style={{
                        height: 'inherit',
                    }}

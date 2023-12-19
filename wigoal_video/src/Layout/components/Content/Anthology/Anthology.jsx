@@ -7,7 +7,12 @@ import {Drawer} from "antd"
 import "./Anthology.less"
 
 const Anthology = (props) =>{
-    const {drawerStatus, drawerSwitch, drawerSwitchSet, videoData, swiperSlideTo } = props;
+    const {drawerStatus, drawerSwitch, drawerSwitchSet, videoData, AnthologyClick } = props;
+
+    const handleAnthologyClick = (key) =>{
+        drawerSwitchSet(false);
+        AnthologyClick(key);
+    }
 
     return (
         <>
@@ -24,7 +29,7 @@ const Anthology = (props) =>{
                     {
                         videoData.map((item, index) => (
                             <div key={index}
-                                 onClick={() => swiperSlideTo(index)}
+                                 onClick={() => handleAnthologyClick(index)}
                                  className="episodesList_item">
                                 {index +1 }
                             </div>
