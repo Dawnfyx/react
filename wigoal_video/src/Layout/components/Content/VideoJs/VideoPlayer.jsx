@@ -59,6 +59,49 @@ const VideoPlayerContainer = (props) => {
             if (!videoElement) return;
             playerRef.current = videojs(videoElement, videoOptions, () => {
                 console.log('player is ready')
+
+                const player = playerRef.current;
+
+                player.on('progress', function() {
+                    // console.log('player => progress')
+                });
+
+                player.on('play', function() {
+                    console.log('player => play')
+                    setIsShowPlayBtn(false);
+                });
+
+                player.on('canplay', function() {
+                    console.log('player => canplay')
+                    // console.log('视频总时长：', player.duration())
+                    setProgressTimeDuration(player.duration())
+                });
+
+                player.on('pause', function() {
+                    console.log('player => pause')
+                    setIsShowPlayBtn(true);
+                });
+
+                player.on('ended', function() {
+                    console.log('player => ended')
+                    handleVideoEnded(videoDataKey)
+
+                    /**
+                     * todo
+                     * 锁在这里做
+                     *
+                     */
+                    // debugger
+                });
+
+                player.on('error', function() {
+                    console.log('player => error')
+                });
+
+                player.on('timeupdate', function() {
+                    // console.log('player => timeupdate', player.currentTime())
+                    setProgressTimeCurrent(player.currentTime())
+                });
             });
         } else {
             console.log('111111111')

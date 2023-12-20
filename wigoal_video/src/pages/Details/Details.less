@@ -4,6 +4,7 @@
     background-color: rgba(0, 0, 0, .3);
     box-sizing: border-box;
     padding: 3vw 3vw 9vw 3vw;
+    z-index: 1;
 
     .details_info_box {
       display: flex;
@@ -93,15 +94,63 @@
         width: 100%;
       }
     }
+    .details_introduction_box {
+      white-space: pre-line;
+      box-sizing: border-box;
+      color: #fff;
+      font-size: 16px;
+      margin-top: 3vw;
+      overflow: auto;
+      word-break: break-all;
+    }
   }
 
-  .details_introduction_box {
-    white-space: pre-line;
-    box-sizing: border-box;
-    color: #fff;
-    font-size: 16px;
-    margin-top: 3vw;
-    overflow: auto;
-    word-break: break-all;
+  .episode_box{
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    transition-duration: .3s,.3s;
+
+    .episode_top_icon{
+      background-color: rgba(255, 255, 255, .3);
+      border: 1px solid hsla(0,0%,100%,.1);
+      border-radius: 5vw;
+      height: 5vw;
+      line-height: 5vw;
+      min-height: 5vw;
+      width: 10vw;
+      z-index: 1;
+      text-align: center;
+      margin: 0 auto 2vw auto;
+    }
+    .episode_content{
+      background-color: #1a1b28;
+      border-radius: 4vw;
+      padding: 4vw;
+      box-sizing: border-box;
+      overflow: auto;
+      z-index: 1;
+      height: 50vh;
+
+      .episodesList_box{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-row-gap: 2vw;
+        grid-column-gap: 2vw;
+
+        .episodesList_item {
+          background: rgba(255, 255, 255, 0.05);
+          border-radius: 4px;
+          position: relative;
+          aspect-ratio: 1/1;
+          display: flex; /* 使用flex布局 */
+          justify-content: center; /* 水平居中 */
+          align-items: center;
+          font-size: 18px;
+          color: #ffffff;
+        }
+      }
+    }
   }
 }

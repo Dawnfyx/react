@@ -1,14 +1,18 @@
 import React, {useState, useEffect, useRef, useCallback} from 'react';
 import { connect } from 'react-redux';
+import { useLocation } from 'react-router'
 
 import './Play.less'
 
 import SwiperContainer from "../../Layout/components/Swiper/Swiper"
 import VideoPlayerContainer from "../../Layout/components/Content/VideoJs/VideoPlayer";
 import Anthology from "../../Layout/components/Content/Anthology/Anthology";
+import {formatTime} from "../../utils/mixin";
 
 const PlayPage = (props) => {
     const {drawerSwitch, drawerSwitchSet, setVideoData } = props;
+
+    const { search } = useLocation()
 
     const videoData = [
         {
@@ -70,6 +74,12 @@ const PlayPage = (props) => {
         videoPlay();
     }
 
+    const formatRouterSlideToSwiper = (router) => {
+        if(!router) return;
+        const key = Number(router.split('?gid=')[1]);
+        videoPlayNext(key-1)
+    }
+
     const videoPlayNext = (key) => {
         videoPlayKey(key)
         swiperSlideTo(key)
@@ -84,6 +94,11 @@ const PlayPage = (props) => {
     const videoPause = () => {
         playerRef.current.pause();
     }
+
+    /* 监听路由 */
+    useEffect(() => {
+        formatRouterSlideToSwiper(search)
+    }, [search])
 
     useEffect(() => {
         setVideoData(videoData)
