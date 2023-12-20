@@ -29,9 +29,11 @@ module.exports = {
     ],
     "rules": {
         "no-unused-vars": "off",
+        "no-undef": "off",
         "no-debugger": "off",
         // 防止在React组件定义中丢失props验证
         "react/prop-types": "off",
-        "react/no-unknown-property": "off"
+        "react/no-unknown-property": "off",
+        "react/no-unescaped-entities": "off",
     }
 }

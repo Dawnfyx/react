@@ -37,6 +37,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 - [ ] 全屏问题
 - [ ] 兼容
 - [ ] 锁
+- [x] 详情页
 
 
 ```text

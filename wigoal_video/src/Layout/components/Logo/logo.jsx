@@ -6,7 +6,7 @@ const LogoContainer = (props) => {
     const { collapsed, isMobile } = props;
     return(
         <div className="container_logo">
-            <Link to=''>
+            <Link to='details'>
                 <div className="logo-box">
                     <img src={logo} alt="logo" className="logo-img" width="50" height="50" />
                     {/*{!collapsed ? <h2 className="logo-text">Wigoal Game</h2> : null}*/}
