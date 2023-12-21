@@ -8,7 +8,9 @@ import {
     ShareAltOutlined,
     CaretUpOutlined,
     CaretDownOutlined,
+    LockOutlined,
 } from '@ant-design/icons';
+
 import {Spin} from 'antd';
 
 import ShareContainer from "../../Layout/components/Share/Share";
@@ -19,13 +21,19 @@ const Details = (props) => {
 
     const [spinning, setSpinning] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [episode, setEpisode] = useState(false);
+    const [episode, setEpisode] = useState(true);
     const [pageData, setPageData] = useState();
+    const [pageDataLock, setPageDataLock] = useState();
     const [coverImage, setCoverImage] = useState();
 
     const handleShowModal = () => {
         setIsModalOpen(true);
     };
+    const HandleEpisodesRouterTo = (key, saleType) => {
+        if(saleType == 4) return;
+        // "/video?gid=" + (index + 1)
+        window.location.href = window.location.origin + "/video?gid=" + key;
+    }
     const switchEpisode = () => {
         setEpisode(!episode)
     };
@@ -381,6 +389,8 @@ const Details = (props) => {
             console.log('成功：', data);
             setPageData(data);
             setCoverImage(data.coverUrl);
+            const tempArray = new Array(data.dramaList.length).fill(false);
+            setPageDataLock(tempArray);
             setSpinning(false);
         })
     }, []);
@@ -452,12 +462,20 @@ const Details = (props) => {
                         {
                             pageData
                                 ? pageData.dramaList.map((item, index) => (
-                                    <a key={index}
+                                    <div key={index}
                                        className="episodesList_item"
-                                       href={"/video?gid=" + (index + 1)}
+                                       onClick={() => HandleEpisodesRouterTo(index + 1, item.saleType)}
                                     >
                                         {index + 1}
-                                    </a>
+                                        {
+                                            item.saleType == 4
+                                                ? <div className="icon_lock">
+                                                    <LockOutlined/>
+                                                </div>
+                                                : ''
+                                        }
+
+                                    </div>
                                 ))
                                 : ''
                         }
