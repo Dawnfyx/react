@@ -36,8 +36,9 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 - [x] 全部视频播放完 (播放完一直循环)
 - [ ] 全屏问题
 - [ ] 兼容
-- [ ] 锁
+- [ ] 锁 选集的锁好了，还有播放的锁
 - [x] 详情页
+- [ ] 登录
 
 
 ```text

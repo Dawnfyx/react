@@ -26,7 +26,8 @@ import {getUserData} from "../../../api";
 const REDIRECT_URI = "";
 
 const REACT_APP_MICROSOFT_API_ID = "";
-const REACT_APP_FACEBOOK_API_ID= "341369151843691";
+// const REACT_APP_FACEBOOK_API_ID= "341369151843691";
+const REACT_APP_FACEBOOK_API_ID= "3683958525216271";
 const REACT_APP_GOOGLE_API_ID = "48801388645-iir73djli3h150dq4it8crdkmmge6jr9.apps.googleusercontent.com";
 const REACT_APP_GOOGLE_API_SECRET = "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";
 const REACT_APP_TWITTER_API_ID = "bXh6WDJTX1RTb0xxenMtcEhvMkc6MTpjaQ";
