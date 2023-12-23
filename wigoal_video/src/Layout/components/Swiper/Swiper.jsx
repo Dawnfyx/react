@@ -8,9 +8,8 @@ import {
     LeftOutlined,
     MenuUnfoldOutlined,
 } from '@ant-design/icons';
-import { Slider, message } from 'antd';
+import { Spin, Slider, message } from 'antd';
 
-import videojs from "video.js";
 import btnPlay from '../../../assets/img/btn_play.png'
 import {formatTime} from "../../../utils/mixin";
 
@@ -23,6 +22,7 @@ const SwiperContainer = (props) => {
         videoDetailsData,
         childRef,
         videoData,
+        spinning,
         isShowPlayBtn,
         progressTimeCurrent,
         progressTimeDuration,
@@ -31,9 +31,8 @@ const SwiperContainer = (props) => {
         msgVideoPause,
     } = props;
 
-    const [messageApi, contextHolder] = message.useMessage();
-
     const swiperElRef = useRef(null);
+    const [messageApi, contextHolder] = message.useMessage();
     const [isShowPlayImg, setIsShowPlayImg] = useState(false);
     const [progressValue, setProgressValue] = useState(0);
 
@@ -69,6 +68,7 @@ const SwiperContainer = (props) => {
         swiperElRef.current.addEventListener('swiper-touchmove', (event) => {
             const [swiper, progress] = event.detail;
             setIsShowPlayImg(true)
+            videoPause()
             // if(swiper.activeIndex === 0){
             //     messageApi.open({
             //         type: 'warning',
@@ -121,7 +121,7 @@ const SwiperContainer = (props) => {
 
     return (
         <div className="play_swiper">
-
+            <Spin spinning={spinning} tip="Loading" fullscreen/>
             <swiper-container
                 ref={swiperElRef}
                 events-prefix="swiper-"

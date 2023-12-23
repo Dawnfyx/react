@@ -31,7 +31,7 @@ const Details = (props) => {
         setIsModalOpen(true);
     };
     const HandleEpisodesRouterTo = (key, saleType) => {
-        if(saleType == 4) return;
+        // if(saleType == 4) return;
         // "/video?gid=" + (index + 1)
         window.location.href = window.location.origin + "/video?gid=" + key;
     }
@@ -1477,13 +1477,13 @@ const Details = (props) => {
                                        onClick={() => HandleEpisodesRouterTo(index + 1, item.saleType)}
                                     >
                                         {index + 1}
-                                        {
-                                            item.saleType == 4
-                                                ? <div className="icon_lock">
-                                                    <LockOutlined/>
-                                                </div>
-                                                : ''
-                                        }
+                                        {/*{*/}
+                                        {/*    item.saleType == 4*/}
+                                        {/*        ? <div className="icon_lock">*/}
+                                        {/*            <LockOutlined/>*/}
+                                        {/*        </div>*/}
+                                        {/*        : ''*/}
+                                        {/*}*/}
 
                                     </div>
                                 ))

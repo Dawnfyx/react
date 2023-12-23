@@ -201,18 +201,20 @@ const PlayPage = (props) => {
     const childRef = useRef();
     const videoRef = useRef();
     const playerRef = useRef();
+    const [spinning, setSpinning] = useState(true);
     const [videoDataKey, setVideoDataKey] = useState(0);
     const [isShowPlayBtn, setIsShowPlayBtn] = useState(true);
     const [progressTimeCurrent, setProgressTimeCurrent] = useState(0);
     const [progressTimeDuration, setProgressTimeDuration] = useState(0);
 
     const swiperSlideTo = (val) => {
+        setSpinning(true);
         childRef.current.slideTo(val);
     }
 
     const swiperSlideEnd = (key) => {
         videoPlayKey(key)
-        videoPlay();
+        // videoPlay();
     }
 
     const formatRouterSlideToSwiper = (router) => {
@@ -247,6 +249,7 @@ const PlayPage = (props) => {
             <SwiperContainer
                 childRef={childRef}
                 videoData={videoData}
+                spinning={spinning}
                 isShowPlayBtn={isShowPlayBtn}
                 progressTimeCurrent={progressTimeCurrent}
                 progressTimeDuration={progressTimeDuration}
@@ -260,6 +263,7 @@ const PlayPage = (props) => {
                 playerRef={playerRef}
                 videoData={videoData}
                 videoDataKey={videoDataKey}
+                setSpinning={setSpinning}
                 setVideoDataKey={setVideoDataKey}
                 setIsShowPlayBtn={setIsShowPlayBtn}
                 setProgressTimeCurrent={setProgressTimeCurrent}

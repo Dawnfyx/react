@@ -35,12 +35,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 - [x] 选集播放视频
 - [x] 全部视频播放完 (播放完一直循环)
 - [ ] 全屏问题
-- [ ] 兼容
-- [ ] 锁 选集的锁好了，还有播放的锁
-- [x] 详情页
-- [ ] 登录
-- [ ] 加个title
 - [ ] 视频播放失败的问题 是因为视频没加载到 播放器就开始执行播放
+- [ ] 兼容
+- [x] 详情页
+- [x] 加个title
+- [ ] 锁 选集的锁好了，还有播放的锁
+- [ ] 登录
 
 
 ```text
@@ -199,26 +199,6 @@ video.js 事件：
 - suspend : 当视频播放被暂停时触发。
 - resume : 当视频播放被恢复时触发。
 - seek : 当视频播放位置发生变化时触发。
-- ended : 当视频播放结束时触发。
-- play : 当视频开始播放时触发。
-- pause : 当视频暂停时触发。
-- timeupdate : 当视频播放时间发生变化时触发。
-- volumechange : 当视频音量发生变化时触发。
-- fullscreenchange : 当视频全屏模式发生变化时触发。
-- controlschange : 当视频控制栏显示或隐藏时触发。
-- seeking : 当视频正在缓冲时触发。
-- seeked : 当视频缓冲完成时触发。
-- canplay : 当视频可以播放时触发。
-- canplaythrough : 当视频可以完整播放时触发。
-- waiting : 当视频正在缓冲时触发。
-- playthroughend : 当视频播放到结尾时触发。
-- ratechange : 当视频播放速度发生变化时触发。
-- volumechange : 当视频音量发生变化时触发。
-- mutedchange : 当视频静音状态发生变化时触发。
-- captionschange : 当视频字幕状态发生变化时触发。
-- audiotrackchange : 当视频音轨状态发生变化时触发。
-- posterchange : 当视频海报发生变化时触发。
-- dimensionschange : 当视频尺寸发生变化
 ```
 
 

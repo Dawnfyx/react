@@ -9,6 +9,7 @@ const VideoPlayerContainer = (props) => {
         playerRef,
         videoData,
         videoDataKey,
+        setSpinning,
         setVideoDataKey,
         setIsShowPlayBtn,
         setProgressTimeCurrent,
@@ -20,7 +21,7 @@ const VideoPlayerContainer = (props) => {
         controls: false,
         playbackRates: [0.5, 1.0, 1.5, 2.0], // 播放速度
         autoplay: true, // 如果true,浏览器准备好时开始回放。
-        muted: false, // 默认情况下将会消除任何音频。
+        muted: true, // 默认情况下将会消除任何音频。
         disableFullscreen : true, // 默认情况下将会消除任何音频。
         loop: false, // 导致视频一结束就重新开始。
         preload: 'auto', // 建议浏览器在<video>加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
@@ -76,6 +77,10 @@ const VideoPlayerContainer = (props) => {
                     console.log('player => canplay')
                     // console.log('视频总时长：', player.duration())
                     setProgressTimeDuration(player.duration())
+                    setSpinning(false)
+                    setTimeout(() => {
+                        player.play();
+                    }, 20);
                 });
 
                 player.on('pause', function() {
@@ -115,6 +120,10 @@ const VideoPlayerContainer = (props) => {
                         player.exitFullscreen();
                     }
                 });
+
+                player.on('load', () => {
+                    console.log('player => load')
+                });
             });
         } else {
             console.log('111111111')
@@ -134,6 +143,10 @@ const VideoPlayerContainer = (props) => {
                 console.log('player => canplay')
                 // console.log('视频总时长：', player.duration())
                 setProgressTimeDuration(player.duration())
+                setSpinning(false)
+                setTimeout(() => {
+                    player.play();
+                }, 20);
             });
 
             player.on('pause', function() {
@@ -174,6 +187,10 @@ const VideoPlayerContainer = (props) => {
                 }
             });
 
+            player.on('load', () => {
+                console.log('player => load')
+            });
+
         }
 
 
@@ -193,6 +210,8 @@ const VideoPlayerContainer = (props) => {
             player.off('error', function() {});
 
             player.off('timeupdate', function() {});
+
+            // player.dispose();
         };
 
     }, [videoRef, videoDataKey]);
