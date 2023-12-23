@@ -1,59 +1,200 @@
 import React, {useState, useEffect, useRef, useCallback} from 'react';
-import { connect } from 'react-redux';
 import { useLocation } from 'react-router'
-
-import './Play.less'
 
 import SwiperContainer from "../../Layout/components/Swiper/Swiper"
 import VideoPlayerContainer from "../../Layout/components/Content/VideoJs/VideoPlayer";
 import Anthology from "../../Layout/components/Content/Anthology/Anthology";
-import {formatTime} from "../../utils/mixin";
+
+import './Play.less'
 
 const PlayPage = (props) => {
-    const {drawerSwitch, drawerSwitchSet, setVideoData } = props;
 
     const { search } = useLocation()
 
     const videoData = [
         {
-            src: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
-            img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
         },
         {
-            src: 'https://vjs.zencdn.net/v/oceans.mp4',
-            img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/2.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
         },
         {
-            src: 'http://test2.dreamerlaw.work/mackvideo/test_video01.mp4',
-            img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/3.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
         },
         {
-            src: 'http://test2.dreamerlaw.work/mackvideo/test_video02.mp4',
-            img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/4.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
         },
         {
-            src: 'http://test2.dreamerlaw.work/mackvideo/test_video03.mp4',
-            img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/5.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
         },
         {
-            src: 'http://test2.dreamerlaw.work/mackvideo/test_video04.mp4',
-            img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/6.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
         },
         {
-            src: 'https://jf360videos.peopletech.cn/production/464f2fe20b1211ee83bef3d9bb3dfecd_1_video.mp4',
-            img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/7.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
         },
         {
-            src: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
-            img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/8.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
         },
         {
-            src: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
-            img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/9.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
         },
         {
-            src: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
-            img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/10.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/11.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/12.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/13.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/14.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/15.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/16.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/17.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/18.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/19.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/20.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/21.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/22.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/23.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/24.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/25.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/26.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/27.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/28.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/29.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/30.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/31.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/32.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/33.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/34.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/35.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/36.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/37.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/38.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/39.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/40.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/41.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/42.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/43.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/44.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/45.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        },
+        {
+            src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/46.mp4',
+            img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
         },
     ]
 
@@ -100,15 +241,9 @@ const PlayPage = (props) => {
         formatRouterSlideToSwiper(search)
     }, [search])
 
-    useEffect(() => {
-        setVideoData(videoData)
-    }, [videoData]);
-
     return (
         <div className="play_box">
-            <span style={{
-                color: '#ffffff',
-            }}>{videoDataKey}</span>
+
             <SwiperContainer
                 childRef={childRef}
                 videoData={videoData}
@@ -132,24 +267,9 @@ const PlayPage = (props) => {
                 msgVideoEnded={videoPlayNext}
             >
             </VideoPlayerContainer>
-            <Anthology AnthologyClick={videoPlayNext}></Anthology>
+            <Anthology videoData={videoData} AnthologyClick={videoPlayNext}></Anthology>
         </div>
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        drawerStatus: state.anthology.anthologyStatus,
-        videoDataKey: state.videoData.videoDataKey,
-    };
-};
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        drawerSwitch: () => dispatch({ type: 'SWITCH' }),
-        drawerSwitchSet: (value) => dispatch({ type: 'SWITCHSET', value: value}),
-        setVideoData: (value) => dispatch({ type: 'SETVIDEODATA', data: value}),
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(PlayPage);
+export default PlayPage;

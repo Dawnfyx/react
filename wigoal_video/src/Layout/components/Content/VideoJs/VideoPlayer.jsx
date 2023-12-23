@@ -21,6 +21,7 @@ const VideoPlayerContainer = (props) => {
         playbackRates: [0.5, 1.0, 1.5, 2.0], // 播放速度
         autoplay: true, // 如果true,浏览器准备好时开始回放。
         muted: false, // 默认情况下将会消除任何音频。
+        disableFullscreen : true, // 默认情况下将会消除任何音频。
         loop: false, // 导致视频一结束就重新开始。
         preload: 'auto', // 建议浏览器在<video>加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
         language: 'zh-CN',
@@ -102,6 +103,18 @@ const VideoPlayerContainer = (props) => {
                     // console.log('player => timeupdate', player.currentTime())
                     setProgressTimeCurrent(player.currentTime())
                 });
+
+                player.on('fullscreenChange  ', function() {
+                    if (player.isFullscreen()) {
+                        player.exitFullscreen();
+                    }
+                });
+
+                player.on('usermedia', function() {
+                    if (player.isFullscreen()) {
+                        player.exitFullscreen();
+                    }
+                });
             });
         } else {
             console.log('111111111')
@@ -148,6 +161,19 @@ const VideoPlayerContainer = (props) => {
                 // console.log('player => timeupdate', player.currentTime())
                 setProgressTimeCurrent(player.currentTime())
             });
+
+            player.on('fullscreenChange  ', function() {
+                if (player.isFullscreen()) {
+                    player.exitFullscreen();
+                }
+            });
+
+            player.on('usermedia', function() {
+                if (player.isFullscreen()) {
+                    player.exitFullscreen();
+                }
+            });
+
         }
 
 

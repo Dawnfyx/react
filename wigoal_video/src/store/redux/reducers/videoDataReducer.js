@@ -1,6 +1,6 @@
 // videoDataReducer.js
 const initState = {
-    videoData: [],
+    videoData: null,
 };
 
 function videoDataReducer(state = initState, action) {

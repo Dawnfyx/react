@@ -39,6 +39,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 - [ ] 锁 选集的锁好了，还有播放的锁
 - [x] 详情页
 - [ ] 登录
+- [ ] 加个title
+- [ ] 视频播放失败的问题 是因为视频没加载到 播放器就开始执行播放
 
 
 ```text

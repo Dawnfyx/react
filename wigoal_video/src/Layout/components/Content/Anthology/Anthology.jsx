@@ -44,7 +44,6 @@ const Anthology = (props) =>{
 const mapStateToProps = (state) => {
     return {
         drawerStatus: state.anthology.anthologyStatus,
-        videoData: state.videoData.videoData,
     };
 };
 

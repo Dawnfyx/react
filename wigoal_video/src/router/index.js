@@ -19,13 +19,14 @@ export default class RouteConfig extends Component{
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Layout />} >
-                        <Route path="video" element={<Play />} />
+                        <Route path="" element={<Details />} />
                         <Route path="details" element={<Details />} />
+                        <Route path="video" element={<Play />} />
                         {/*<Route path="test" element={<Test />} />*/}
                         {/*<Route path="testplay" element={<TestVideo />} />*/}
                         {/*<Route path="/page/details" element={<Details />} />*/}
                         {/*<Route path="/page/category" element={<Category />} />*/}
-                        {/*<Route path="*" element={<Navigate to="home" />} ></Route>*/}
+                        <Route path="*" element={<Navigate to="details" />} ></Route>
                     </Route>
                 </Routes>
             </BrowserRouter>

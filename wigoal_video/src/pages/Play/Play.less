@@ -4,6 +4,28 @@
   position: relative;
   background-color: #0C0D14;
 
+  .play_top{
+    position: fixed;
+    left: 3vw;
+    right: 3vw;
+    top: 10px;
+    width: auto;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .play_title{
+      background-color: rgba(255, 255, 255, 0.25);
+      border-radius: 5px;
+      box-sizing: border-box;
+      color: #fff;
+      max-width: 80vw;
+      padding: 2vw 4vw;
+      text-align: center;
+    }
+  }
+
   .play_videoJs {
     background-color: #000;
     position: fixed;
@@ -70,7 +92,6 @@
     }
   }
 
-
   .play_content {
     position: absolute;
     left: 0;
@@ -78,7 +99,7 @@
     z-index: 2;
     padding-left: 2vw;
     padding-right: 2vw;
-    padding-bottom: 20vw;
+    padding-bottom: 10vw;
     width: 100%;
 
     .schedule_box {

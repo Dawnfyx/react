@@ -5,6 +5,7 @@ import {register} from 'swiper/element/bundle';
 import 'swiper/css';
 
 import {
+    LeftOutlined,
     MenuUnfoldOutlined,
 } from '@ant-design/icons';
 import { Slider, message } from 'antd';
@@ -19,6 +20,7 @@ const SwiperContainer = (props) => {
     const {
         drawerSwitch,
         drawerSwitchSet,
+        videoDetailsData,
         childRef,
         videoData,
         isShowPlayBtn,
@@ -37,6 +39,10 @@ const SwiperContainer = (props) => {
 
     const setSlideTo = (val = 0) => {
         swiperElRef.current.swiper.slideTo(val, 100);
+    }
+
+    const handleReturnDetails = () => {
+        window.location.href = window.location.origin + "/details";
     }
 
     const onProgressChange = (value) => {
@@ -125,6 +131,22 @@ const SwiperContainer = (props) => {
                 {
                     videoData.map((item, index) => (
                         <swiper-slide key={index} class="swiper-slide">
+
+                            <div className="play_top">
+                                <LeftOutlined onClick={() => handleReturnDetails()} />
+                                {
+                                    videoDetailsData
+                                        ?  <div className="play_title">
+                                            {
+                                                videoDetailsData.title
+                                            }
+                                            <span> ({index + 1}/{videoData.length}) </span>
+                                        </div>
+                                        : ''
+                                }
+                                <span>&nbsp;</span>
+                            </div>
+
                             <img className="play_swiper_btn"
                                  src={btnPlay} alt=""
                                  onClick={(event) => videoPlay(event)}
@@ -132,14 +154,8 @@ const SwiperContainer = (props) => {
                                      opacity: isShowPlayBtn ? 1 : 0,
                                  }}
                             />
-
-                            <h1>
-                                {index + 1}
-                                <br/>
-                            </h1>
-
                             <img className="play_image"
-                                 src="https://storage.flyingshort.com/upload/ee85b2a6-a9e8-446a-a514-59830fa47146.png"
+                                 src={item.img}
                                  alt=""
                                  onClick={(event) => videoPause(event)}
                                  style={{
@@ -192,6 +208,7 @@ const SwiperContainer = (props) => {
 const mapStateToProps = (state) => {
     return {
         drawerStatus: state.anthology.anthologyStatus,
+        videoDetailsData: state.videoDetailsData.videoDetailsData,
     };
 };
 
