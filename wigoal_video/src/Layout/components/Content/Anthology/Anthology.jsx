@@ -18,7 +18,7 @@ const Anthology = (props) =>{
         <>
             <Drawer
                 className="Anthology_box"
-                title="Title"
+                title="Love's Promotion: From Boss to Hubby"
                 placement="bottom"
                 closable={false}
                 onClose={() => drawerSwitchSet(false)}
