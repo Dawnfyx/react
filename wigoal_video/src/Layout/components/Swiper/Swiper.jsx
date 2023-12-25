@@ -134,16 +134,16 @@ const SwiperContainer = (props) => {
 
                             <div className="play_top">
                                 <LeftOutlined onClick={() => handleReturnDetails()} />
-                                {
-                                    videoDetailsData
-                                        ?  <div className="play_title">
-                                            {
-                                                videoDetailsData.title
-                                            }
-                                            <span> ({index + 1}/{videoData.length}) </span>
-                                        </div>
-                                        : ''
-                                }
+                                {/*{*/}
+                                {/*    videoDetailsData*/}
+                                {/*        ?  <div className="play_title">*/}
+                                {/*            {*/}
+                                {/*                videoDetailsData.title*/}
+                                {/*            }*/}
+                                {/*            <span> ({index + 1}/{videoData.length}) </span>*/}
+                                {/*        </div>*/}
+                                {/*        : ''*/}
+                                {/*}*/}
                                 <span>&nbsp;</span>
                             </div>
 

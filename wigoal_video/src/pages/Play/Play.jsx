@@ -271,7 +271,7 @@ const PlayPage = (props) => {
                 msgVideoEnded={videoPlayNext}
             >
             </VideoPlayerContainer>
-            <Anthology videoData={videoData} AnthologyClick={videoPlayNext}></Anthology>
+            <Anthology videoData={videoData} videoDataKey={videoDataKey} AnthologyClick={videoPlayNext}></Anthology>
         </div>
     )
 }
