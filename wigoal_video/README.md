@@ -204,4 +204,52 @@ video.js 事件：
 ```
 
 
+### 测试数据
+```javascript
+
+const videoData = [
+        {
+            src: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+            img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
+        },
+        {
+            src: 'https://vjs.zencdn.net/v/oceans.mp4',
+            img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
+        },
+        {
+            src: 'http://test2.dreamerlaw.work/mackvideo/test_video01.mp4',
+            img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
+        },
+        {
+            src: 'http://test2.dreamerlaw.work/mackvideo/test_video02.mp4',
+            img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
+        },
+        {
+            src: 'http://test2.dreamerlaw.work/mackvideo/test_video03.mp4',
+            img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
+        },
+        {
+            src: 'http://test2.dreamerlaw.work/mackvideo/test_video04.mp4',
+            img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
+        },
+        {
+            src: 'https://jf360videos.peopletech.cn/production/464f2fe20b1211ee83bef3d9bb3dfecd_1_video.mp4',
+            img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
+        },
+        {
+            src: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+            img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
+        },
+        {
+            src: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+            img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
+        },
+        {
+            src: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+            img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
+        },
+    ]
+
+```
+
 

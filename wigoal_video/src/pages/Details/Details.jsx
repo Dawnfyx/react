@@ -1428,7 +1428,7 @@ const Details = (props) => {
                             {
                                 pageData ? pageData.dramaList.length > 0 ? pageData.dramaList.length : '' : ''
                             }
-                            episodes
+                            &nbsp;episodes
                         </div>
                         <div className="play_num">
                             Views：
@@ -1459,7 +1459,7 @@ const Details = (props) => {
                     }
                 </div>
             </div>
-            <div className="episode_box" style={{bottom: episode ? '-33vh' : '0'}}>
+            <div className="episode_box" style={{bottom: episode ? '-36vh' : '0'}}>
                 <div className="episode_top_icon" onClick={() => switchEpisode()}>
                     {
                         episode
@@ -1467,7 +1467,8 @@ const Details = (props) => {
                             : <CaretDownOutlined/>
                     }
                 </div>
-                <div className="episode_content" style={{overflow: episode ? 'hidden' : 'auto'}}>
+                {/*<div className="episode_content" style={{overflow: episode ? 'hidden' : 'auto'}}>*/}
+                <div className="episode_content">
                     <div className="episodesList_box">
                         {
                             pageData

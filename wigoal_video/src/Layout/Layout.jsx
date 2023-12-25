@@ -14,9 +14,10 @@ const LayoutContainer = () => {
     const [storeContextData, setStoreContextData] = useState({
         testNum: 10,
         testItems: [],
-        setSlideTo: (ref, val)=>{
-            console.log(ref, val)
-        }
+        videoPlayKey: 0,
+        // setSlideTo: (ref, val)=>{
+        //     console.log(ref, val)
+        // }
     });
 
     return (

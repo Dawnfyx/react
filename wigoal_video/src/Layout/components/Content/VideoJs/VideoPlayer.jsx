@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
+import StoreContext from "../../../../store/StoreContext"
 
 import videojs from "video.js";
 import "video.js/dist/video-js.css";
@@ -8,14 +9,14 @@ const VideoPlayerContainer = (props) => {
         videoRef,
         playerRef,
         videoData,
-        videoDataKey,
         setSpinning,
-        setVideoDataKey,
         setIsShowPlayBtn,
         setProgressTimeCurrent,
         setProgressTimeDuration,
         msgVideoEnded,
     } = props;
+
+    const ctx = useContext(StoreContext);
 
     const videoOptions = {
         controls: false,
@@ -30,11 +31,11 @@ const VideoPlayerContainer = (props) => {
         fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
         sources: [
             {
-                src: videoData[videoDataKey].src,
+                src: videoData[ctx.videoPlayKey].src,
                 type: 'video/webm'
             }
         ],
-        poster: videoData[videoDataKey].img, // 你的封面地址
+        poster: videoData[ctx.videoPlayKey].img, // 你的封面地址
         width: document.documentElement.clientWidth,
         notSupportedMessage: '此视频暂无法播放，请稍后再试', // 允许覆盖Video.js无法播放媒体源时显示的默认信息。
         controlBar: {
@@ -52,7 +53,6 @@ const VideoPlayerContainer = (props) => {
         } else {
             msgVideoEnded(key + 1)
         }
-        setVideoDataKey(key);
     }
 
     useEffect(() => {
@@ -91,7 +91,8 @@ const VideoPlayerContainer = (props) => {
 
                 player.on('ended', function() {
                     console.log('player => ended')
-                    handleVideoEnded(videoDataKey)
+                    console.log(ctx.videoPlayKey, 'ended videoPlayKey 1')
+                    handleVideoEnded(ctx.videoPlayKey)
 
                     /**
                      * todo
@@ -129,69 +130,70 @@ const VideoPlayerContainer = (props) => {
         } else {
             console.log('111111111')
 
-            const player = playerRef.current;
-            player.playsinline(true);
-
-            player.on('progress', function() {
-                // console.log('player => progress')
-            });
-
-            player.on('play', function() {
-                console.log('player => play')
-                setIsShowPlayBtn(false);
-            });
-
-            player.on('canplay', function() {
-                console.log('player => canplay')
-                // console.log('视频总时长：', player.duration())
-                setProgressTimeDuration(player.duration())
-                setSpinning(false)
-                setTimeout(() => {
-                    player.play();
-                }, 20);
-            });
-
-            player.on('pause', function() {
-                console.log('player => pause')
-                setIsShowPlayBtn(true);
-            });
-
-            player.on('ended', function() {
-                console.log('player => ended')
-                handleVideoEnded(videoDataKey)
-
-                /**
-                 * todo
-                 * 锁在这里做
-                 *
-                 */
-                // debugger
-            });
-
-            player.on('error', function() {
-                console.log('player => error')
-            });
-
-            player.on('timeupdate', function() {
-                // console.log('player => timeupdate', player.currentTime())
-                setProgressTimeCurrent(player.currentTime())
-            });
-
-            player.on('fullscreenChange  ', function() {
-                if (player.isFullscreen()) {
-                    player.exitFullscreen();
-                }
-            });
-
-            player.on('usermedia', function() {
-                if (player.isFullscreen()) {
-                    player.exitFullscreen();
-                }
-            });
-
-            player.on('load', () => {
-                console.log('player => load')
-            });
+            // const player = playerRef.current;
+            // player.playsinline(true);
+            //
+            // player.on('progress', function() {
+            //     // console.log('player => progress')
+            // });
+            //
+            // player.on('play', function() {
+            //     console.log('player => play')
+            //     setIsShowPlayBtn(false);
+            // });
+            //
+            // player.on('canplay', function() {
+            //     console.log('player => canplay')
+            //     // console.log('视频总时长：', player.duration())
+            //     setProgressTimeDuration(player.duration())
+            //     setSpinning(false)
+            //     setTimeout(() => {
+            //         player.play();
+            //     }, 20);
+            // });
+            //
+            // player.on('pause', function() {
+            //     console.log('player => pause')
+            //     setIsShowPlayBtn(true);
+            // });
+            //
+            // player.on('ended', function() {
+            //     console.log('player => ended')
+            //     console.log(ctx.videoPlayKey, 'ended videoPlayKey 2')
+            //     handleVideoEnded(ctx.videoPlayKey)
+            //
+            //     /**
+            //      * todo
+            //      * 锁在这里做
+            //      *
+            //      */
+            //     // debugger
+            // });
+            //
+            // player.on('error', function() {
+            //     console.log('player => error')
+            // });
+            //
+            // player.on('timeupdate', function() {
+            //     // console.log('player => timeupdate', player.currentTime())
+            //     setProgressTimeCurrent(player.currentTime())
+            // });
+            //
+            // player.on('fullscreenChange  ', function() {
+            //     if (player.isFullscreen()) {
+            //         player.exitFullscreen();
+            //     }
+            // });
+            //
+            // player.on('usermedia', function() {
+            //     if (player.isFullscreen()) {
+            //         player.exitFullscreen();
+            //     }
+            // });
+            //
+            // player.on('load', () => {
+            //     console.log('player => load')
+            // });
 
         }
 
@@ -216,12 +218,12 @@ const VideoPlayerContainer = (props) => {
             // player.dispose();
         };
 
-    }, [videoRef, videoDataKey]);
+    }, [videoRef]);
 
     return (
         <div data-vjs-player>
             <video ref={videoRef}
-                   playsinline="playsinline"
+                   playsInline="playsinline"
                    className="play_videoJs video-js"
                    style={{
                        height: 'inherit',

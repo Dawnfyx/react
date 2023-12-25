@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { connect } from 'react-redux';
-import storeContext from "../../../../store/StoreContext";
+import StoreContext from "../../../../store/StoreContext";
 
 import {Drawer} from "antd"
 
 import "./Anthology.less"
 
 const Anthology = (props) =>{
-    const {drawerStatus, drawerSwitch, drawerSwitchSet, videoData, videoDataKey, AnthologyClick } = props;
+    const {drawerStatus, drawerSwitch, drawerSwitchSet, videoData, AnthologyClick } = props;
+
+    const ctx = useContext(StoreContext);
 
     const handleAnthologyClick = (key) =>{
         drawerSwitchSet(false);
@@ -30,7 +32,7 @@ const Anthology = (props) =>{
                         videoData.map((item, index) => (
                             <div key={index}
                                  onClick={() => handleAnthologyClick(index)}
-                                 className={index == videoDataKey ? 'episodesList_item active' : 'episodesList_item'}>
+                                 className={index == ctx.videoPlayKey ? 'episodesList_item active' : 'episodesList_item'}>
                                 {index +1 }
                             </div>
                         ))

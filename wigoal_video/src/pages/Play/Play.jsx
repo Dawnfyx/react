@@ -1,5 +1,6 @@
-import React, {useState, useEffect, useRef, useCallback} from 'react';
+import React, {useState, useEffect, useRef, useContext, useCallback} from 'react';
 import { useLocation } from 'react-router'
+import StoreContext from "../../store/StoreContext"
 
 import SwiperContainer from "../../Layout/components/Swiper/Swiper"
 import VideoPlayerContainer from "../../Layout/components/Content/VideoJs/VideoPlayer";
@@ -10,6 +11,8 @@ import './Play.less'
 const PlayPage = (props) => {
 
     const { search } = useLocation()
+
+    const ctx = useContext(StoreContext);
 
     const videoData = [
         {
@@ -196,20 +199,23 @@ const PlayPage = (props) => {
             src: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/46.mp4',
             img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
         },
+        // {
+        //     src: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+        //     img: 'https://res.net-goal.com/video/loves_promotion_from_boss_to_hubby/1.png',
+        // },
     ]
 
     const childRef = useRef();
     const videoRef = useRef();
     const playerRef = useRef();
     const [spinning, setSpinning] = useState(true);
-    const [videoDataKey, setVideoDataKey] = useState(0);
     const [isShowPlayBtn, setIsShowPlayBtn] = useState(true);
     const [progressTimeCurrent, setProgressTimeCurrent] = useState(0);
     const [progressTimeDuration, setProgressTimeDuration] = useState(0);
 
     const swiperSlideTo = (val) => {
-        setSpinning(true);
         if(!childRef.current) return;
+        setSpinning(true);
         childRef.current.slideTo(val);
     }
 
@@ -229,7 +235,7 @@ const PlayPage = (props) => {
         swiperSlideTo(key)
     }
     const videoPlayKey = (key) => {
-        setVideoDataKey(key)
+        ctx.videoPlayKey = key
         playerRef.current.src(videoData[key].src);
     }
     const videoPlay = () => {
@@ -246,7 +252,9 @@ const PlayPage = (props) => {
 
     return (
         <div className="play_box">
-
+            {/*<span style={{ color: 'white', position: 'absolute', zIndex: '999'}}>*/}
+            {/*    {'' + ctx.videoPlayKey}*/}
+            {/*</span>*/}
             <SwiperContainer
                 childRef={childRef}
                 videoData={videoData}
@@ -263,16 +271,14 @@ const PlayPage = (props) => {
                 videoRef={videoRef}
                 playerRef={playerRef}
                 videoData={videoData}
-                videoDataKey={videoDataKey}
                 setSpinning={setSpinning}
-                setVideoDataKey={setVideoDataKey}
                 setIsShowPlayBtn={setIsShowPlayBtn}
                 setProgressTimeCurrent={setProgressTimeCurrent}
                 setProgressTimeDuration={setProgressTimeDuration}
                 msgVideoEnded={videoPlayNext}
             >
             </VideoPlayerContainer>
-            <Anthology videoData={videoData} videoDataKey={videoDataKey} AnthologyClick={videoPlayNext}></Anthology>
+            <Anthology videoData={videoData} AnthologyClick={videoPlayNext}></Anthology>
         </div>
     )
 }
