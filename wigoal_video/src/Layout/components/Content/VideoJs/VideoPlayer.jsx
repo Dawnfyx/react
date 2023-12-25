@@ -219,6 +219,7 @@ const VideoPlayerContainer = (props) => {
     return (
         <div data-vjs-player>
             <video ref={videoRef}
+                   playsinline="playsinline"
                    className="play_videoJs video-js"
                    style={{
                        height: 'inherit',

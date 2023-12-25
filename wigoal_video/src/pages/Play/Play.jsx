@@ -209,6 +209,7 @@ const PlayPage = (props) => {
 
     const swiperSlideTo = (val) => {
         setSpinning(true);
+        if(!childRef.current) return;
         childRef.current.slideTo(val);
     }
 
