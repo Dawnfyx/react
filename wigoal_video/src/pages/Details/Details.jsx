@@ -1467,7 +1467,7 @@ const Details = (props) => {
                             : <CaretDownOutlined/>
                     }
                 </div>
-                <div className="episode_content">
+                <div className="episode_content" style={{overflow: episode ? 'hidden' : 'auto'}}>
                     <div className="episodesList_box">
                         {
                             pageData

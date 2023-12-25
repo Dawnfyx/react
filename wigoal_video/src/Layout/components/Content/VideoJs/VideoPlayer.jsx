@@ -63,6 +63,7 @@ const VideoPlayerContainer = (props) => {
                 console.log('player is ready')
 
                 const player = playerRef.current;
+                player.playsinline(true);
 
                 player.on('progress', function() {
                     // console.log('player => progress')
@@ -129,6 +130,7 @@ const VideoPlayerContainer = (props) => {
             console.log('111111111')
 
             const player = playerRef.current;
+            player.playsinline(true);
 
             player.on('progress', function() {
                 // console.log('player => progress')
