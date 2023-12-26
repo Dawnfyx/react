@@ -14,29 +14,29 @@ const { Sider } = Layout;
 
 const SiderContainer = (props) => {
 
-    const {collapsed, setCollapsed, ref} = props;
+    const {collapsed, setCollapsed, refMenu} = props;
 
     const [collapsedFlag, setCollapsedFlag] = useState(true);
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (ref.current) {
-            ref.current.addEventListener("mouseenter", (el)=>{
+        if (refMenu.current) {
+            refMenu.current.addEventListener("mouseenter", (el)=>{
                 // console.log('mouseenter', el)
                 setCollapsedFlag(false)
             });
-            ref.current.addEventListener("mouseleave", (el)=>{
+            refMenu.current.addEventListener("mouseleave", (el)=>{
                 // console.log('mouseleave', el)
                 setCollapsedFlag(true)
             });
         }
         return () => {
-            if (ref.current) {
-                ref.current.removeEventListener("mouseenter", (el)=>{
+            if (refMenu.current) {
+                refMenu.current.removeEventListener("mouseenter", (el)=>{
                     console.log('removeEventListener mouseenter', el)
                 });
-                ref.current.removeEventListener("mouseleave", (el)=>{
+                refMenu.current.removeEventListener("mouseleave", (el)=>{
                     console.log('removeEventListener mouseleave', el)
                 });
             }
@@ -49,7 +49,7 @@ const SiderContainer = (props) => {
             width={200}
             trigger={null}
             breakpoint="md"
-            ref={ref}
+            ref={refMenu}
             collapsible
             collapsedWidth={60}
             collapsed={collapsedFlag}
