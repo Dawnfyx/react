@@ -42,7 +42,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 - [ ] 锁 （选集的锁好了，还有播放的锁）
 - [ ] 登录
 - [x] 当前播放key
-- [ ] 进度条
+- [x] 进度条
 
 
 ```text
