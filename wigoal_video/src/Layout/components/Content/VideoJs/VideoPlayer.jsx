@@ -66,7 +66,7 @@ const VideoPlayerContainer = (props) => {
                 player.playsinline(true);
 
                 player.on('progress', function() {
-                    // console.log('player => progress')
+                    console.log('player => progress')
                 });
 
                 player.on('play', function() {
@@ -93,7 +93,6 @@ const VideoPlayerContainer = (props) => {
                     console.log('player => ended')
                     console.log(ctx.videoPlayKey, 'ended videoPlayKey 1')
                     handleVideoEnded(ctx.videoPlayKey)
-
                     /**
                      * todo
                      * 锁在这里做
