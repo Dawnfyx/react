@@ -133,7 +133,9 @@ const SwiperContainer = (props) => {
                         <swiper-slide key={index} class="swiper-slide">
 
                             <div className="play_top">
-                                <LeftOutlined onClick={() => handleReturnDetails()} />
+                                <span className="return_btn" onClick={() => handleReturnDetails()}>
+                                    <LeftOutlined />
+                                </span>
                                 {/*{*/}
                                 {/*    videoDetailsData*/}
                                 {/*        ?  <div className="play_title">*/}
