@@ -244,6 +244,10 @@ const PlayPage = (props) => {
     const videoPause = () => {
         playerRef.current.pause();
     }
+    const progressSlideChange = (value) => {
+        console.log(value, 'progressSlideChange', playerRef.current.currentTime());
+        playerRef.current.currentTime(value);
+    }
 
     /* 监听路由 */
     useEffect(() => {
@@ -262,6 +266,7 @@ const PlayPage = (props) => {
                 isShowPlayBtn={isShowPlayBtn}
                 progressTimeCurrent={progressTimeCurrent}
                 progressTimeDuration={progressTimeDuration}
+                msgProgressChange={progressSlideChange}
                 msgSwiperSlideEnd={swiperSlideEnd}
                 msgVideoPlay={videoPlay}
                 msgVideoPause={videoPause}

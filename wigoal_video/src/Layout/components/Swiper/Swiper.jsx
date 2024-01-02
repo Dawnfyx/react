@@ -29,12 +29,12 @@ const SwiperContainer = (props) => {
         msgSwiperSlideEnd,
         msgVideoPlay,
         msgVideoPause,
+        msgProgressChange,
     } = props;
 
     const swiperElRef = useRef(null);
     const [messageApi, contextHolder] = message.useMessage();
     const [isShowPlayImg, setIsShowPlayImg] = useState(false);
-    const [progressValue, setProgressValue] = useState(0);
 
     const setSlideTo = (val = 0) => {
         swiperElRef.current.swiper.slideTo(val, 100);
@@ -45,7 +45,7 @@ const SwiperContainer = (props) => {
     }
 
     const onProgressChange = (value) => {
-        // setProgressValue(value);
+        msgProgressChange(value)
     }
 
     const videoPause = (event) => {
