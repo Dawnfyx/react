@@ -10,6 +10,8 @@ import {Layout, Menu} from "antd";
 
 import MenuContainer from "./Menu";
 
+import './Sider.less'
+
 const { Sider } = Layout;
 
 const SiderContainer = (props) => {
