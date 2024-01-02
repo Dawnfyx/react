@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
-// import {Provider} from "react-redux";
+import {Provider} from "react-redux";
+import storeReduex from "./store/redux";
 
-// import store from "./store"
 import RouteConfig from "./router";
 
 import {ConfigProvider} from "antd";
@@ -89,11 +89,11 @@ function App() {
                 }
             }}
         >
-            {/*<Provider store={store}>*/}
+            <Provider store={storeReduex}>
                 <div className="App">
                     <RouteConfig></RouteConfig>
                 </div>
-            {/*</Provider>*/}
+            </Provider>
         </ConfigProvider>
     );
 }

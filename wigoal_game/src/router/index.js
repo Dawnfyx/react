@@ -7,6 +7,7 @@ import Home from "../pages/Home/Home";
 const Search = asyncComponent(() => import("../pages/Search/Search"));
 const Details = asyncComponent(() => import("../pages/Details/Details"));
 const Category = asyncComponent(() => import("../pages/Category/Category"));
+const Test = asyncComponent(() => import("../pages/Test/Test"));
 
 
 export default class RouteConfig extends Component{
@@ -20,6 +21,7 @@ export default class RouteConfig extends Component{
                         <Route path="page/search" element={<Search />} />
                         <Route path="page/details" element={<Details />} />
                         <Route path="page/category" element={<Category />} />
+                        <Route path="page/testtest" element={<Test />} />
                         {/*<Route path="*" element={<Navigate to="home" />} ></Route>*/}
                     </Route>
                 </Routes>
