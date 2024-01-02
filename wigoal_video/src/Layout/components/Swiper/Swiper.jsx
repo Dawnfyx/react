@@ -48,6 +48,15 @@ const SwiperContainer = (props) => {
         msgProgressChange(value)
     }
 
+    const sliderFormatter = (value) => {
+        return formatTime(value);
+    }
+
+    const onSliderBlur = (event) => {
+        // console.log(event, 'sliderFormatter')
+        debugger
+    }
+
     const videoPause = (event) => {
         msgVideoPause()
     }
@@ -182,6 +191,10 @@ const SwiperContainer = (props) => {
                                         onChange={onProgressChange}
                                         value={typeof progressTimeCurrent === 'number' ? progressTimeCurrent : 0}
                                         step={0.1}
+                                        tooltip={{
+                                            formatter: value => sliderFormatter(value),
+                                        }}
+                                        onBlur={onSliderBlur}
                                     />
 
                                     <div className="time time_e">
