@@ -10,6 +10,7 @@ import {
     HeartOutlined,
     ExclamationCircleOutlined,
     ShareAltOutlined,
+    VerticalAlignTopOutlined,
     TwitterOutlined,
     YoutubeOutlined,
     FacebookOutlined,
@@ -17,7 +18,7 @@ import {
     PlayCircleOutlined,
     CloudUploadOutlined,
 } from '@ant-design/icons';
-import {Row, Col, Image, Button, Space, Tag, Spin, Modal, message} from "antd";
+import {Row, Col, Image, Button, Space, Tag, Spin, Modal, message, FloatButton } from "antd";
 
 import {getDetailsdata, setUserData} from "../../api";
 
@@ -567,7 +568,13 @@ const DetailsPage = () => {
                         }
                     </Row>
                 </div>
-
+                <FloatButton.BackTop
+                    icon={<VerticalAlignTopOutlined />}
+                    type="primary"
+                    style={{
+                        right: 50,
+                    }}
+                />
             </div>
             <ShareContainer isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}></ShareContainer>
             {contextHolder}
