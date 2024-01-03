@@ -1,8 +1,9 @@
-export const USER_SET_USER_TOKEN = "USER_SET_USER_TOKEN";
-export const USER_SET_USER_INFO = "USER_SET_USER_INFO";
-export const USER_RESET_USER = "USER_RESET_USER";
+// login
+export const SET_LOGIN_INFO  = "SET_LOGIN_INFO";
 
-// app
-export const APP_TOGGLE_SIDEBAR = "APP_TOGGLE_SIDEBAR";
-export const APP_TOGGLE_SETTINGPANEL = "APP_TOGGLE_SETTINGPANEL";
+// user
+export const SET_USER_TOKEN  = "SET_USER_TOKEN";
+export const SET_USER_INFO   = "SET_USER_INFO";
+export const SET_USER_RESET  = "SET_USER_RESET";
+
 

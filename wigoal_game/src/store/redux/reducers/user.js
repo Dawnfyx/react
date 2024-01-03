@@ -1,4 +1,6 @@
 // userInfoReducer.js
+import * as types from "../action-types";
+
 const initState = {
     name: "",
     role: "",
@@ -9,12 +11,12 @@ const initState = {
 
 function userInfoReducer(state = initState, action) {
     switch (action.type) {
-        case 'SETTOKEN':
+        case types.SET_USER_TOKEN:
             return {
                 ...state,
                 token: action.token,
             };
-        case 'SET':
+        case types.SET_USER_INFO:
             return {
                 ...state,
                 name: action.name,

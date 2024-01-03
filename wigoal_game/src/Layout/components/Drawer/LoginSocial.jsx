@@ -1,4 +1,5 @@
 import React, {useState, useRef, useEffect, useCallback} from 'react';
+import { connect } from 'react-redux';
 import {Link, useNavigate} from "react-router-dom";
 
 import {
@@ -36,7 +37,7 @@ const REACT_APP_TWITTER_API_SECRET = "sisWhqLOhrs43sRIbKESazRW872sDXWuPC8XuaPVbo
 
 const LoginSocialContainer = (props) => {
 
-    const {onClose} = props;
+    const {onClose, getLoginInfo, setLoginInfo} = props;
 
     const [messageApi, contextHolder] = message.useMessage();
 
@@ -86,6 +87,30 @@ const LoginSocialContainer = (props) => {
             onClose()
             navigate('')
         }, 800);
+    }
+
+    const handleResolve2 = (provider, data) => {
+        const random12DigitNumber = Math.floor(100000000000 + Math.random() * 900000000000);
+        function generateRandomName() {
+            var adjectives = ["Happy", "Sunny", "Brave", "Clever", "Gentle", "Kind"];
+
+            var randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
+            var random6DigitNumber =  Math.floor(100000 + Math.random() * 900000);
+
+            return randomAdjective + random6DigitNumber;
+        }
+
+        var randomName = generateRandomName();
+        let temp = {
+            "provider": "facebook",
+            "data": {
+                "userID": random12DigitNumber,
+                "id": random12DigitNumber,
+                "name": randomName,
+            }
+        }
+        console.log(getLoginInfo, 'getLoginInfo')
+        setLoginInfo(temp)
     }
 
     const handleRegister = () => {
@@ -141,6 +166,18 @@ const LoginSocialContainer = (props) => {
 
     return (
         <div className="login_social_box">
+
+            <Button type="primary" shape="round" icon={<TwitterOutlined/>}
+                    style={{
+                        backgroundColor: '#3374dc',
+                    }}
+                    onClick={() => handleResolve2()}
+            >test btn</Button>
+            <br/>
+            {
+                JSON.stringify(getLoginInfo)
+            }
+            <br/>
 
             <LoginSocialFacebook
                 className="btn btn_facebook"
@@ -232,4 +269,19 @@ const LoginSocialContainer = (props) => {
     )
 }
 
-export default LoginSocialContainer;
+const mapStateToProps = (state) => {
+    return {
+        getLoginInfo: state.login.loginInfo,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setLoginInfo: (value) => dispatch({ type: 'SET_LOGIN_INFO',value: value}),
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginSocialContainer);
+
+
+

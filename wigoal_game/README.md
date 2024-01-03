@@ -12,12 +12,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 
 ## 开发目标
-- [ ] 左侧滑动效果
-- [ ] 响应式滑动效果
-- [ ] redux context 全局通讯
+- [x] 左侧滑动效果
+- [x] redux context 全局通讯 
 - [ ] google facebook 登录 现在差个facebook
 - [ ] back to game (回到顶部)
 - [ ] details 页面的广告位
+- [ ] 响应式滑动效果
 
 
 ## Learn More
