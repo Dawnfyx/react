@@ -239,10 +239,24 @@ const PlayPage = (props) => {
         playerRef.current.src(videoData[key].src);
     }
     const videoPlay = () => {
-        playerRef.current.play();
+        // playerRef.current.play();
+
+        // https://developer.chrome.com/blog/play-request-was-interrupted?hl=zh-cn
+        let playPromise = playerRef.current.play();
+        if (playPromise !== undefined) {
+            playPromise.then(_ => {
+                playerRef.current.play();
+            }).catch(error => {
+                console.log('playPromise error:', error)
+                playerRef.current.pause();
+            });
+        }
     }
     const videoPause = () => {
         playerRef.current.pause();
+    }
+    const progressSlideChange = (value) => {
+        playerRef.current.currentTime(value);
     }
 
     /* 监听路由 */
@@ -262,6 +276,7 @@ const PlayPage = (props) => {
                 isShowPlayBtn={isShowPlayBtn}
                 progressTimeCurrent={progressTimeCurrent}
                 progressTimeDuration={progressTimeDuration}
+                msgProgressChange={progressSlideChange}
                 msgSwiperSlideEnd={swiperSlideEnd}
                 msgVideoPlay={videoPlay}
                 msgVideoPause={videoPause}

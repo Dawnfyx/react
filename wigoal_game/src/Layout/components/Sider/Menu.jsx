@@ -17,7 +17,6 @@ import {Input, Menu, Space} from 'antd';
 
 import AboutContainer from "../About/About";
 
-import "./Menu.less"
 import {getHomedata} from "../../../api";
 
 const { Search } = Input;
@@ -112,11 +111,7 @@ const MenuContainer = (props) => {
                 defaultSelectedKeys={['']}
                 items={menuItems}
             />
-            {
-                collapsedFlag
-                    ? ''
-                    : <AboutContainer></AboutContainer>
-            }
+            <AboutContainer collapsedFlag={collapsedFlag}></AboutContainer>
         </div>
     )
 };

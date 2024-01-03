@@ -94,6 +94,8 @@ theme={{
 }}
 ```
 
+
+##  事件
 ```text
 swiper.js 事件：
 -  activeIndexChange ：当活动索引改变时触发。 
@@ -159,6 +161,7 @@ element 包很多事件没有！！！！！ 艹
 
 ```
 
+
 ```text
 video.js 事件：
 - loadstart : 当视频开始加载时触发。
@@ -206,7 +209,6 @@ video.js 事件：
 
 ### 测试数据
 ```javascript
-
 const videoData = [
         {
             src: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
@@ -249,7 +251,37 @@ const videoData = [
             img: 'https://img.elec.top/upload/7f810df4-1bab-4031-9aa6-02436898dc85.jpg',
         },
     ]
-
 ```
 
+
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 

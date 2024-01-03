@@ -66,7 +66,7 @@ const VideoPlayerContainer = (props) => {
                 player.playsinline(true);
 
                 player.on('progress', function() {
-                    // console.log('player => progress')
+                    console.log('player => progress')
                 });
 
                 player.on('play', function() {
@@ -79,9 +79,20 @@ const VideoPlayerContainer = (props) => {
                     // console.log('视频总时长：', player.duration())
                     setProgressTimeDuration(player.duration())
                     setSpinning(false)
-                    setTimeout(() => {
-                        player.play();
-                    }, 20);
+                    // setTimeout(() => {
+                    //     player.play();
+                    // }, 20);
+
+                    // https://developer.chrome.com/blog/play-request-was-interrupted?hl=zh-cn
+                    let playPromise = player.play();
+                    if (playPromise !== undefined) {
+                        playPromise.then(_ => {
+                            player.play();
+                        }).catch(error => {
+                            console.log('playPromise error:', error)
+                            player.pause();
+                        });
+                    }
                 });
 
                 player.on('pause', function() {
@@ -93,7 +104,6 @@ const VideoPlayerContainer = (props) => {
                     console.log('player => ended')
                     console.log(ctx.videoPlayKey, 'ended videoPlayKey 1')
                     handleVideoEnded(ctx.videoPlayKey)
-
                     /**
                      * todo
                      * 锁在这里做
@@ -125,6 +135,10 @@ const VideoPlayerContainer = (props) => {
 
                 player.on('load', () => {
                     console.log('player => load')
+                });
+
+                player.on('error', (err) => {
+                    console.log('player => error', err)
                 });
             });
         } else {

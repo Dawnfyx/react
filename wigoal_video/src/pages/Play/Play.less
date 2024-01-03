@@ -5,7 +5,7 @@
   background-color: #0C0D14;
 
   .play_top{
-    position: fixed;
+    position: absolute;
     left: 3vw;
     right: 3vw;
     top: 10px;
@@ -15,6 +15,9 @@
     align-items: center;
     justify-content: space-between;
 
+    .return_btn{
+      padding: 10px;
+    }
     .play_title{
       background-color: rgba(255, 255, 255, 0.25);
       border-radius: 5px;
@@ -47,6 +50,7 @@
     transform: translateZ(0);
     -webkit-user-select: none;
     user-select: none;
+    //display: none;
 
     .swiper {
       width: 100%;
@@ -136,6 +140,13 @@
       background-color: hsla(0, 0%, 100%, .1);
       border-radius: 6vw;
       color: #ffffff;
+    }
+
+    .ant-slider .ant-slider-track{
+      background-color: #6842ff;
+    }
+    .ant-slider .ant-slider-handle::after {
+      box-shadow: 0 0 0 2px #6842ff;
     }
   }
 }

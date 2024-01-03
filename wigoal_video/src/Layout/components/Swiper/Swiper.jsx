@@ -29,12 +29,12 @@ const SwiperContainer = (props) => {
         msgSwiperSlideEnd,
         msgVideoPlay,
         msgVideoPause,
+        msgProgressChange,
     } = props;
 
     const swiperElRef = useRef(null);
     const [messageApi, contextHolder] = message.useMessage();
     const [isShowPlayImg, setIsShowPlayImg] = useState(false);
-    const [progressValue, setProgressValue] = useState(0);
 
     const setSlideTo = (val = 0) => {
         swiperElRef.current.swiper.slideTo(val, 100);
@@ -45,7 +45,16 @@ const SwiperContainer = (props) => {
     }
 
     const onProgressChange = (value) => {
-        // setProgressValue(value);
+        msgProgressChange(value)
+    }
+
+    const sliderFormatter = (value) => {
+        return formatTime(value);
+    }
+
+    const onSliderBlur = (event) => {
+        // console.log(event, 'sliderFormatter')
+        debugger
     }
 
     const videoPause = (event) => {
@@ -133,7 +142,9 @@ const SwiperContainer = (props) => {
                         <swiper-slide key={index} class="swiper-slide">
 
                             <div className="play_top">
-                                <LeftOutlined onClick={() => handleReturnDetails()} />
+                                <span className="return_btn" onClick={() => handleReturnDetails()}>
+                                    <LeftOutlined />
+                                </span>
                                 {/*{*/}
                                 {/*    videoDetailsData*/}
                                 {/*        ?  <div className="play_title">*/}
@@ -180,6 +191,10 @@ const SwiperContainer = (props) => {
                                         onChange={onProgressChange}
                                         value={typeof progressTimeCurrent === 'number' ? progressTimeCurrent : 0}
                                         step={0.1}
+                                        tooltip={{
+                                            formatter: value => sliderFormatter(value),
+                                        }}
+                                        onBlur={onSliderBlur}
                                     />
 
                                     <div className="time time_e">

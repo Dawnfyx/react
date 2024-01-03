@@ -4,6 +4,8 @@ import './About.less'
 
 const AboutContainer = (props) =>{
 
+    const { collapsedFlag = false } = props;
+
     const HandleHostName = () => {
         let pageHost = window.location.host.split('.');
         let len = pageHost.length;
@@ -43,10 +45,13 @@ const AboutContainer = (props) =>{
         //     <span className="preferences-link">Do not sell my data</span>
         //     <div className="preferences-link">© 2023 H5&nbsp;Games</div>
         // </div>
-        <div className='about_box'>
+        <div className='about_box' style={{
+            display: collapsedFlag ? 'none' : 'block',
+            width: collapsedFlag ? '100%' : '200px',
+        }}>
             <span className="preferences-link">@2023 {HandleHostName()} </span>
             <span className="preferences-link">All Rights Reserved</span>
-            <a href="/policy.html">Privacy Policy</a>
+            <a href="/policy.html">Privacy Policy</a> <br/>
             <a href="/useragreement.html">Terms of Service</a>
             <span className="preferences-link">Contact us at : </span>
             <span className="preferences-link">h5service@{HandleHostName()}</span>
