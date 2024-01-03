@@ -20,7 +20,7 @@ const SiderMobileContainer = (props) => {
 
     return (
         <Sider
-            className={collapsed ? "container_sider left-visibility" : "container_sider"}
+            className={collapsed ? "container_sider left_visibility" : "container_sider"}
             width={200}
             trigger={null}
             breakpoint="md"
