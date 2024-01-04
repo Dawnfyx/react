@@ -7,6 +7,8 @@ import {Col, Row, Spin} from 'antd';
 import {getHomedata} from '../../api';
 
 import GameCarousel from "../../Layout/components/Content/GameCarousel/GameCarousel";
+import GameCarouselSwiper from "../../Layout/components/Content/GameCarousel/GameCarouselSwiper";
+import GameCarouselNew from "../../Layout/components/Content/GameCarousel/GameCarouselNew";
 import GameThumbBox from "../../Layout/components/Content/GameThumbBox/GameThumbBox";
 
 import './Home.less'
@@ -107,6 +109,10 @@ const HomePage = () => {
                     {/*<a className="carousel_title_link" href="">View more</a>*/}
                 </div>
                 <GameCarousel viewData={gameslist}></GameCarousel>
+                ======
+                <GameCarouselSwiper viewData={gameslist}></GameCarouselSwiper>
+                ======
+                <GameCarouselNew viewData={gameslist}></GameCarouselNew>
             </div>
 
         </div>
