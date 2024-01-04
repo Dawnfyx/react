@@ -21,6 +21,24 @@ const GameCarousel = (props) => {
 
     const { viewData } = props;
 
+    const handleViewData = (num) => {
+        let temp = [];
+        let spiltIndex = 0;
+        for (let i = 0; i < viewData.length; i++) {
+            if (i % num == 0) {
+                temp.push(viewData[i]);
+            } else {
+                if (i % num == 1) {
+                    spiltIndex += 2;
+                    temp.push([viewData[i]]);
+                } else {
+                    temp[spiltIndex-1].push(viewData[i]);
+                }
+            }
+        }
+        return temp
+    }
+
     return (
         <>
 
@@ -57,34 +75,25 @@ const GameCarousel = (props) => {
                 className="mySwiper"
             >
                 {
-                    viewData.map((item, key) => (
-                        key%5 == 0
-                            ? <SwiperSlide key={key}>
-                                <Link className="swiper-slide-link" to={"/page/details?gid=" + item.gid}>
-                                    <img width="100%" height="100%" src={'http://test.ads-goal.com' + item.icon} />
+                    handleViewData(5).map((items, keys) => (
+                        keys%2 == 0
+                            ? <SwiperSlide key={keys}>
+                                <Link className="swiper-slide-link" to={"/page/details?gid=" + items.gid}>
+                                    <img width="100%" height="100%" src={'http://test.ads-goal.com' + items.icon} />
                                 </Link>
                             </SwiperSlide>
-                            : ''
-                    ))
-                }
-                {
-                    viewData.map((item, key) => (
-                        key%5 !== 0
-                            ? <SwiperSlide key={key}>
-                                <Link className="swiper-slide-link" to={"/page/details?gid=" + item.gid}>
-                                    <img width="100%" height="100%" src={'http://test.ads-goal.com' + item.icon} />
-                                </Link>
-                                <Link className="swiper-slide-link" to={"/page/details?gid=" + item.gid}>
-                                    <img width="100%" height="100%" src={'http://test.ads-goal.com' + item.icon} />
-                                </Link>
-                                <Link className="swiper-slide-link" to={"/page/details?gid=" + item.gid}>
-                                    <img width="100%" height="100%" src={'http://test.ads-goal.com' + item.icon} />
-                                </Link>
-                                <Link className="swiper-slide-link" to={"/page/details?gid=" + item.gid}>
-                                    <img width="100%" height="100%" src={'http://test.ads-goal.com' + item.icon} />
-                                </Link>
+                            : <SwiperSlide key={keys}>
+                                <div className="swiper-collection">
+                                    {
+                                        items.map((item, key) => (
+                                            <Link key={key} className="swiper-slide-link" to={"/page/details?gid=" + item.gid}>
+                                                <img width="100%" height="100%" src={'http://test.ads-goal.com' + item.icon} />
+                                            </Link>
+                                        ))
+                                    }
+                            </div>
                             </SwiperSlide>
-                            : ''
+
                     ))
                 }
             </Swiper>

@@ -18,6 +18,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 - [x] back to game (回到顶部)
 - [ ] details 页面的广告位
 - [ ] 响应式滑动效果
+- [x] banner效果
+- [ ] swiper btn
 
 
 ## Learn More
