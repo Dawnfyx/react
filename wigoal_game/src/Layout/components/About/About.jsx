@@ -11,6 +11,7 @@ const AboutContainer = (props) =>{
         let len = pageHost.length;
         return pageHost[len - 2] + '.' + pageHost[len - 1];
     }
+    const year = new Date().getFullYear();
 
     return (
         // <div className="about_box">
@@ -49,7 +50,7 @@ const AboutContainer = (props) =>{
             display: collapsedFlag ? 'none' : 'block',
             width: collapsedFlag ? '100%' : '200px',
         }}>
-            <span className="preferences-link">@2023 {HandleHostName()} </span>
+            <span className="preferences-link">©{year} {HandleHostName()} </span>
             <span className="preferences-link">All Rights Reserved</span>
             <a href="/policy.html">Privacy Policy</a> <br/>
             <a href="/useragreement.html">Terms of Service</a>
