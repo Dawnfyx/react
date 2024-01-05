@@ -17,9 +17,26 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 - [ ] google facebook 登录 现在差个facebook
 - [x] back to game (回到顶部)
 - [ ] details 页面的广告位
+- [x] swiper banner 效果
+- [x] swiper btn 效果
 - [ ] 响应式滑动效果
-- [x] banner效果
-- [ ] swiper btn
+
+
+## 响应式 break point
+[antd layout](https://ant-design.antgroup.com/components/layout-cn)
+
+```text
+
+breakpoint width
+
+xs: '480px',
+sm: '576px',
+md: '768px',
+lg: '992px',
+xl: '1200px',
+xxl: '1600px',
+
+```
 
 
 ## Learn More

@@ -14,8 +14,8 @@ import 'swiper/css/navigation';
 
 
 import './GameCarousel.less'
-import {Col, Row} from "antd";
 import GameThumbBox from "../GameThumbBox/GameThumbBox";
+import * as swiper_config from "./swiper-breakpoint";
 
 const GameCarousel = (props) => {
 
@@ -35,24 +35,7 @@ const GameCarousel = (props) => {
                 }}
                 scrollbar={true}
                 navigation={true}
-                breakpoints={{
-                    320: {
-                        slidesPerView: 2,
-                        spaceBetween: 10,
-                    },
-                    576: {
-                        slidesPerView: 4,
-                        spaceBetween: 10,
-                    },
-                    768: {
-                        slidesPerView: 6,
-                        spaceBetween: 10,
-                    },
-                    1024: {
-                        slidesPerView: 8,
-                        spaceBetween: 10,
-                    }
-                }}
+                breakpoints={swiper_config.BREAK_POINTS}
                 modules={[Keyboard, Scrollbar, Navigation]}
                 className="mySwiper"
             >

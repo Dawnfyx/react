@@ -4,6 +4,7 @@
 
   .swiper-button-prev,
   .swiper-button-next{
+    visibility: hidden;
     color: #0C0D14;
     opacity: 0.8;
 
@@ -16,11 +17,22 @@
 
     }
   }
+  &:hover .swiper-button-prev,
+  &:hover .swiper-button-next{
+    visibility: visible;
+  }
+
   .swiper-slide-link{
     border-radius: 10px;
     overflow: hidden;
     width: 100%;
   }
+  .swiper-button-prev:after,
+  .swiper-button-next:after{
+    color: #ffffff;
+    transform: scale(0.7);
+  }
+
   .swiper-collection{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -39,10 +51,7 @@
     top: calc(var(--swiper-navigation-size)/2);
     right: 0;
   }
-  .swiper-button-prev:after,
-  .swiper-rtl .swiper-button-next:after{
-    color: #ffffff;
-  }
+
 }
 
 .swiper-slide {
