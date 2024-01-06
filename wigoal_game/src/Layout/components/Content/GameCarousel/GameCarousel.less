@@ -26,6 +26,52 @@
     border-radius: 10px;
     overflow: hidden;
     width: 100%;
+
+    .hoveredContainer{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+
+      & > svg {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        z-index: 1;
+      }
+    }
+    .buttonContainer{
+      width: 100%;
+      height: 100%;
+
+      img{
+        filter: blur(15px);
+        //filter: invert(100%);
+        //filter: brightness(100%);
+        //filter: contrast(100%);
+        //filter: saturate(100%);
+        //filter: hue-rotate(180deg);
+        //filter: drop-shadow(5px 5px 5px black);
+      }
+      span{
+
+      }
+      .MuiButton-root{
+
+      }
+    }
+    .hoverContainer{
+      position: absolute;
+      top: 15%;
+      left: 50%;
+      z-index: 2;
+      width: 45%;
+      transform: translate(-50%, 0%);
+      border-radius: 10px;
+      overflow: hidden;
+    }
   }
   .swiper-button-prev:after,
   .swiper-button-next:after{
