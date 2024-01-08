@@ -61,20 +61,22 @@ const GameCarousel = (props) => {
                     handleViewData(5).map((items, keys) => (
                         keys%2 == 0
                             ? <SwiperSlide key={keys}>
-                                <Link className="swiper-slide-link" to={"/page/details?gid=" + items.gid}>
-                                    <img width="100%" height="100%" src={'http://test.ads-goal.com' + items.icon} />
-                                </Link>
+                                {/*<Link className="swiper-slide-link" to={"/page/details?gid=" + items.gid}>*/}
+                                {/*    <img width="100%" height="100%" src={'http://test.ads-goal.com' + items.icon} />*/}
+                                {/*</Link>*/}
+                                <GameThumbBox link={"/page/details?gid=" + items.gid} url={process.env.REACT_APP_BASEURL + items.icon} name={items.name}></GameThumbBox>
                             </SwiperSlide>
                             : <SwiperSlide key={keys}>
                                 <div className="swiper-collection">
                                     {
                                         items.map((item, key) => (
-                                            <Link key={key} className="swiper-slide-link" to={"/page/details?gid=" + item.gid}>
-                                                <img width="100%" height="100%" src={'http://test.ads-goal.com' + item.icon} />
-                                            </Link>
+                                            // <Link key={key} className="swiper-slide-link" to={"/page/details?gid=" + item.gid}>
+                                            //     <img width="100%" height="100%" src={'http://test.ads-goal.com' + item.icon} />
+                                            // </Link>
+                                            <GameThumbBox key={key} link={"/page/details?gid=" + item.gid} url={process.env.REACT_APP_BASEURL + item.icon} name={item.name}></GameThumbBox>
                                         ))
                                     }
-                            </div>
+                                </div>
                             </SwiperSlide>
 
                     ))

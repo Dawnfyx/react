@@ -42,9 +42,10 @@ const GameCarousel = (props) => {
                 {
                     viewData.map((item, key) => (
                         <SwiperSlide key={key}>
-                            <Link className="swiper-slide-link" to={"/page/details?gid=" + item.gid}>
-                                <img width="100%" height="100%" src={'http://test.ads-goal.com' + item.icon} />
-                            </Link>
+                            {/*<Link className="swiper-slide-link" to={"/page/details?gid=" + item.gid}>*/}
+                            {/*    <img width="100%" height="100%" src={'http://test.ads-goal.com' + item.icon} />*/}
+                            {/*</Link>*/}
+                            <GameThumbBox link={"/page/details?gid=" + item.gid} url={process.env.REACT_APP_BASEURL + item.icon} name={item.name}></GameThumbBox>
                         </SwiperSlide>
                     ))
                 }
