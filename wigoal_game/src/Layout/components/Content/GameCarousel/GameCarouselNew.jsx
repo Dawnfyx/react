@@ -54,6 +54,9 @@ const GameCarousel = (props) => {
         }
 
     }
+    const handleToDetails = (link) => {
+        window.location = window.location.origin + link;
+    }
 
     return (
         <>
@@ -84,7 +87,7 @@ const GameCarousel = (props) => {
                                 <img width="100%" height="100%" src={'http://test.ads-goal.com' + items.icon}  />
 
                                 <div style={{
-                                    display: 'none'
+                                    display: 'block'
                                 }}>
                                     <div className="hoveredContainer">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 251 150" fill="none"
@@ -98,7 +101,7 @@ const GameCarousel = (props) => {
                                         <div className="buttonContainer">
                                             <img className="buttonContainer_img" src={'http://test.ads-goal.com' + items.icon} alt={items.name} />
                                             <span>{items.name}</span>
-                                            <button className="MuiButton-root" type="button">Play</button>
+                                            <button className="MuiButton-root" type="button" onClick={(event) => handleToDetails("/page/details?gid=" + items.gid)}>Play</button>
                                         </div>
                                     </div>
 
