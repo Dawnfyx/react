@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import './Test.less';
+
 const DetailsPage = (props) => {
     const { userInfo, } = props;
 
@@ -8,9 +10,12 @@ const DetailsPage = (props) => {
 
     return (
         <div>
-            i am test page
-            <br/>
-            { JSON.stringify(userInfo) }
+            <div className="testgrid">
+                <div className="info_align"> info_align</div>
+                <div className="info_container"> info_container</div>
+                <div className="info_recommend"> info_recommend</div>
+                <div className="info_banner"> info_banner</div>
+            </div>
         </div>
     )
 }

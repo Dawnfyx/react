@@ -41,7 +41,7 @@ export const getCatedata = (para) => request.get("/api/category" + para); // ?ty
 export const getSearchdata = (para) => request.get("/api/search" + para + "&recommend=12");  // ?words=
 
 // 获取详情页
-export const getDetailsdata = (para) => request.get("/api/details" + para + "&recommend=12"); // ?gid=
+export const getDetailsdata = (para, recom) => request.get("/api/details" + para + "&recommend=" + recom); // ?gid=
 
 /**
  * {

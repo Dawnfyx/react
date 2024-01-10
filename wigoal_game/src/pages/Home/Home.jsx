@@ -9,6 +9,8 @@ import {getHomedata} from '../../api';
 import GameCarousel from "../../Layout/components/Content/GameCarousel/GameCarousel";
 import GameCarouselSwiper from "../../Layout/components/Content/GameCarousel/GameCarouselSwiper";
 import GameCarouselSwiper2 from "../../Layout/components/Content/GameCarousel/GameCarouselSwiper2";
+import GameCarouselSwiper3 from "../../Layout/components/Content/GameCarousel/GameCarouselSwiper3";
+import GameCarouselAlign from "../../Layout/components/Content/GameCarousel/GameCarouselAlign";
 import GameCarouselNew from "../../Layout/components/Content/GameCarousel/GameCarouselNew";
 import GameThumbBox from "../../Layout/components/Content/GameThumbBox/GameThumbBox";
 
@@ -114,6 +116,10 @@ const HomePage = () => {
                 <GameCarouselSwiper viewData={gameslist}></GameCarouselSwiper>
                 ======
                 <GameCarouselSwiper2 viewData={gameslist}></GameCarouselSwiper2>
+                ======
+                <GameCarouselSwiper3 viewData={gameslist}></GameCarouselSwiper3>
+                ======
+                <GameCarouselAlign viewData={gameslist}></GameCarouselAlign>
                 ======
                 <GameCarouselNew viewData={gameslist}></GameCarouselNew>
             </div>

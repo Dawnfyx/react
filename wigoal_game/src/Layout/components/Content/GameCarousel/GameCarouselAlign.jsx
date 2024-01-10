@@ -22,7 +22,7 @@ const GameCarousel = (props) => {
     const { viewData } = props;
 
     return (
-        <>
+        <div className="carousel_align">
             <Row gutter={[10, 12]} justify={"start"} style={{ width: "180px"}}>
                 {
                     viewData.map((item, index) => (
@@ -33,7 +33,7 @@ const GameCarousel = (props) => {
                 }
             </Row>
 
-        </>
+        </div>
     );
 };
 

@@ -1,0 +1,10 @@
+首页数据
+/api/home.json?template=6
+
+详情页数据
+/api/details?gid=10072&recommend=8
+
+搜索页数据
+/api/search?words=world&recommend=6&result=4
+
+tingo.fun
