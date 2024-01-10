@@ -43,6 +43,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 - [ ] 登录
 - [x] 当前播放key
 - [x] 进度条
+- [ ] 媒体流的使用
 
 
 ```text
