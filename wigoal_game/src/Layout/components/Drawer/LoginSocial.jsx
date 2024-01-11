@@ -167,17 +167,17 @@ const LoginSocialContainer = (props) => {
     return (
         <div className="login_social_box">
 
-            <Button type="primary" shape="round" icon={<TwitterOutlined/>}
-                    style={{
-                        backgroundColor: '#3374dc',
-                    }}
-                    onClick={() => handleResolve2()}
-            >test btn</Button>
-            <br/>
-            {
-                JSON.stringify(getLoginInfo)
-            }
-            <br/>
+            {/*<Button type="primary" shape="round" icon={<TwitterOutlined/>}*/}
+            {/*        style={{*/}
+            {/*            backgroundColor: '#3374dc',*/}
+            {/*        }}*/}
+            {/*        onClick={() => handleResolve2()}*/}
+            {/*>test btn</Button>*/}
+            {/*<br/>*/}
+            {/*{*/}
+            {/*    JSON.stringify(getLoginInfo)*/}
+            {/*}*/}
+            {/*<br/>*/}
 
             <LoginSocialFacebook
                 className="btn btn_facebook"
@@ -196,6 +196,7 @@ const LoginSocialContainer = (props) => {
                 <Button type="primary" shape="round" icon={<FacebookOutlined />}
                     style={{
                         backgroundColor: '#3374dc',
+                        display: 'none'
                     }}
                 >Continue with Facebook</Button>
             </LoginSocialFacebook>
