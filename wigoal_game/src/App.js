@@ -34,7 +34,7 @@ function App() {
         }
         window.localStorage.setItem("userInfo", JSON.stringify(temp));
     }
-    // handleUserInfo();
+    handleUserInfo();
 
     useEffect(() => {
         MobileOrTabletLog();
