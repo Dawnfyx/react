@@ -65,7 +65,7 @@ const GameThumbBox2 = (props) => {
             {
                 viewTags(tags)
             }
-            <Link className="game_thumb_box" to={link}>
+            <Link className="game_thumb_box2" to={link}>
                 {/*<Card*/}
                 {/*    loading={loading}*/}
                 {/*    hoverable*/}

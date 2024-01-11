@@ -3,14 +3,13 @@ import {useNavigate} from 'react-router-dom';
 
 import {
     HomeOutlined,
-    UploadOutlined,
-    UserOutlined,
-    VideoCameraOutlined,
-    TrophyOutlined,
     ThunderboltOutlined,
-    InstagramOutlined,
     SketchOutlined,
-    BlockOutlined,
+    CrownOutlined,
+    CoffeeOutlined,
+    CalculatorOutlined,
+    TrophyOutlined,
+    SmileOutlined,
 } from "@ant-design/icons";
 import {Input, Menu, Space} from 'antd';
 
@@ -41,12 +40,12 @@ const MenuContainer = (props) => {
     // }
     const SiderPageData = async () => {
         let Menuicon = [
-            <BlockOutlined  key='BlockOutlined'/>,
-            <UserOutlined key='UserOutlined' />,
-            <VideoCameraOutlined key='VideoCameraOutlined' />,
+            <CalculatorOutlined key='CalculatorOutlined'/>,
+            <SmileOutlined key='SmileOutlined' />,
+            <TrophyOutlined key='TrophyOutlined' />,
             <SketchOutlined  key='SketchOutlined'/>,
-            <InstagramOutlined  key='InstagramOutlined'/>,
-            <UploadOutlined  key='UploadOutlined'/>,
+            <CoffeeOutlined  key='CoffeeOutlined'/>,
+            <CrownOutlined  key='CrownOutlined'/>,
             <TrophyOutlined  key='TrophyOutlined'/>,
             <ThunderboltOutlined  key='ThunderboltOutlined'/>];
         let temp = [{

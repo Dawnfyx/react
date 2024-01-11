@@ -87,7 +87,7 @@ const GameCarousel = (props) => {
                                 <img width="100%" height="100%" src={'http://test.ads-goal.com' + items.icon}  />
 
                                 <div style={{
-                                    display: 'block'
+                                    display: 'none'
                                 }}>
                                     <div className="hoveredContainer">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 251 150" fill="none"

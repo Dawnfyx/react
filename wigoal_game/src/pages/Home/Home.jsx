@@ -119,9 +119,9 @@ const HomePage = () => {
                 ======
                 <GameCarouselSwiper3 viewData={gameslist}></GameCarouselSwiper3>
                 ======
-                <GameCarouselAlign viewData={gameslist}></GameCarouselAlign>
+                {/*<GameCarouselAlign viewData={gameslist}></GameCarouselAlign>*/}
                 ======
-                <GameCarouselNew viewData={gameslist}></GameCarouselNew>
+                {/*<GameCarouselNew viewData={gameslist}></GameCarouselNew>*/}
             </div>
 
         </div>

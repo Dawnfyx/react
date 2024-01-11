@@ -15,7 +15,7 @@ const GameThumbBox = (props) => {
             case 1 :
                 return <svg style={{
                             position: 'absolute',
-                            zIndex: '4',
+                            zIndex: '11',
                             left: '2px',
                             top: '-4px',
                             opacity: 1,
@@ -29,7 +29,7 @@ const GameThumbBox = (props) => {
             case 2 :
                 return <svg style={{
                             position: 'absolute',
-                            zIndex: '4',
+                            zIndex: '11',
                             left: '2px',
                             top: '-4px',
                             opacity: 1,
@@ -43,7 +43,7 @@ const GameThumbBox = (props) => {
             case 3 :
                 return <svg style={{
                             position: 'absolute',
-                            zIndex: '4',
+                            zIndex: '11',
                             left: '2px',
                             top: '-4px',
                             opacity: 1,

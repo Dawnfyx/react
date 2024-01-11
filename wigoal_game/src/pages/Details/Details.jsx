@@ -8,9 +8,9 @@ import {
     LikeOutlined,
     DislikeOutlined,
     HeartOutlined,
-    ExclamationCircleOutlined,
     ShareAltOutlined,
     VerticalAlignTopOutlined,
+    ExclamationCircleOutlined,
     TwitterOutlined,
     YoutubeOutlined,
     FacebookOutlined,
@@ -22,8 +22,7 @@ import {Row, Col, Image, Button, Space, Tag, Spin, Modal, message, FloatButton }
 
 import {getDetailsdata, setUserData} from "../../api";
 
-import GameCarouselAlign from "../../Layout/components/Content/GameCarousel/GameCarouselAlign";
-import GameThumbBox from "../../Layout/components/Content/GameThumbBox/GameThumbBox";
+import GameThumbBox from "../../Layout/components/Content/GameThumbBox2/GameThumbBox2";
 import ShareContainer from "../../Layout/components/Share/Share";
 
 import './Details.less';
@@ -38,6 +37,8 @@ const DetailsPage = () => {
     const [pageData, setPageData] = useState({});
     const [previewData, setPreviewData] = useState([]);
     const [recommendData, setRecommendData] = useState([]);
+    const [advData1, setAdvData1] = useState([]);
+    const [advData2, setAdvData2] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isLike, setIsLike] = useState(false);
     const [isDisLike, setIsDisLike] = useState(false);
@@ -49,10 +50,15 @@ const DetailsPage = () => {
     const ctx = useContext(StoreContext);
 
     const detailsPageData = (data) => {
-        getDetailsdata(data, 24).then(res => {
+        getDetailsdata(data, 38).then(res => {
             setPageData(res.data);
             setPreviewData(res.data.preview);
-            setRecommendData(res.data.recommend);
+            let temp = JSON.parse(JSON.stringify(res.data.recommend));
+            setRecommendData(temp.slice(0, 21));
+            let temp1 = JSON.parse(JSON.stringify(res.data.recommend));
+            setAdvData1(temp1.slice(21, 32));
+            let temp2 = JSON.parse(JSON.stringify(res.data.recommend));
+            setAdvData2(temp2.slice(-6));
             setSpinning(false);
             setLikeNum(res.data);
             getMyGames(res.data)
@@ -318,7 +324,7 @@ const DetailsPage = () => {
                 <div className="details_content">
                     <div className="game_info_align">
                         {
-                            recommendData.map((item, index) => (
+                            advData1.map((item, index) => (
                                 <GameThumbBox
                                     key={item.gid}
                                     link={"/page/details?gid=" + item.gid}
@@ -577,7 +583,7 @@ const DetailsPage = () => {
                     </div>
                     <div className="game_info_banner">
                         {
-                            recommendData.map((item, index) => (
+                            advData2.map((item, index) => (
                                 <GameThumbBox
                                     key={item.gid}
                                     link={"/page/details?gid=" + item.gid}
