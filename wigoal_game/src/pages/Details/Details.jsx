@@ -300,7 +300,8 @@ const DetailsPage = () => {
 
     useEffect(() => {
         detailsPageData(search)
-
+        //每次加载回到顶部
+        window.scrollTo(0, 0);
         // //有BUG
         // if(isLike == true){
         //     // setIsLike(true);
