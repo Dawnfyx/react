@@ -1,6 +1,7 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useRef, useEffect, useContext} from 'react';
 import {useLocation} from "react-router";
 import {useNavigate} from "react-router-dom";
+import StoreContext from "../../../store/StoreContext"
 
 import {Button, Col, Drawer, Image, Row, Tabs} from "antd";
 import {ifUserLoginStatus} from "../../../utils/mixin";
@@ -14,6 +15,8 @@ const DrawerContainer = (props) => {
     const [likeData, setLikeData] = useState([]);
     const [playedData, setPlayedData] = useState([]);
     const [favoritesData, setFavoritesData] = useState([]);
+
+    const ctx = useContext(StoreContext);
 
     const navigate = useNavigate();
 
@@ -285,7 +288,7 @@ const DrawerContainer = (props) => {
 
     useEffect( () =>{
         formatData()
-    }, [openSwitch])
+    }, [search])
 
     return (
         <Drawer

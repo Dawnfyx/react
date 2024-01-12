@@ -21,7 +21,7 @@ import SiderContainer from "./components/Sider/Sider";
 import SiderMobileContainer from "./components/Sider/SiderMobile";
 import TabBarContainer from "./components/TabBar/TabBar";
 import DrawerContainer from "./components/Drawer/Drawer";
-import DramerMyGameContainer from "./components/Drawer/DrawerMyGame";
+import DrawerMyGameContainer from "./components/Drawer/DrawerMyGame";
 
 import userimg from "../assets/userimg/9.png";
 
@@ -35,9 +35,7 @@ const LayoutContainer = () => {
     // } = theme.useToken();
 
     const [storeData, setStoreData] = useState({
-        testNum: 10,
-        userInfo: {},
-        openMyGame: false,
+        myGameKey: false,
     });
     const [collapsed, setCollapsed] = useState(false);
     const [mobileFlag, setMobileFlag] = useState(false);
@@ -210,7 +208,7 @@ const LayoutContainer = () => {
                     }
                 </Layout>
                 <DrawerContainer openSwitch={open} onClose={onClose} tabsActive={tabsActive} setTabsActive={setTabsActive} ></DrawerContainer>
-                <DramerMyGameContainer openSwitch={openMyGame} onClose={onCloseMyGame} ></DramerMyGameContainer>
+                <DrawerMyGameContainer openSwitch={openMyGame} onClose={onCloseMyGame} ></DrawerMyGameContainer>
 
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" style={{height:0, position:'absolute', }}>
