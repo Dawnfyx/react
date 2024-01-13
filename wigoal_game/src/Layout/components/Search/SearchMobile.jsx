@@ -1,6 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react';
-import {useLocation} from "react-router";
-import {useNavigate} from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 
 import {
     SearchOutlined,
@@ -15,31 +14,58 @@ const SearchMobileContainer = (props) => {
 
     const {collapsed} = props;
 
-    const {search} = useLocation()
+    const location = useLocation();
 
-    const searchRef = useRef();
+    const {search} = useLocation()
 
     const navigate = useNavigate();
 
+    const searchRef = useRef(null);
+
     const onSearch = (value, _e, info) => {
-        navigate('/page/search' + '?words=' + searchRef.current.input.value)
+        console.log(searchRef.current)
+        // navigate('/page/search' + '?words=' + searchRef.current.input.value)
     }
 
+    // 清除 useRef 的值
+    const clearRefValue = () => {
+        searchRef.current.value = '';
+    };
+
     useEffect(() =>{
-        searchRef.current.input.value = ''
-    }, [search])
+        if (searchRef.current) {
+            debugger
+        }
+        if(location.pathname !== '/page/search'){
+            clearRefValue();
+        }
+    }, [location])
 
     return (
         <div className="search_mobile_box">
-            <Input placeholder="Search" ref={searchRef} addonBefore={<SearchOutlined/>} onPressEnter={onSearch}
-                   style={{
-                       backgroundColor: '#28293D',
-                       borderColor: '#28293D',
-                       borderRadius: '120px',
-                       overflow: 'hidden',
-                       verticalAlign: 'initial',
-                   }}
+            <Search
+                placeholder="Search"
+                ref={searchRef}
+                onPressEnter={onSearch}
+                onSearch={onSearch}
+                style={{
+                    backgroundColor: '#28293D',
+                    borderColor: '#28293D',
+                    borderRadius: '120px',
+                    overflow: 'hidden',
+                    verticalAlign: 'initial',
+                }}
             />
+
+            {/*<Input placeholder="Search" ref={searchRef} addonAfter={<SearchOutlined/>} onPressEnter={onSearch} onSearch={onSearch}*/}
+            {/*       style={{*/}
+            {/*           backgroundColor: '#28293D',*/}
+            {/*           borderColor: '#28293D',*/}
+            {/*           borderRadius: '120px',*/}
+            {/*           overflow: 'hidden',*/}
+            {/*           verticalAlign: 'initial',*/}
+            {/*       }}*/}
+            {/*/>*/}
         </div>
     )
 };

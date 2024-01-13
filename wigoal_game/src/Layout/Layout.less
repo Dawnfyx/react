@@ -193,7 +193,16 @@
             }
 
             span[class$='input-group-addon']{
-                border-color: #28293D;
+                //border-color: #28293D;
+                border: none;
+
+                .ant-btn{
+                    background-color: transparent;
+                    border-color: transparent;
+                }
+                .ant-btn-icon{
+                    color: rgb(170, 173, 190);
+                }
             }
 
             & > span {
@@ -201,6 +210,10 @@
                 border-color: #28293D;
                 border-radius: 120px;
                 overflow: hidden;
+            }
+            .ant-input-affix-wrapper{
+                background: transparent;
+                border: none;
             }
         }
     }

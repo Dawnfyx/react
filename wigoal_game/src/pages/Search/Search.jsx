@@ -22,9 +22,16 @@ const SearchPage = () => {
     const navigate = useNavigate();
 
     const searchPageData = (data) => {
+        setSpinning(true);
+        if(search.split('?words=')[1].trim().length == 0){
+            setSpinning(false);
+            return;
+        }
         getSearchdata(data).then(res => {
             setPageData(res.data.recommend);
             setResultData(res.data.result);
+            setSpinning(false);
+        }).catch(err => {
             setSpinning(false);
         })
     }
@@ -34,7 +41,7 @@ const SearchPage = () => {
     }
 
     useEffect(() => {
-        searchPageData(search)
+        searchPageData(search);
     }, [search])
 
     return (
@@ -75,20 +82,26 @@ const SearchPage = () => {
                         }
                     </Row>
                 </div>
-                <div className="title_container">
-                    <h2 className="carousel_title"><span>Recommend Games</span></h2>
-                </div>
-                <div className="page_item">
-                    <Row gutter={[10, 12]}>
-                        {
-                            pageData.map((item, index) => (
-                                <Col key={index} xs={8} sm={8} md={6} lg={4} xl={3} xxl={2}>
-                                    <GameThumbBox key={item.gid} link={"/page/details?gid=" + item.gid} url={process.env.REACT_APP_BASEURL + item.icon} name={item.name}></GameThumbBox>
-                                </Col>
-                            ))
-                        }
-                    </Row>
-                </div>
+                {/*{*/}
+                {/*    pageData.length > 0*/}
+                {/*    ? <>*/}
+                {/*        <div className="title_container">*/}
+                {/*            <h2 className="carousel_title"><span>Recommend Games</span></h2>*/}
+                {/*        </div>*/}
+                {/*        <div className="page_item">*/}
+                {/*            <Row gutter={[10, 12]}>*/}
+                {/*                {*/}
+                {/*                    pageData.map((item, index) => (*/}
+                {/*                        <Col key={index} xs={8} sm={8} md={6} lg={4} xl={3} xxl={2}>*/}
+                {/*                            <GameThumbBox key={item.gid} link={"/page/details?gid=" + item.gid} url={process.env.REACT_APP_BASEURL + item.icon} name={item.name}></GameThumbBox>*/}
+                {/*                        </Col>*/}
+                {/*                    ))*/}
+                {/*                }*/}
+                {/*            </Row>*/}
+                {/*        </div>*/}
+                {/*    </>*/}
+                {/*    : ''*/}
+                {/*}*/}
             </div>
         </div>
     )

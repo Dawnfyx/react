@@ -51,6 +51,7 @@ const DetailsPage = () => {
     const ctx = useContext(StoreContext);
 
     const detailsPageData = (data) => {
+        setSpinning(true);
         getDetailsdata(data, 38).then(res => {
             setPageData(res.data);
             setPreviewData(res.data.preview);
@@ -64,6 +65,8 @@ const DetailsPage = () => {
             setLikeNum(res.data);
             getMyGames(res.data);
 
+            setSpinning(false);
+        }).catch(err => {
             setSpinning(false);
         })
     }
@@ -308,7 +311,6 @@ const DetailsPage = () => {
     };
 
     useEffect(() => {
-        setSpinning(true);
         detailsPageData(search)
         //每次加载回到顶部
         window.scrollTo(0, 0);

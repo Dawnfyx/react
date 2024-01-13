@@ -33,7 +33,6 @@ const TabBarContainer = (props) => {
     }
 
     useEffect( () =>{
-        console.log(search, 'tab')
         if(search == '') {
             setTabbarActive(1)
         } else {
