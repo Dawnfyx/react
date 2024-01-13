@@ -23,8 +23,14 @@ const SearchMobileContainer = (props) => {
     const searchRef = useRef(null);
 
     const onSearch = (value, _e, info) => {
-        console.log(searchRef.current)
-        // navigate('/page/search' + '?words=' + searchRef.current.input.value)
+        navigate('/page/search' + '?words=' + value)
+    }
+
+    const onPressEnter = (_e) => {
+        let keycode = _e.keyCode
+        if (keycode == "13" && searchRef.current.value != "") {
+            navigate("/page/search" + "?words=" + _e.target.value)
+        }
     }
 
     // 清除 useRef 的值
@@ -33,9 +39,6 @@ const SearchMobileContainer = (props) => {
     };
 
     useEffect(() =>{
-        if (searchRef.current) {
-            debugger
-        }
         if(location.pathname !== '/page/search'){
             clearRefValue();
         }
@@ -46,7 +49,7 @@ const SearchMobileContainer = (props) => {
             <Search
                 placeholder="Search"
                 ref={searchRef}
-                onPressEnter={onSearch}
+                onPressEnter={onPressEnter}
                 onSearch={onSearch}
                 style={{
                     backgroundColor: '#28293D',
