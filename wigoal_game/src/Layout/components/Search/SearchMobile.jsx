@@ -1,4 +1,5 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
+import {useLocation} from "react-router";
 import {useNavigate} from 'react-router-dom';
 
 import {
@@ -14,6 +15,8 @@ const SearchMobileContainer = (props) => {
 
     const {collapsed} = props;
 
+    const {search} = useLocation()
+
     const searchRef = useRef();
 
     const navigate = useNavigate();
@@ -21,6 +24,10 @@ const SearchMobileContainer = (props) => {
     const onSearch = (value, _e, info) => {
         navigate('/page/search' + '?words=' + searchRef.current.input.value)
     }
+
+    useEffect(() =>{
+        searchRef.current.input.value = ''
+    }, [search])
 
     return (
         <div className="search_mobile_box">

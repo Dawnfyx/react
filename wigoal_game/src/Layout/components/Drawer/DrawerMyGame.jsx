@@ -288,7 +288,7 @@ const DrawerContainer = (props) => {
 
     useEffect( () =>{
         formatData()
-    }, [search])
+    }, [search, openSwitch])
 
     return (
         <Drawer

@@ -258,11 +258,23 @@ const DetailsPage = () => {
         event.stopPropagation()
 
         if (type == 'Like') {
-            setIfLike(1)
-            setMyGames(search.split('?gid=')[1], 1, isPlayed, isFavorites)
-        } else if (type == 'DisLike') {
-            setIfLike(2)
-            setMyGames(search.split('?gid=')[1], 2, !isDisLike, isPlayed, isFavorites)
+            if(ifLike == 1){
+                setIfLike(0)
+                setMyGames(search.split('?gid=')[1], 0, isPlayed, isFavorites)
+            } else{
+                setIfLike(1)
+                setMyGames(search.split('?gid=')[1], 1, isPlayed, isFavorites)
+            }
+        }
+
+        if (type == 'DisLike') {
+            if(ifLike == 2){
+                setIfLike(0)
+                setMyGames(search.split('?gid=')[1], 0, isPlayed, isFavorites)
+            } else {
+                setIfLike(2)
+                setMyGames(search.split('?gid=')[1], 2, isPlayed, isFavorites)
+            }
         }
     }
 
