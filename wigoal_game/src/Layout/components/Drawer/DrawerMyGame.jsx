@@ -52,7 +52,7 @@ const DrawerContainer = (props) => {
             let temp3 = [];
 
             ArrMap.map(item => {
-                if(item.like){
+                if(item.iflike == 1){
                     temp1.push({
                         gid: item.gid,
                         details: item.details,
