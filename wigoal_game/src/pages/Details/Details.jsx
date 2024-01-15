@@ -268,9 +268,7 @@ const DetailsPage = () => {
                 setIfLike(1)
                 setMyGames(search.split('?gid=')[1], 1, isPlayed, isFavorites)
             }
-        }
-
-        if (type == 'DisLike') {
+        } else if (type == 'DisLike') {
             if(ifLike == 2){
                 setIfLike(0)
                 setMyGames(search.split('?gid=')[1], 0, isPlayed, isFavorites)

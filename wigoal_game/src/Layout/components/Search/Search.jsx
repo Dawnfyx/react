@@ -1,5 +1,5 @@
-import React, {useState, useRef} from 'react';
-import {useNavigate} from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import {useLocation, useNavigate} from 'react-router-dom';
 
 import {Input, Space} from 'antd';
 
@@ -9,19 +9,32 @@ const {Search} = Input;
 
 const SearchContainer = (props) => {
 
-    const {collapsed} = props;
+    const {searchRef} = props;
 
-    const searchRef = useRef()
+    const [refresh, setRefresh] = useState(true);
+
+    const location = useLocation();
 
     const navigate = useNavigate();
 
     const onSearch = (value, _e, info) => {
-        navigate('/page/search' + '?words=' + searchRef.current.input.value)
+        navigate('/page/search' + '?words=' + value)
     }
+
+    useEffect(() =>{
+        if(location.pathname !== '/page/search'){
+            setRefresh(false)
+        }
+        setTimeout(() => setRefresh(true), 100)
+    }, [location])
 
     return (
         <div className="search_box">
-            <Search placeholder="Search" ref={searchRef} onSearch={onSearch} enterButton/>
+            {
+                refresh
+                    ? <Search placeholder="Search" ref={searchRef} onSearch={onSearch} enterButton/>
+                    : ''
+            }
         </div>
     )
 };

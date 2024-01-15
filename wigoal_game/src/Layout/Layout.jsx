@@ -44,6 +44,8 @@ const LayoutContainer = () => {
     const [open, setOpen] = useState(false);
     const [openMyGame, setOpenMyGame] = useState(false);
 
+    const searchRef = useRef(null);
+
     const showDrawer = (value, e) => {
         setTabsActive(value);
         setOpen(true);
@@ -108,7 +110,7 @@ const LayoutContainer = () => {
                                 <LogoContainer collapsed={collapsed}></LogoContainer>
                             </Space>
                             <Space>
-                                <SearchContainer></SearchContainer>
+                                <SearchContainer searchRef={searchRef}></SearchContainer>
                             </Space>
                             <Space>
                                 {
@@ -194,7 +196,7 @@ const LayoutContainer = () => {
 
                                     </div>
                                 </Space>
-                                <SearchMobileContainer ></SearchMobileContainer>
+                                <SearchMobileContainer searchRef={searchRef}></SearchMobileContainer>
                             </Header>
                             : <SiderContainer collapsed={collapsed} setCollapsed={setCollapsed} refMenu={refMenu}></SiderContainer>
                     }
