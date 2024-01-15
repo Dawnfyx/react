@@ -5,6 +5,7 @@ import {Row, Col, Input, Spin} from "antd";
 
 import {getSearchdata} from "../../api";
 
+import no_res from '../../assets/img/no_res.png'
 import './Search.less'
 
 const {Search} = Input;
@@ -50,9 +51,14 @@ const SearchPage = () => {
 
             <div className="page_title">
                 <div className="title_container"><h1>Search</h1></div>
-                <div className="body_container">Use the box below to search through thousands of
-                    free online games:
-                </div>
+                {
+                    resultData.length == 0
+                        ? <div className='no_res'>
+                            <img src={no_res} alt="" />
+                        </div>
+                        : ''
+                }
+
             </div>
 
             {/*<Search*/}
