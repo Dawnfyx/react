@@ -50,13 +50,17 @@ const SearchPage = () => {
             <Spin spinning={spinning} fullscreen />
 
             <div className="page_title">
-                <div className="title_container"><h1>Search</h1></div>
                 {
                     resultData.length == 0
                         ? <div className='no_res'>
                             <img src={no_res} alt="" />
+                            <p>
+                                {
+                                    'Sorry, we didn\'t find any results matching this search.'
+                                }
+                            </p>
                         </div>
-                        : ''
+                        : <div className="title_container"><h1>Search</h1></div>
                 }
 
             </div>
